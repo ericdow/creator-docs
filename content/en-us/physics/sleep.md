@@ -18,9 +18,9 @@ An assembly is determined to be not moving by checking the deviation of it's pos
 
 There are cases where just checking that an assembly is not moving would cause the assembly to be incorrectly put to sleep. For example, consider a ball thrown straight up. When the ball reaches it's maximum height, the position barely changes for a number of worldsteps, and would be considered non-moving and put into the sleeping state. Since the ball is no longer simulated, its position and velocity will never be updated, and it will never fall back down.
 
-To handle such cases, the net force acting on the assembly is used to determine if it is accelerating. If the product of the assembly's acceleration with the current timestep is greater than the **velocity threshold**, the assembly is considered to be accelerating. Both the linear and angular velocities of each assembly are compared to the velocity threshold to determine if a body is accelerating.
+To handle such cases, the net force acting on the assembly is used to determine if it is accelerating. If the product of the assembly's acceleration and current timestep is greater than the **velocity threshold**, the assembly is considered to be accelerating. Both the linear and angular velocities of each assembly are compared to the velocity threshold to determine if a body is accelerating.
 
-Non-moving assemblies that share a constraint with at least one awake assembly are put into the **sleep-checking** state. These assemblies are not simulated. Each frame, they check the velocity of every awake assembly that they share a constraint with, and are put into the **awake** state if this velocity is above the **neighbor velocity threshold**. TODO history?
+Non-moving assemblies that share a constraint with at least one awake assembly are put into the sleep-checking state. These assemblies are not simulated. Each worldstep, they check the position deviation and acceleration of every awake assembly that they share a constraint with. If the position deviation of any neighboring assembly is greater than the **neighbor displacement threshold**, sleep-checking assemblies will be put into the awake state. Similarly, if the product of a neighboring assembly's acceleration and current timestep is greater than the **neighbor velocity threshold**, the assembly will be put into the awake state.
 
 <table>
 <thead>
@@ -31,11 +31,11 @@ Non-moving assemblies that share a constraint with at least one awake assembly a
 </thead>
 <tbody>
 	<tr>
-		<td>Position Deviation</td>
+		<td>Displacement</td>
 		<td>0.001 studs</td>
 	</tr>
 	<tr>
-		<td>Neighbor Position Deviation</td>
+		<td>Neighbor Displacement</td>
 		<td>0.01 studs</td>
 	</tr>
 	<tr>
