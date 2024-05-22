@@ -5,20 +5,24 @@ description: The sleep system automatically prevents unnecessary simulation of n
 
 Each [assembly](../physics/assemblies.md) in the Roblox Engine corresponds to a single **rigid body**. The position and velocity of each rigid body describe where it's located and how fast it's moving, and one of the primary tasks of the Engine is to update the positions and velocities of each assembly. Assemblies can be connected together with [mechanical constraints](../physics/mechanical-constraints.md) and [mover constraints](../physics/mover-constraints.md) to form **mechanisms**, such as cars or airplanes. 
 
-As the number of assemblies and constraints in a mechanism increases, the time required to simulate the mechanism also increases. If we know that particular assembly is not moving, we can save time and improve performance by not simulating it. Moreover, we can further improve performance by not simulating constraints between any non-moving assemblies if these constraints won't cause the attached assemblies to move. The **sleep system** is responsible for determining which assemblies and constraints should be simulated during each **worldstep**.
+As the number of assemblies and constraints in a mechanism increases, the time required to simulate the mechanism also increases. If we know that particular assembly is not moving, we can save time and improve performance by not simulating it. We can further improve performance by not simulating constraints between any non-moving assemblies if these constraints won't cause the attached assemblies to move. The **sleep system** is responsible for determining which assemblies and constraints should be simulated during each **worldstep**.
 
 ## Sleep States
 
 Each assembly can be in one of three states:
-1. **Awake**: assembly is moving and is therefore currently being simulated.
-2. **Sleeping**: assembly is not moving and therefore not being simulated.
-3. **Sleep-checking**: assembly is not moving and not being simulated, but shares a constraint with at least one awake assembly.
+1. **Awake**: assembly is moving or accelerating and is therefore currently being simulated.
+2. **Sleeping**: assembly is not moving and not accelerating and therefore not being simulated.
+3. **Sleep-checking**: assembly is not moving or accelerating and not being simulated, but shares a constraint with at least one awake assembly.
 
-Due to finite floating point and numerical precision, an assembly's velocity is unlikely to be exactly zero. To ensure that assemblies that are moving very slowly can be put to sleep, we introduce a **velocity threshold**. If an assembly's velocity is below this threshold, it is put into the **sleep** state. TODO history?
+An assembly is determined to be not moving by checking the deviation of it's position. The deviation of the position is calculated as the maximum deviation from the average position of the point furthest from an assembly's center of mass over the most recent set of worldsteps. If this deviation is greater than the **displacement threshold**, this assembly is considered to be moving.
+
+There are cases where just checking that an assembly is not moving would cause the assembly to be incorrectly put to sleep. For example, consider a ball thrown straight up. When the ball reaches it's maximum height, the position barely changes for a number of worldsteps, and would be considered non-moving and put into the sleeping state. Since the ball is no longer simulated, its position and velocity will never be updated, and it will never fall back down.
+
+To handle such cases, the net force acting on the assembly is used to determine if it is accelerating. If the product of the assembly's acceleration with the current timestep is greater than the **velocity threshold**, the assembly is considered to be accelerating. Both the linear and angular velocities of each assembly are compared to the velocity threshold to determine if a body is accelerating.
 
 Non-moving assemblies that share a constraint with at least one awake assembly are put into the **sleep-checking** state. These assemblies are not simulated. Each frame, they check the velocity of every awake assembly that they share a constraint with, and are put into the **awake** state if this velocity is above the **neighbor velocity threshold**. TODO history?
 
-<table size="small">
+<table>
 <thead>
 	<tr>
 		<th>Threshold</th>
@@ -27,20 +31,28 @@ Non-moving assemblies that share a constraint with at least one awake assembly a
 </thead>
 <tbody>
 	<tr>
-		<td>Velocity</td>
-		<td>TODO studs/second</td>
+		<td>Position Deviation</td>
+		<td>0.001 studs</td>
 	</tr>
 	<tr>
-		<td>Neighbor Velocity</td>
-		<td>TODO studs/second</td>
+		<td>Neighbor Position Deviation</td>
+		<td>0.01 studs</td>
 	</tr>
-  <tr>
-		<td>Impulse</td>
-		<td>TODO Rowtons [RMU stud/s&sup2;]</td>
+	<tr>
+		<td>Linear Velocity</td>
+		<td>0.1 studs/s</td>
 	</tr>
-  <tr>
-		<td>Neighbor Impulse</td>
-		<td>TODO Rowtons [RMU stud/s&sup2;]</td>
+	<tr>
+		<td>Angular Velocity</td>
+		<td>0.1 rad/s</td>
+	</tr>
+	<tr>
+		<td>Neighbor Linear Velocity</td>
+		<td>0.2 studs/s</td>
+	</tr>
+	<tr>
+		<td>Neighbor Angular Velocity</td>
+		<td>0.2 rad/s</td>
 	</tr>
 </tbody>
 </table>
@@ -64,13 +76,11 @@ Once enabled, simulated parts will be outlined by their current sleep state. Awa
 </figure>
 
 ## TODO
-- Velocity thresholds values: velocity threshold and neighbor velocity threshold
+- Debugging tips
 - Update link in https://create.roblox.com/docs/physics/adaptive-timestepping
-
-Like other engines, Roblox had been using a traditional heuristic for determining when bodies fall asleep. Each assembly keeps a “history” of its past positions and orientations, and as long as the deviation from the average position stays within the threshold, the assembly stays awake. Essentially if the velocity is below a set value for a few frames, the assembly sleeps. I’ll refer to this value as the velocity threshold.
-
-By trying to use this same logic for causing assemblies to wake up, we encounter a small problem. We can’t check the last impulse value of a sleeping assembly, since the whole point of something being asleep is that it’s not in the solver. For that, we still need to rely on contacts and property change events. However, the mechanism relationship can help in a variety of cases. In fact, an assembly’s history is also used to help determine when other assemblies in the same mechanism should wake up.
-
+- Center table
+- Image for "Are Awake Parts Highlighted"
+- Video for sleep state
 
 
 
