@@ -87,6 +87,7 @@ Once enabled, simulated parts will be outlined by their current sleep state. Awa
 
 ## TODO
 - Debugging tips
+- Description of tickling
 - Video for sleep state
 
 
