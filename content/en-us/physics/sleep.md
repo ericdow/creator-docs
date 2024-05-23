@@ -56,6 +56,7 @@ Non-moving assemblies that share a constraint with at least one awake assembly a
 	</tr>
 </tbody>
 </table>
+Displacement and velocity thresholds used to determine if an assembly is moving or accelerating
 
 ## Debugging Visualization
 
@@ -86,8 +87,6 @@ Once enabled, simulated parts will be outlined by their current sleep state. Awa
 
 ## TODO
 - Debugging tips
-- Update link in https://create.roblox.com/docs/physics/adaptive-timestepping
-- Center table
 - Video for sleep state
 
 
