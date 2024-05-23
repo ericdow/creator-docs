@@ -18,9 +18,9 @@ An assembly is determined to be not moving by checking the deviation of it's pos
 
 There are cases where just checking that an assembly is not moving would cause the assembly to be incorrectly put to sleep. For example, consider a ball thrown straight up. When the ball reaches it's maximum height, the position barely changes for a number of worldsteps, and would be considered non-moving and put into the sleeping state. Since the ball is no longer simulated, its position and velocity will never be updated, and it will never fall back down.
 
-To handle such cases, the net force acting on the assembly is used to determine if it is accelerating. If the product of the assembly's acceleration and current timestep is greater than the **velocity threshold**, the assembly is considered to be accelerating. Both the linear and angular velocities of each assembly are compared to the velocity threshold to determine if a body is accelerating.
+To handle such cases, the net force acting on the assembly is used to determine if it is accelerating. If the product of the assembly's acceleration and current timestep size is greater than the **velocity threshold**, the assembly is considered to be accelerating. Both the linear and angular velocities of each assembly are compared to the velocity threshold to determine if a body is accelerating.
 
-Non-moving assemblies that share a constraint with at least one awake assembly are put into the sleep-checking state. These assemblies are not simulated. Each worldstep, they check the position deviation and acceleration of every awake assembly that they share a constraint with. If the position deviation of any neighboring assembly is greater than the **neighbor displacement threshold**, sleep-checking assemblies will be put into the awake state. Similarly, if the product of a neighboring assembly's acceleration and current timestep is greater than the **neighbor velocity threshold**, the assembly will be put into the awake state.
+Non-moving assemblies that share a constraint with at least one awake assembly are put into the sleep-checking state. These assemblies are not simulated. Each worldstep, they check the position deviation and acceleration of every awake assembly that they share a constraint with. If the position deviation of any neighboring assembly is greater than the **neighbor displacement threshold**, sleep-checking assemblies will be put into the awake state. Similarly, if the product of a neighboring assembly's acceleration and current timestep size is greater than the **neighbor velocity threshold**, the assembly will be put into the awake state.
 
 <table>
 <thead>
@@ -43,12 +43,12 @@ Non-moving assemblies that share a constraint with at least one awake assembly a
 		<td>0.1 studs/s</td>
 	</tr>
 	<tr>
-		<td>Angular Velocity</td>
-		<td>0.1 rad/s</td>
-	</tr>
-	<tr>
 		<td>Neighbor Linear Velocity</td>
 		<td>0.2 studs/s</td>
+	</tr>
+	<tr>
+		<td>Angular Velocity</td>
+		<td>0.1 rad/s</td>
 	</tr>
 	<tr>
 		<td>Neighbor Angular Velocity</td>
@@ -59,13 +59,22 @@ Non-moving assemblies that share a constraint with at least one awake assembly a
 
 ## Debugging Visualization
 
-During testing, it may be useful to visualize sleeping, sleep-checking and awake assemblies. To enable this option:
+During testing, it may be useful to visualize sleeping, sleep-checking and awake assemblies. To enable this option, first ensure that the sleep system is enabled:
+
+1. Open the Studio settings window (**File** &rarr; **Studio Settings**).
+2. From the **Physics** tab, enable **Allow&nbsp;Sleep**.
+
+   <img
+   src="../assets/physics/sleep/Settings-Allow-Sleep.png"
+   width="500" />
+
+Then, enable the visualization:
 
 1. Open the Studio settings window (**File** &rarr; **Studio Settings**).
 2. From the **Physics** tab, enable **Are&nbsp;Awake&nbsp;Parts&nbsp;Highlighted**.
 
    <img
-   src=TODO
+   src="../assets/physics/sleep/Settings-Are-Awake-Parts-Highlighted.png"
    width="500" />
 
 Once enabled, simulated parts will be outlined by their current sleep state. Awake parts are outlined in red, sleep-checking parts are outlined in orange, and sleeping parts will not be outlined.
@@ -79,7 +88,6 @@ Once enabled, simulated parts will be outlined by their current sleep state. Awa
 - Debugging tips
 - Update link in https://create.roblox.com/docs/physics/adaptive-timestepping
 - Center table
-- Image for "Are Awake Parts Highlighted"
 - Video for sleep state
 
 
