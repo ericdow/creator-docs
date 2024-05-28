@@ -58,6 +58,27 @@ Non-moving assemblies that share a constraint with at least one awake assembly a
 </table>
 Displacement and velocity thresholds used to determine if an assembly is moving or accelerating
 
+Assemblies are also be awoken in various other situations:
+- When it collides with another assembly
+- When any physics-related property of any [BasePart](https://create.roblox.com/docs/reference/engine/classes/BasePart) in the assembly changes, including
+	- [CustomPhysicalProperties](https://create.roblox.com/docs/reference/engine/classes/BasePart#CustomPhysicalProperties)
+ 	- [EnableFluidForces](https://create.roblox.com/docs/reference/engine/classes/BasePart#EnableFluidForces)
+  	- [CanCollide](https://create.roblox.com/docs/reference/engine/classes/BasePart#CanCollide)/[CanTouch](https://create.roblox.com/docs/reference/engine/classes/BasePart#CanTouch)
+  	- [Massless](https://create.roblox.com/docs/reference/engine/classes/BasePart#Massless)
+  	- [Anchored](https://create.roblox.com/docs/reference/engine/classes/BasePart#Anchored)
+  	- [RootPriority](https://create.roblox.com/docs/reference/engine/classes/BasePart#RootPriority)
+  	- [AssemblyLinearVelocity](https://create.roblox.com/docs/reference/engine/classes/BasePart#AssemblyLinearVelocity)/[AssemblyAngularVelocity](https://create.roblox.com/docs/reference/engine/classes/BasePart#AssemblyLinearVelocity)
+- When a non-zero impulse is applied to it via [ApplyImpulse](https://create.roblox.com/docs/reference/engine/classes/BasePart#ApplyImpulse)/[ApplyImpulseAtPosition](https://create.roblox.com/docs/reference/engine/classes/BasePart#ApplyImpulseAtPosition)/[ApplyAngularImpulse](https://create.roblox.com/docs/reference/engine/classes/BasePart#ApplyAngularImpulse)
+- When any physics-related property of the [Workspace](https://create.roblox.com/docs/reference/engine/classes/Workspace) that it belongs to changes, including
+	- [Gravity](https://create.roblox.com/docs/reference/engine/classes/Workspace#Gravity)
+   	- [FluidForces](https://create.roblox.com/docs/reference/engine/classes/Workspace#FluidForces)
+   	- [GlobalWind](https://create.roblox.com/docs/reference/engine/classes/Workspace#GlobalWind)
+   	- [AirDensity](https://create.roblox.com/docs/reference/engine/classes/Workspace#AirDensity)
+- TODO constraints
+- When any properties of a [Motor6D](https://create.roblox.com/docs/reference/engine/classes/Motor6D) attached to assembly change
+- When they contain a [VehicleSeat](https://create.roblox.com/docs/reference/engine/classes/VehicleSeat) with a seated player
+- When they are within the [BlastRadius](https://create.roblox.com/docs/reference/engine/classes/Explosion#BlastRadius) of an [Explosion](https://create.roblox.com/docs/reference/engine/classes/Explosion)
+
 ## Debugging Visualization
 
 During testing, it may be useful to visualize sleeping, sleep-checking and awake assemblies. To enable this option, first ensure that the sleep system is enabled:
@@ -87,7 +108,6 @@ Once enabled, simulated parts will be outlined by their current sleep state. Awa
 
 ## TODO
 - Debugging tips
-- Description of tickling
 - Video for sleep state
 
 
