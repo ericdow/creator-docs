@@ -68,7 +68,7 @@ Assemblies are also be awoken in various other situations:
   	- `Class.BasePart.Anchored`
   	- `Class.BasePart.RootPriority`
   	- `Class.BasePart.AssemblyLinearVelocity`/`Class.BasePart.AssemblyAngularVelocity`
-- When a non-zero impulse is applied to it via `Class.BasePart:ApplyImpulse()`/`Class.BasePart:ApplyImpulseAtPosition()`/`Class.BasePart:ApplyAngularImpulse()`
+- When a non-zero impulse is applied to any `Class.BasePart` in the assembly via `Class.BasePart:ApplyImpulse()`/`Class.BasePart:ApplyImpulseAtPosition()`/`Class.BasePart:ApplyAngularImpulse()`
 - When any physics-related property of the `Class.Workspace` that it belongs to changes, including
 	- `Class.Workspace.Gravity`
    	- `Class.Workspace.FluidForces`
