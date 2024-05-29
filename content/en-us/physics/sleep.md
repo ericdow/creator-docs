@@ -60,24 +60,25 @@ Displacement and velocity thresholds used to determine if an assembly is moving 
 
 Assemblies are also be awoken in various other situations:
 - When it collides with another assembly
-- When any physics-related property of any [BasePart](https://create.roblox.com/docs/reference/engine/classes/BasePart) in the assembly changes, including
-	- [CustomPhysicalProperties](https://create.roblox.com/docs/reference/engine/classes/BasePart#CustomPhysicalProperties)
- 	- [EnableFluidForces](https://create.roblox.com/docs/reference/engine/classes/BasePart#EnableFluidForces)
-  	- [CanCollide](https://create.roblox.com/docs/reference/engine/classes/BasePart#CanCollide)/[CanTouch](https://create.roblox.com/docs/reference/engine/classes/BasePart#CanTouch)
-  	- [Massless](https://create.roblox.com/docs/reference/engine/classes/BasePart#Massless)
-  	- [Anchored](https://create.roblox.com/docs/reference/engine/classes/BasePart#Anchored)
-  	- [RootPriority](https://create.roblox.com/docs/reference/engine/classes/BasePart#RootPriority)
-  	- [AssemblyLinearVelocity](https://create.roblox.com/docs/reference/engine/classes/BasePart#AssemblyLinearVelocity)/[AssemblyAngularVelocity](https://create.roblox.com/docs/reference/engine/classes/BasePart#AssemblyLinearVelocity)
-- When a non-zero impulse is applied to it via [ApplyImpulse](https://create.roblox.com/docs/reference/engine/classes/BasePart#ApplyImpulse)/[ApplyImpulseAtPosition](https://create.roblox.com/docs/reference/engine/classes/BasePart#ApplyImpulseAtPosition)/[ApplyAngularImpulse](https://create.roblox.com/docs/reference/engine/classes/BasePart#ApplyAngularImpulse)
-- When any physics-related property of the [Workspace](https://create.roblox.com/docs/reference/engine/classes/Workspace) that it belongs to changes, including
-	- [Gravity](https://create.roblox.com/docs/reference/engine/classes/Workspace#Gravity)
-   	- [FluidForces](https://create.roblox.com/docs/reference/engine/classes/Workspace#FluidForces)
-   	- [GlobalWind](https://create.roblox.com/docs/reference/engine/classes/Workspace#GlobalWind)
-   	- [AirDensity](https://create.roblox.com/docs/reference/engine/classes/Workspace#AirDensity)
-- TODO constraints
-- When any properties of a [Motor6D](https://create.roblox.com/docs/reference/engine/classes/Motor6D) attached to the assembly change
-- When they contain a [VehicleSeat](https://create.roblox.com/docs/reference/engine/classes/VehicleSeat) with a seated player
-- When they are within the [BlastRadius](https://create.roblox.com/docs/reference/engine/classes/Explosion#BlastRadius) of an [Explosion](https://create.roblox.com/docs/reference/engine/classes/Explosion)
+- When any physics-related property of any `Class.BasePart` in the assembly changes, including
+	- `Class.BasePart.CustomPhysicalProperties`
+ 	- `Class.BasePart..EnableFluidForces`
+  	- `Class.BasePart.CanCollide`/`Class.BasePart.CanTouch`
+  	- `Class.BasePart.Massless`
+  	- `Class.BasePart.Anchored`
+  	- `Class.BasePart.RootPriority`
+  	- `Class.BasePart.AssemblyLinearVelocity`/`Class.BasePart.AssemblyAngularVelocity`
+- When a non-zero impulse is applied to it via `Class.BasePart:ApplyImpulse()`/`Class.BasePart:ApplyImpulseAtPosition()`/`Class.BasePart:ApplyAngularImpulse()`
+- When any physics-related property of the `Class.Workspace` that it belongs to changes, including
+	- `Class.Workspace.Gravity`
+   	- `Class.Workspace.FluidForces`
+   	- `Class.Workspace.GlobalWind`
+   	- `Class.Workspace.AirDensity`
+- When a new `Class.Constraint` is created with an `Class.Attachment` that is parented to a `Class.BasePart` in the assembly
+- When any properties of a `Class.Constraint` with an `Class.Attachment` that is parented to a `Class.BasePart` in the assembly is changed
+- When the `Class.Motor.CurrentAngle` property of a `Class.Motor` that is connected to a `Class.BasePart` in the assembly is changed
+- When they contain a `Class.VehicleSeat` with a seated player
+- When they are within the `Class.Explosion.BlastRadius` of an `Class.Explosion`
 
 ## Debugging Visualization
 
