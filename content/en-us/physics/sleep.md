@@ -75,7 +75,7 @@ Assemblies are also be awoken in various other situations:
    	- [GlobalWind](https://create.roblox.com/docs/reference/engine/classes/Workspace#GlobalWind)
    	- [AirDensity](https://create.roblox.com/docs/reference/engine/classes/Workspace#AirDensity)
 - TODO constraints
-- When any properties of a [Motor6D](https://create.roblox.com/docs/reference/engine/classes/Motor6D) attached to assembly change
+- When any properties of a [Motor6D](https://create.roblox.com/docs/reference/engine/classes/Motor6D) attached to the assembly change
 - When they contain a [VehicleSeat](https://create.roblox.com/docs/reference/engine/classes/VehicleSeat) with a seated player
 - When they are within the [BlastRadius](https://create.roblox.com/docs/reference/engine/classes/Explosion#BlastRadius) of an [Explosion](https://create.roblox.com/docs/reference/engine/classes/Explosion)
 
