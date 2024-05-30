@@ -58,7 +58,7 @@ Non-moving assemblies that share a constraint with at least one awake assembly a
 </table>
 Displacement and velocity thresholds used to determine if an assembly is moving or accelerating
 
-Assemblies are also be awoken in various other situations:
+Assemblies are also awoken in various other situations:
 - When it collides with another assembly
 - When any physics-related property of any `Class.BasePart` in the assembly changes, including
 	- `Class.BasePart.CustomPhysicalProperties`
