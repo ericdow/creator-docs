@@ -22,6 +22,8 @@ To handle such cases, the net force acting on the assembly is used to determine 
 
 Non-moving assemblies that share a constraint with at least one awake assembly are put into the sleep-checking state. These assemblies are not simulated. Each worldstep, they check the position deviation and acceleration of every awake assembly that they share a constraint with. If the position deviation of any neighboring assembly is greater than the **neighbor displacement threshold**, sleep-checking assemblies will be put into the awake state. Similarly, if the product of a neighboring assembly's acceleration and current timestep size is greater than the **neighbor velocity threshold**, the assembly will be put into the awake state.
 
+The table below provides the various displacement and velocity thresholds used to determine if an assembly is moving or accelerating.
+
 <table>
 <thead>
 	<tr>
@@ -56,13 +58,12 @@ Non-moving assemblies that share a constraint with at least one awake assembly a
 	</tr>
 </tbody>
 </table>
-Displacement and velocity thresholds used to determine if an assembly is moving or accelerating
 
 Assemblies are also awoken in various other situations:
 - When it collides with another assembly
 - When any physics-related property of any `Class.BasePart` in the assembly changes, including
 	- `Class.BasePart.CustomPhysicalProperties`
- 	- `Class.BasePart..EnableFluidForces`
+ 	- `Class.BasePart.EnableFluidForces`
   	- `Class.BasePart.CanCollide`/`Class.BasePart.CanTouch`
   	- `Class.BasePart.Massless`
   	- `Class.BasePart.Anchored`
@@ -107,8 +108,10 @@ Once enabled, simulated parts will be outlined by their current sleep state. Awa
   <figcaption>Simulated parts outlined by the color representing their current sleep state</figcaption>
 </figure>
 
+## Guidance to Developers
+If an assembly falls asleep when you'd like it to remain awake, it is because the assembly is moving too slowly. As described previously, there are may ways to trigger an assembly to wake, which can be used to acheive the desired behavior. For example, if the assembly is being moved by an actuator (e.g. Enum.Motor or Enum.Servo) or a mover constraint, adjust the settings of the actuator/mover to make the assembly move faster.
+
 ## TODO
-- Debugging tips
 - Video for sleep state
 
 
