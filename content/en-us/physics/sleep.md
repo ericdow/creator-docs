@@ -109,7 +109,7 @@ Once enabled, simulated parts will be outlined by their current sleep state. Awa
 </figure>
 
 ## Guidance to Developers
-If an assembly falls asleep when you'd like it to remain awake, it is because the assembly is moving too slowly. As described previously, there are may ways to trigger an assembly to wake, which can be used to acheive the desired behavior. For example, if the assembly is being moved by an actuator (e.g. Enum.Motor or Enum.Servo) or a mover constraint, adjust the settings of the actuator/mover to make the assembly move faster.
+If an assembly falls asleep when you'd like it to remain awake, it is because the assembly is moving too slowly. As described previously, there are may ways to trigger an assembly to wake, which can be used to acheive the desired behavior. For example, if the assembly is being moved by an actuator (e.g. `Enum.Motor` or `Enum.Servo`) or a mover constraint, adjust the settings of the actuator/mover to make the assembly move faster.
 
 ## TODO
 - Video for sleep state
