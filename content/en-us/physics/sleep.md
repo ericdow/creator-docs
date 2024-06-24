@@ -104,16 +104,9 @@ Then, enable the visualization:
 Once enabled, simulated parts will be outlined by their current sleep state. Awake parts are outlined in red, sleep-checking parts are outlined in orange, and sleeping parts will not be outlined.
 
 <figure>
-  <video src=TODO controls width="100%"></video>
+  <video src="../assets/physics/sleep/Sleep-States.mp4" controls width="100%"></video>
   <figcaption>Simulated parts outlined by the color representing their current sleep state</figcaption>
 </figure>
 
 ## Guidance to Developers
 If an assembly falls asleep when you'd like it to remain awake, it is because the assembly is moving too slowly. As described previously, there are many ways to trigger an assembly to wake, which can be used to acheive the desired behavior. For example, if the assembly is being moved by an actuator (e.g. `Enum.Motor` or `Enum.Servo`) or a mover constraint, adjust the settings of the actuator/mover to make the assembly move faster.
-
-## TODO
-- Video for sleep state
-
-
-
-
