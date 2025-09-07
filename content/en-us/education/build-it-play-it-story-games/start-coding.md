@@ -1,27 +1,21 @@
 ---
-title: Start Coding
+title: Start coding
 description: Part of the Story Games series that teaches you to code in Roblox. Open the script used to manage the experience.
 next: /education/build-it-play-it-story-games/coding-a-question
 prev: /education/build-it-play-it-story-games/first-challenge
 ---
 
-In Roblox, code is typed inside of **scripts** using the coding language Lua. Games often have separate scripts for each thing the game needs to do. The library template already has a script named **StoryManager** which you'll add more code to for your word game.
+In Roblox, code is typed inside of **scripts** using the coding language [Luau](https://luau.org). Games often have separate scripts for each thing the game needs to do. The library template already has a script named **StoryManager** which you'll add more code to for your word game.
 
-## Finding the StoryManager
+## Find the StoryManager
 
 1. In the **Explorer** window, click the arrow next to **StarterGUI** to see everything beneath it.
-
-   <img src="../../assets/education/story-games/StarterGUIArrow_900x500.png" width="100%" />
-
 2. Click the arrow next to **GameGUI** to expand that section.
-
-   <img src="../../assets/education/story-games/GameGUIArrow.png" width="100%" />
-
 3. Double-click the **StoryManager** script to open it.
 
-   <img src="../../assets/education/story-games/StoryManager_900x500.png" width="100%" />
+   <img src="../../assets/education/story-games/StoryManager.png" width="40%" />
 
-## Script Contents
+## Script contents
 
 The script already contains some of the code that's necessary for showing the completed story to the player. All of the code you create will be typed below the dashed lines.
 

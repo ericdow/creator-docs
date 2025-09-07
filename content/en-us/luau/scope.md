@@ -11,7 +11,7 @@ Scripts cannot access global and local variables or functions in other scripts. 
 
 ```lua
 local helloWorld = 'Hello World!'
-local function printHelloWorld ()
+local function printHelloWorld()
 	print(helloWorld)
 end
 printHelloWorld() -- Hello World!
@@ -24,9 +24,9 @@ printHelloWorld() -- Hello World!
 - Block A **cannot** access the local variables and functions in blocks B or C.
 - Block B **cannot** access the local variable in block C.
 
-## Global Scope
+## Global scope
 
-After you declare a global variable or function, any block of code in the same [script](../scripting/scripts.md) can access it. Variables and functions have global scope unless you declare them with the `local` keyword.
+After you declare a global variable or function, any block of code in the same [script](../scripting/index.md) can access it. Variables and functions have global scope unless you declare them with the `local` keyword.
 
 In the following code, `testVar` has global scope within the local `testFunc()` function. When Luau calls the `testFunc()`, it assigns `testVar` the value `64`. The `testVar` has global scope, so the `print()` function outside `testFunc()` can access it and print `64`.
 
@@ -65,9 +65,9 @@ It's easier to declare global variables and functions because you don't need to 
 
 - Luau accesses global variables and functions with a hash lookup, so it's expensive to use in terms of performance. Using a global variable in a time-critical loop can make it perform more than 10% slower than using a local variable in the same loop.
 - Luau disposes of local variables after their scope ends, reducing memory usage.
-- You can access global variables and functions within the same script, but not between multiple scripts. Therefore, a global variable or function doesn't provide any benefit over an in-scope local equivalent, an [upvalue](#capturing), or a [shadow](#shadowing).
+- You can access global variables and functions within the same script, but not between multiple scripts. Therefore, a global variable or function doesn't provide any benefit over an in-scope local equivalent, an [upvalue](#capture), or a [shadow](#shadow).
 
-## Local Scope
+## Local scope
 
 Luau can only access a local variable or function in the block of code where you declare it. Creating a variable with local scope gives you tighter control over when and where its value changes.
 
@@ -105,7 +105,7 @@ Initial 'x' = 0
 ]]
 ```
 
-### Capturing
+### Capture
 
 After you declare and assign a local variable, you can read it in its scope level and functions whose scopes is enclosed by the same scope containing the local variable. This technique is known as **capturing**.
 
@@ -122,9 +122,9 @@ f() -- 5
 print(x) -- 5
 ```
 
-### Shadowing
+### Shadow
 
-After you declare and assign a local variable, you can read it in its scope level and descendent scope levels. If you redeclare and reassign the variable in a descendent scope level, then you create a new local variable with the same name but different value from the most previous assignment. The new local variable doesn't affect the local variable from the previous assignment. This technique, known as **shadowing**, helps you reuse the name of a variable without reusing its value.
+After you declare and assign a local variable, you can read it in its scope level and descendant scope levels. If you redeclare and reassign the variable in a descendant scope level, then you create a new local variable with the same name but different value from the most previous assignment. The new local variable doesn't affect the local variable from the previous assignment. This technique, known as **shadowing**, helps you reuse the name of a variable without reusing its value.
 
 In the following code, Luau shadows the variable `x`. The variable `x` in `f()` is a **shadow** variable.
 

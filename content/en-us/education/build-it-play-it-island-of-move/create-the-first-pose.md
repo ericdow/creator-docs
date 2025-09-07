@@ -1,5 +1,5 @@
 ---
-title: Create the First Pose
+title: Create the first pose
 description: Part of the Roblox Build It, Play It Challenge - Island of Move. Start the first pose of the animation.
 next: /education/build-it-play-it-island-of-move/save-and-publish
 prev: /education/build-it-play-it-island-of-move/creating-animations
@@ -22,13 +22,13 @@ Start by creating the first pose of your animation. This tutorial shows a swimmi
   </figure>
 </GridContainer>
 
-## Pose the Figure
+## Pose the figure
 
 Posing figures is done by rotating individual parts and joints, like the head or elbow.
 
 1. To rotate, click on a body part. A set of handles will appear.
 
-   <video controls src="../../assets/education/build-it-play-it-island-of-move/create-the-first-pose/click-upper-arm.mp4" width="100%"></video>
+   <video controls src="../../assets/education/build-it-play-it-island-of-move/create-the-first-pose/click-upper-arm.mp4" width="80%"></video>
 
    <Alert severity="warning">
    **Troubleshooting Rotation**
@@ -41,10 +41,10 @@ Posing figures is done by rotating individual parts and joints, like the head or
 
     </Alert>
 
-2. Rotate by **dragging** the handles. Each handle rotates in a different direction. **Undo** any change with (<kbd>Ctrl</kbd> + <kbd>Z</kbd> or <kbd>⌘</kbd> + <kbd>Z</kbd>).
+2. Rotate by **dragging** the handles. Each handle rotates in a different direction. **Undo** any change with (<kbd>Ctrl</kbd><kbd>Z</kbd> or <kbd>⌘</kbd><kbd>Z</kbd>).
 
-   <video controls src="../../assets/education/build-it-play-it-island-of-move/create-the-first-pose/rotate-upper-arm.mp4" width="100%"></video>
+   <video controls src="../../assets/education/build-it-play-it-island-of-move/create-the-first-pose/rotate-upper-arm.mp4" width="80%"></video>
 
 3. Continue to rotate different parts until the first pose is complete. While working, change the camera to see the pose from multiple angles.
 
-   <video controls src="../../assets/education/build-it-play-it-island-of-move/create-the-first-pose/timelapse-first-pose.mp4" width="100%"></video>
+   <video controls src="../../assets/education/build-it-play-it-island-of-move/create-the-first-pose/timelapse-first-pose.mp4" width="80%"></video>

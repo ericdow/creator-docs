@@ -1,5 +1,5 @@
 ---
-title: Custom Characters
+title: Custom characters
 comments: |
   1. Needs linking to Rigging / Skinning section in External Modeling.
   2. Should also link to Modeling Requirements in end of Rigging section.
@@ -8,7 +8,7 @@ next: /resources/beyond-the-dark/layered-clothing
 prev: /resources/beyond-the-dark/building-architecture
 ---
 
-You can import custom meshes to create everything from NPCs to an animated cloth of a sail boat. We used the custom setting of the Avatar Importer to bring in more exotic custom characters, like the mysterious black hole creatures and the friendly, if unaware, service droids.
+You can import custom meshes to create everything from NPCs to an animated cloth of a sail boat. We used the custom setting of the [3D Importer](../../art/modeling/3d-importer.md) to bring in more exotic custom characters, like the mysterious black hole creatures and the friendly, if unaware, service droids.
 
 The following sections go over how we used [rigging and skinning](../../art/modeling/rigging.md), [PBR (surface
 appearance)](/art/modeling/surface-appearance), and VFX to build one of our more complicated characters that we named the "Creature." We wanted it to glow, emit some light, have trails of particle smoke, and a fluid motion that involved skinning a rig with enough joints to create the convincing waves of its tentacles.
@@ -18,7 +18,7 @@ appearance)](/art/modeling/surface-appearance), and VFX to build one of our more
   src="../../assets/resources/beyond-the-dark/custom-characters/Creature_Banner.png"
   width="100%" />
 
-## Rigging
+## Rig
 
 When we were rigging the Creature, we found it best to model the character in a neutral pose, because that pose is best suited to bending in multiple directions. If we modeled the Creature with its tentacles already curled, it would have led to stretching if we animated the tentacles to bend in the opposite direction. The following screenshots show the Creature in its natural state:
 
@@ -48,7 +48,7 @@ We found the following guidelines useful, so that the character mesh imports cor
 - Mesh normals should face outward (the model shouldn't look inside-out).
 - Skeletons shouldn't have any scale factor; all joints should be [1, 1, 1].
 
-## Skinning
+## Skin
 
 When we finished the Creature's skeleton, the next step was to skin the mesh. Skinning can be an arduous task, so to make matters easier, it's best to be familiar with the different initial skinning settings of your DCC application to find the one you like.
 Since this is an organic character, we skinned it with plenty of falloff on each joint and overlap between them. This way, the bending feels smooth and not sharp. The following screenshots show bad skinning and smooth skinning respectively:
@@ -71,7 +71,7 @@ We found the following guidelines produced the best outcomes for skinning:
 - Any joint you want to import into Studio must have some influence on the model's skinning, otherwise the engine doesn't import it.
   Whenever possible, skin your model in its original or "bind" pose.
 
-## Importing the Mesh to Studio
+## Import the mesh to Studio
 
 Importing your custom characters into Studio is one of the more exciting parts of the process, because you get to see your creations in the experience you're building!
 
@@ -97,7 +97,7 @@ To import the mesh into Studio:
    src="../../assets/resources/beyond-the-dark/custom-characters/Custom-Import-2.png"
    width="80%" />
 
-## Making the Creature Glow
+## Make the creature glow
 
 Once the Creature's model was stable and didn't require any more immediate import into Studio, we started putting together the SurfaceAppearance objects, lights, and visual effects. We did this to ensure that the quality of the model was good enough before proceeding to place and edit any one aspect of it.
 
@@ -134,13 +134,13 @@ In addition, we wanted the Creature's tentacles to emit some particles, so it wo
   src="../../assets/resources/beyond-the-dark/custom-characters/Particle-Emitter.jpeg"
   width="80%" />
 
-## Making the VFX Follow the Character
+## Make the VFX follow the character
 
 The skinned character's mesh positions aren't updated when the Creature animates, so we needed a method to make sure the VFX, SFX, and lights all followed the Creature properly. To accomplish this, we created a VFX controller script and used CollectionService to inform the parts that contained the VFX where the creature's bones were and to follow them.
 
 1. We placed the following `Class.LocalScript` in **StarterPlayer** → **StarterPlayerScripts**. This essentially runs the VFX update function.
 
-   ```lua title='Local Script'
+   ```lua title="Local Script"
    -- Add this snippet to an existing local script that makes PreSimulation
    -- connections
 
@@ -150,7 +150,7 @@ The skinned character's mesh positions aren't updated when the Creature animates
    RunService.PreSimulation:Connect(vfx.updateVfx)
    ```
 
-   ```lua title='Module Script'
+   ```lua title="Module Script"
    -- This module attached parts to animations so they are updated as the
    -- animation plays. It is a workaround for the current limitations
    -- with Joints and Bones and will not always be necessary.
@@ -207,7 +207,7 @@ The skinned character's mesh positions aren't updated when the Creature animates
    ```
 
 2. We created a **VFXUpdateModule** `Class.ModuleScript` to tell any objects tagged appropriately with **AnimatedVfxModel** to update on a play event.
-3. We tagged the necessary model groups with the **AnimatedVfxModel** using the **Tag&nbsp;Editor**, accessible from the [View](../../studio/view-tab.md) tab. Using tags allows the **VFXUpdateModule** to know which object to look for as the first VFX child and to apply the update.
+3. We tagged the necessary model groups with the **AnimatedVfxModel** using the **Tag Editor**, accessible from the [View](../../studio/view-tab.md) tab. Using tags allows the **VFXUpdateModule** to know which object to look for as the first VFX child and to apply the update.
 
    <img
    alt="VFX In Studio Example"
@@ -216,7 +216,7 @@ The skinned character's mesh positions aren't updated when the Creature animates
 
 4. Finally, we added an **AttachedBoneName** custom attribute to the part we wanted to animate and added the precise name of the joint we wanted it to follow.
 
-## Texturing the Creature
+## Texture the creature
 
 Next, we set up the PBR (Physically Based Rendered) texture maps. These powerful bitmaps give the creature the varied sheen and surface variations to make it look like it has a lot of small bumps and imperfections. This visual effect helps sell the appearance of the Creature when it's closer to the player.
 
@@ -251,7 +251,7 @@ Here's how we created the surface appearance texture maps:
    - Make sure your maps are no bigger than 1024×1024.
    - Your green channel may need to be flipped depending on the application you worked in.
 
-## Animating the Creature
+## Animate the creature
 
 Animating is very subjective and has a personal style. Options include motion capture, hand "key frame" animating in your DCC application, or using Studio's powerful Animation Editor.
 
@@ -274,18 +274,9 @@ Because we animated the character outside of Studio, we needed to use the Animat
 
 To import an animation:
 
-1. In the Plugins tab, select the Animation Editor.
-   <img
-   alt="Animation Editor In Studio"
-   src="../../assets/resources/beyond-the-dark/custom-characters/Animation-Editor.png"
-   width="70%" />
-
+1. In the toolbar's **Avatar** tab, open the **Animation Editor**.
 2. Select the rigged character that you want to animate in Roblox. The character should be the same one you are rigging in your external DCC application.
-3. Click the button in the upper-left section of the editor window, select Import From FBX Animation, and locate your exported `.fbx` animation file.
-   <img
-   alt="Animation Import Example 1"
-   src="../../assets/resources/beyond-the-dark/custom-characters/Animation-Import.png"
-   width="60%" />
+3. Click the **&ctdot;** button in the upper-left section of the editor window, select **Import From FBX Animation**, and locate your exported `.fbx` animation file.
 
    <img
    alt="Animation Import Example 2"
@@ -306,7 +297,7 @@ To import an animation:
    ```lua
    local animationId = "YOUR_ANIMATION_ID"
    local char = script.Parent
-   local animController = char:FindFirstChildOfClass("Humanoid") or   char:FindFirstChildOfClass("AnimationController")
+   local animController = char:FindFirstChildWhichIsA("Humanoid") or char:FindFirstChildOfClass("AnimationController")
 
    local animation = Instance.new("Animation")
    animation.AnimationId = "rbxassetid://" .. tostring(animationId)
@@ -319,7 +310,7 @@ To import an animation:
    Check the character after you've closed the Animation Editor to ensure that the **AnimSaves** folder was deleted, as its files are only useful during editing.
    </Alert>
 
-## Final Results
+## Final results
 
 After a few finishing tweaks to colors, light brightnesses, and some more particle effects to give it a stronger halo effect in front of windows, here's the final result in the space station!
 

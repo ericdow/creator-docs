@@ -1,5 +1,5 @@
 ---
-title: Colors and Textures
+title: Colors and textures
 prev: /education/build-it-play-it-galactic-speedway/go-beyond-the-challenge
 description: Learn how to add custom textures to your spaceship parts in Roblox Studio as part of the Build It Play It Galactic Speedway challenge.
 ---
@@ -8,7 +8,7 @@ description: Learn how to add custom textures to your spaceship parts in Roblox 
 
 Give your driftspeeders a new paint job with updated texture files. Your speeders can now be stylishly jade, rusty orange, or even a classic blue.
 
-## Download a Texture
+## Download a texture
 
 To change the texture of your driftspeeder, start by downloading one or more of the textures below.
 
@@ -40,11 +40,11 @@ To change the texture of your driftspeeder, start by downloading one or more of 
 </table>
 
 <Alert severity="info">
-<AlertTitle>Creating Your Own Textures</AlertTitle>
+<AlertTitle>Creating your own textures</AlertTitle>
 Make your own designs by bringing any one of these textures into a tool like [Photoshop](https://www.adobe.com/products/photoshop) (paid) or [Krita](https://krita.org/) (open-source). Try variations like changing the color or adding new designs.
 </Alert>
 
-## Import a Texture
+## Import a texture
 
 To use textures, they must be imported into your game. Make sure your game has been published before moving on.
 
@@ -76,25 +76,25 @@ To use textures, they must be imported into your game. Make sure your game has b
 <GridContainer numColumns="2">
   <figure>
     <img src="../../assets/education/build-it-play-it-galactic-speedway/colors-and-textures/original-texture.jpeg" />
-    <figcaption>Original Texture</figcaption>
+    <figcaption>Original texture</figcaption>
   </figure>
   <figure>
     <img src="../../assets/education/build-it-play-it-galactic-speedway/colors-and-textures/new-texture.jpeg" />
-    <figcaption>With New Texture</figcaption>
+    <figcaption>With new texture</figcaption>
   </figure>
 </GridContainer>
 
 <Alert severity="info">
-<AlertTitle>Changing Multiple Textures at a Time</AlertTitle>
+<AlertTitle>Changing multiple textures at a time</AlertTitle>
 Select multiple parts in the Explorer and follow the same process of changing a single part's texture.
 
-- **Select Individual Parts**: <kbd>CTRL</kbd> + Click or <kbd>⌘</kbd> + Click
+- **Select Individual Parts**: <kbd>Ctrl</kbd>‑click or <kbd>⌘</kbd>‑click
 
-- **Selecting Groups**: Click on one part. Then, <kbd>SHIFT</kbd> + Click on a part below to select all parts between them.
+- **Selecting Groups**: Click on one part. Then, <kbd>Shift</kbd>‑click on a part below to select all parts between them.
 
 </Alert>
 
-## Take the Challenge
+## Take the challenge
 
 <img src="../../assets/education/build-it-play-it-galactic-speedway/colors-and-textures/scrapper-backpack.jpeg" width="100%" />
 

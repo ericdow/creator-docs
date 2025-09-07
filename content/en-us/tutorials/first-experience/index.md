@@ -1,5 +1,5 @@
 ---
-title: Creating Your First Experience
+title: Create your first experience
 description: Explains the process of creating your first experience in Roblox Studio.
 ---
 
@@ -9,14 +9,14 @@ Using a sample [high-quality catapult](https://create.roblox.com/store/asset/172
 
 - Building and organizing a data model for a single place using one of Studio's project templates.
 - Customizing both primitive and complex 3D objects from the Creator Store with unique properties for your own gameplay requirements.
-- Organizing and placing scripts in their proper locations so the Roblox engine can properly simulate and render gameplay.
+- Organizing and placing scripts in their proper locations so the Roblox Engine can properly simulate and render gameplay.
 - Playtesting and publishing your creation to a global audience that accesses the platform using a variety of devices.
 
-After you complete this process, you can learn how to recreate a simple 3D platformer experience with the [core curriculum](../core/index.md), experiment with different use case tutorials, or start making your own projects.
+After you complete this process, you can learn how to recreate a simple 3D platformer experience with the [Core curriculum](../curriculums/core/index.md), experiment with different use case tutorials, or start making your own projects.
 
 <img src="../../assets/getting-started/Overview.jpg" alt="" width="90%" />
 
-## Create a Project
+## Create a project
 
 A **project** is a collection of assets, settings, and other resources that together represent an experience. All projects start with a single **place** that players load into when they join an experience, but you can create additional places within that same experience to organize assets for different gameplay areas. For example, if you want players to join a dungeon before teleporting to either a vast desert or spooky island, you can organize the assets for each area into their own place.
 
@@ -57,7 +57,7 @@ To keep things simple, this tutorial instructs you to create a project with the 
 - **Spawn location** – A `Class.SpawnLocation` object is where player characters appear in the 3D space when they join an experience, as well as where they respawn when their health reaches zero.
 - **Baseplate** – A baseplate is a floor with a 4x4 grid texture.
 
-This template is a great starting point to create your first experience because it provides a neutral world with high-fidelity lighting technology, and a floor that aligns with stud measurements that you can use to position and orient 3D objects along a grid. Studs are Studio's base unit of length, and each stud equates to about 28 cm. For more information on Studio's primary units, see [Roblox Units](../../physics/units.md).
+This template is a great starting point to create your first experience because it provides a neutral world and a floor that aligns with stud measurements that you can use to position and orient 3D objects along a grid. Studs are Studio's base unit of length, and each stud equates to about 28 cm. For more information on Studio's primary units, see [Roblox Units](../../physics/units.md).
 
 <GridContainer numColumns="2">
   <figure>
@@ -75,7 +75,7 @@ To open a project with the Baseplate template:
 
    <img src="../../assets/getting-started/New-Template-With-Spawn-Location.jpg" width="80%" alt="New Baseplate template open in Studio with the default spawn location highlighted." />
 
-## Get Asset Pack
+## Get asset pack
 
 Now that you have a project open, you can add additional 3D objects to the data model aside from the spawn location and baseplate. Studio represents 3D objects as `Class.BasePart` objects that render with physical simulation in the 3D space, and emulate real-world physical behavior like gravity, friction, and force.
 
@@ -101,18 +101,18 @@ To help you become familiar with both types of 3D objects, this tutorial provide
   </figure>
 </GridContainer>
 
-You can find this asset pack on the **Creator Store**, a marketplace that features assets from Roblox and the Roblox community for use within your projects, including model, image, mesh, audio, plugin, video, and font assets. The Creator Store is accessible directly in Studio within the **Toolbox**, as well as on the [Creator Hub](https://create.roblox.com/store/models). For more information about this marketplace, see [Creator Store](../../production/publishing/creator-store.md).
-
-<img src="../../assets/studio/toolbox/Creator-Store-Tab-Extended.png" width="100%" />
+You can find this asset pack on the **Creator Store**, a marketplace that features assets from Roblox and the Roblox community for use within your projects, including model, image, mesh, audio, plugin, video, and font assets. The Creator Store is accessible directly in Studio within the **Toolbox**, as well as on the [Creator Hub](https://create.roblox.com/store/models). For more information about this marketplace, see [Creator Store](../../production/creator-store.md).
 
 To insert this tutorial's asset pack from the Creator Store to your Studio inventory, click the **Add to Inventory** link in the following component. Once assets are within your inventory, you can reuse them in any project on the platform.
 
 <BrowseSampleCard href='https://create.roblox.com/store/asset/17266332444/Intro-to-Studio-Catapult-Platforms' description='Create your first experience using this high-quality catapult model.' title='Intro to Studio - Catapult & Platforms' assetId={17266332444}  />
 
+<br> </br>
+
 To get this asset pack from your inventory into your experience:
 
-1. In the menu bar, select the **View** tab.
-1. In the **Show** section, click **Toolbox**. The **Toolbox** window displays.
+1. In the toolbar, select the **View** tab.
+1. Click **Toolbox**. The **Toolbox** window displays.
 
    <img src="../../assets/studio/general/View-Tab-Toolbox.png" alt="Studio's View tab with the Toolbox tool highlighted." width="876" />
 
@@ -124,9 +124,9 @@ To get this asset pack from your inventory into your experience:
 
    <img width="80%" img src="../../assets/getting-started/AssetPack-Viewport.jpg" />
 
-## Customize Targets
+## Customize targets
 
-When you add a 3D object into your experience, Studio updates the **Explorer window** to display the name of the object and a nest of its children within the `Class.Workspace` service. For example, after you add the catapult model into your viewport, the Explorer window displays the **IntrotoStudioCatapult** folder and its child assets alongside the spawn location and baseplate.
+When you add a 3D object into your experience, Studio updates the **Explorer** window to display the name of the object and a nest of its children within the `Class.Workspace` service. For example, after you add the catapult model into your viewport, the Explorer window displays the **IntrotoStudioCatapult** folder and its child assets alongside the spawn location and baseplate.
 
 <GridContainer numColumns="2">
   <figure>
@@ -138,7 +138,7 @@ When you add a 3D object into your experience, Studio updates the **Explorer win
 
 The Explorer window is a fundamental Studio window that represents the data model for the place in your experience that you have open. This means that if you have an experience with multiple places, this window displays different objects depending on the place you're currently working on.
 
-When you select an object in the Explorer window, Studio updates the **Properties window** to display a selection of properties you can customize for that object without using a script, such as the object's size, color, position, or orientation. To demonstrate this process, this section of the tutorial provides guidance on customizing the visual and behavioral characteristics of the gray targets on the floating platforms.
+When you select an object in the Explorer window, Studio updates the **Properties** window to display a selection of properties you can customize for that object without using a script, such as the object's size, color, position, or orientation. To demonstrate this process, this section of the tutorial provides guidance on customizing the visual and behavioral characteristics of the gray targets on the floating platforms.
 
 To customize your targets:
 
@@ -164,9 +164,9 @@ To customize your targets:
 
    <img width="80%" img src="../../assets/getting-started/Targets-3.jpg" />
 
-## Organize Scripts
+## Organize scripts
 
-While you have a lot of flexibility in how you organize data models within your projects, the Roblox engine expects certain objects to be in specific **container services** for simulation and rendering functionality to work properly between the server and the client. The **server** refers to a Roblox computer that acts as the ultimate authority for maintaining the experience's state, and it keeps all connected **clients**, or player devices like mobile phones and laptops, in sync with its source of truth.
+While you have a lot of flexibility in how you organize data models within your projects, the Roblox Engine expects certain objects to be in specific **container services** for simulation and rendering functionality to work properly between the server and the client. The **server** refers to a Roblox computer that acts as the ultimate authority for maintaining the experience's state, and it keeps all connected **clients**, or player devices like mobile phones and laptops, in sync with its source of truth.
 
 <figure>
   <img src="../../assets/scripting/client-server/Client-Server-Model.png" width="100%" alt="A server grouping with connections to three client devices."/>
@@ -199,7 +199,7 @@ It's important to be mindful of where scripts run, otherwise your objects might 
 
 To organize folders into their correct container services for the catapult to work properly:
 
-1. In the **Explorer** window, expand the **ReplicatedStorage** and **ServerScriptStorage** folders.
+1. In the **Explorer** window, expand the **ReplicatedStorage** and **ServerScriptService** folders.
 
    <img width="45%" img src="../../assets/getting-started/Scripts-1.png" />
 
@@ -211,18 +211,18 @@ To organize folders into their correct container services for the catapult to wo
    The **UIHandler** `Class.Script` object has a `Class.Script.RunContext|RunContext` property set to **Client**, so it runs client-side only.
    </Alert>
 
-1. Select all children within the **ServerScriptStorage** folder, then drag them into the **ServerScriptStorage** service.
+1. Select all children within the **ServerScriptService** folder, then drag them into the **ServerScriptService** service.
 
    <img width="45%" img src="../../assets/getting-started/Scripts-3.png" />
 
-1. Delete the **ReplicatedStorage** and **ServerScriptStorage** folders.
+1. Delete the **ReplicatedStorage** and **ServerScriptService** folders.
    1. Select both folders.
-   1. Press `Delete`.
+   1. Press <kbd>Delete</kbd>.
 
 1. Playtest to verify that the catapult now works properly.
-   1. In the menu bar, click the **Play** button. Studio enters playtest mode.
+   1. In the toolbar, click the **Play** button. Studio enters playtest mode.
 
-      <img src="../../assets/studio/general/Quick-Access-Toolbar-Play.png" alt="Studio's Home tab with the Play button highlighted in the menu bar." width="800" />
+      <img src="../../assets/studio/general/Quick-Access-Toolbar-Play.png" alt="Play button highlighted in Studio's playtesting options." width="228" />
 
    1. Equip the **Ice** projectile to the catapult, aim it toward the nearest floating platform, then launch it at the targets.
 
@@ -236,11 +236,11 @@ To organize folders into their correct container services for the catapult to wo
          <video src="../../assets/getting-started/Scripts-5C.mp4" controls width="80%" alt=""></video>
       </figure>
 
-   1. When you're done playtesting, navigate back to the menu bar and click the **Stop** button. Studio exits playtest mode.
+   1. When you're done playtesting, click the **Stop** button. Studio exits playtest mode.
 
-      <img src="../../assets/studio/general/Quick-Access-Toolbar-Stop.png" alt="Studio's Home tab with the Stop button highlighted in the menu bar." width="800" />
+      <img src="../../assets/studio/general/Quick-Access-Toolbar-Stop.png" alt="Stop button highlighted in Studio's playtesting options." width="228" />
 
-## Customize Projectiles
+## Customize projectiles
 
 While your projectiles are exactly the same size as each other, they travel different distances when you launch them from the catapult. This is because each projectile has a unique **material** that emulates the physical characteristics of its real-world counterpart, including its density, elasticity, and friction.
 
@@ -263,7 +263,7 @@ To customize the third projectile:
 
 1. Create a third floating platform of targets.
    1. In the **Explorer** window, select a **TargetPlatform** object.
-   1. Press `CMD` + `D` to duplicate the platform and targets.
+   1. Press <kbd>Ctrl</kbd><kbd>D</kbd> (<kbd>⌘</kbd><kbd>D</kbd>) to duplicate the platform and targets.
    1. Use the **Move** tool to move the new platform to a new position.
 
    <img width="80%" img src="../../assets/getting-started/Projectiles-1.jpg" />
@@ -278,7 +278,7 @@ To customize the third projectile:
 
    <video src="../../assets/getting-started/Projectiles-3.mp4" controls width="80%" alt=""></video>
 
-## Publish Experience
+## Publish experience
 
 Roblox not only provides the tooling and engine for you to create and run experiences, it also gives you access to a large social network of players that access the platform on a wide array of devices, including phones, computers, tablets, consoles, and VR hardware. When you're ready to release your experience to this global audience, you must publish and configure the experience's settings so that it's available to all players on any device you want to support.
 
@@ -288,7 +288,7 @@ Almost everything in Roblox is represented as a cloud-based asset with a unique 
 
 <Alert severity="info">
 
-`Class.DataModel.GameID|UniverseIDs` and `Class.DataModel.PlaceId|PlaceIDs` are useful for managing Roblox resources through Open Cloud APIs, such as automating internal workflows, improving efficiency with content creation and management, and supporting experience operations from the web. For more information, see the [Open Cloud](../../cloud/open-cloud/index.md) overview.
+`Class.DataModel.GameID|UniverseIDs` and `Class.DataModel.PlaceId|PlaceIDs` are useful for managing Roblox resources through Open Cloud APIs, such as automating internal workflows, improving efficiency with content creation and management, and supporting experience operations from the web. For more information, see the [Open Cloud](../../cloud/guides/index.md) overview.
 
 </Alert>
 
@@ -303,10 +303,7 @@ What you learn on the Creator Dashboard can give you important insights into how
 To publish your experience for the first time:
 
 1. Upload your experience to the cloud.
-   1. In the menu bar, click **File**, then select **Publish to Roblox**. The **Publish Game** window displays.
-
-      <img src="../../assets/studio/general/File-Menu-Publish-to-Roblox.png" alt="Studio's File menu with the Publish to Roblox menu item highlighted." width="45%" />
-
+   1. In the menu bar, click **File**, then select **Publish to Roblox**.
    1. In the **Publish Game** window, fill out all applicable fields.
       1. In the **Name** field, provide a name for your experience.
       1. In the **Description** field, provide a summary of what a player can expect from the experience.
@@ -315,19 +312,16 @@ To publish your experience for the first time:
    1. At the bottom-right of the window, click the **Create** button. Your experience is now in the cloud with a `Class.DataModel.GameID|UniverseID` and a `Class.DataModel.PlaceID|PlaceID` for the starting place.
 
 1. Make the experience public to all players.
-   1. Navigate to the [Creator Dashboard](https://create.roblox.com/dashboard). The **Creations** landing page displays your first experience.
+   1. Navigate to the [Creator Dashboard](https://create.roblox.com/dashboard/creations). The **Creations** landing page displays your first experience.
 
-      <img width="80%" img src="../../assets/getting-started/Publish-2A.png" />
+      <img width="200" img src="../../assets/getting-started/Publish-2A.png" />
 
-   1. Hover over the experience's tile, click the ⋯ button, and select **Make Public** from the contextual menu.
+   1. Hover over the experience's tile, click the **&ctdot;** button, and select **Make Public** from the contextual menu.
 
-      <img width="45%" img src="../../assets/getting-started/Publish-2B.png" />
+      <img width="200" img src="../../assets/getting-started/Publish-2B.png" />
 
 1. **(Optional)** Share your experience with others.
-   1. From the **Creator Dashboard**, hover over your experience's tile, click the ⋯ button, and select **Copy URL** from the contextual menu.
-
-      <img width="45%" img src="../../assets/getting-started/Publish-3A.png" />
-
+   1. Hover over the experience's tile, click the **&ctdot;** button, and select **Copy URL** from the contextual menu.
    1. Share the URL with others as a direct link to your experience's landing page.
 
 <Alert severity="success">

@@ -1,11 +1,11 @@
 ---
-title: Memory Stores
+title: Memory stores
 description: Explains how to implement memory store data structures to store frequent in-memory data.
 ---
 
-`Class.MemoryStoreService` is a high throughput and low latency data service that provides fast in-memory data storage accessible from all servers in a live session. **Memory Stores** are suitable for frequent and ephemeral data that change rapidly and don't need to be durable, because they are faster to access and vanish when reaching the maximum lifetime. For data that needs to persist across sessions, use [Data Stores](../../cloud-services/datastores.md).
+`Class.MemoryStoreService` is a high throughput and low latency data service that provides fast in-memory data storage accessible from all servers in a live session. **Memory Stores** are suitable for frequent and ephemeral data that change rapidly and don't need to be durable, because they are faster to access and vanish when reaching the maximum lifetime. For data that needs to persist across sessions, use [data stores](../../cloud-services/data-stores/index.md).
 
-## Data Structures
+## Data structures
 
 Instead of directly accessing raw data, memory stores have three primitive data structures shared across servers for quick processing: [sorted map](../../cloud-services/memory-stores/sorted-map.md), [queue](../../cloud-services/memory-stores/queue.md), and [hash map](../../cloud-services/memory-stores/hash-map.md). Each data structure is a good fit for certain use cases:
 
@@ -19,13 +19,15 @@ Instead of directly accessing raw data, memory stores have three primitive data 
 
 In general, if you need to access data based on a specific key, use a hash map. If you need that data to be ordered, use a sorted map. If you need to process your data in a specific order, use a queue.
 
-## Limits and Quotas
+## Limits and quotas
 
 To maintain the scalability and system performance, memory stores have data usage quotas for the memory size, API requests, and the data structure size.
 
-### Memory Size Quota
+Memory stores have an eviction policy based on expiration time, also known as time to live (TTL). Items are evicted after they expire, and memory quota is freed up for new entries. When you hit the memory limit, all subsequent write requests fail until items expire or you manually delete them.
 
-The memory quota limits the total amount of memory that an experience can consume. It's not a fixed value. Instead, it changes over time depending on the number of users in the experience according to the following formula: **64KB + 1KB \* [number of users]**. The quota applies on the experience level instead of the server level.
+### Memory size quota
+
+The memory quota limits the total amount of memory that an experience can consume. It's not a fixed value; instead, it changes over time depending on the number of users in the experience according to the formula **64KB + 1.2KB \* [number of users]**. The quota applies on the experience level instead of the server level.
 
 When users join the experience, the additional memory quota is available immediately. When users leave the experience, the quota doesn't reduce immediately. There's a traceback period of eight days before the quota reevaluates to a lower value.
 
@@ -33,28 +35,44 @@ After your experience hits the memory size quota, any API requests that increase
 
 With the [observability](../../cloud-services/memory-stores/observability.md) dashboard, you can view the memory size quota of your experience in real-time using the **Memory Usage** chart.
 
-### API Request Limits
+### API request limits
 
-For API request limits, there's a **Request Unit** quota applies for all `Class.MemoryStoreService` API calls, which is **1000 + 100 \* [number of concurrent users]** request units per minute. Additionally, the rate of requests to any single queue, sorted map, or hash map is limited to **100,000** request units per minute.
+A **request unit** quota applies to all `Class.MemoryStoreService` API calls. This quota is **1000 + 120 \* [number of concurrent users]** request units per minute.
 
-Most API calls only consume one request unit, with the exceptions of `Class.MemoryStoreSortedMap:GetRangeAsync()` for sorted maps and `Class.MemoryStoreQueue:ReadAsync()` for queues. These two methods consume units based on the number of returned items with at least one request unit. For example, if `Class.MemoryStoreSortedMap:GetRangeAsync()` returns 10 items, the total quota counts based on 10 request units. If it returns an empty response without items, the quota counts based on a single request unit. In addition, `Class.MemoryStoreQueue:ReadAsync()` consumes an additional unit every two seconds while reading. The maximum read time is specified using the `waitTimeout` parameter.
+Most API calls only consume one request unit, with a few exceptions:
+
+- `Class.MemoryStoreSortedMap:GetRangeAsync()`
+
+  Consumes units based on the number of returned items. For example, if this method returns 10 items, the call counts as 10 request units. If it returns an empty response, it counts as one request unit.
+
+- `Class.MemoryStoreQueue:ReadAsync()`
+
+  Consumes units based on the number of returned items, just like `MemoryStoreSortedMap:GetRangeAsync()`, but consumes an additional unit every two seconds while reading. Specify the maximum read time with the `waitTimeout` parameter.
+
+- `Class.MemoryStoreHashMap:UpdateAsync()`
+
+  Consumes a minimum of two units.
+
+- `Class.MemoryStoreHashMap:ListItemsAsync()`
+
+  Consumes **[number of partitions scanned] + [items returned]** units.
 
 The requests quota is also applied on the experience level instead of the server level. This provides flexibility to allocate the requests among servers as long as the total request rate does not exceed the quota. If you exceed the quota, you receive an error response when the service throttles your requests.
 
 With the [observability](../../cloud-services/memory-stores/observability.md) feature available, you can view the request unit quota of your experience in real-time.
 
-### Data Structure Size Limits
+### Data structure size limits
 
 For a single sorted map or queue, the following size and item count limits apply:
 
 - Maximum number of items: 1,000,000
 - Maximum total size (including keys for sorted map): 100 MB
 
-### Per-Partition Limits
+### Per-partition limits
 
-See [Per-Partition Limits](per-partition-limits.md).
+See [per-partition limits](per-partition-limits.md).
 
-## Best Practices
+## Best practices
 
 To keep your memory usage pattern optimal and avoid hitting the [limits](#limits-and-quotas), follow these best practices:
 
@@ -68,19 +86,23 @@ To keep your memory usage pattern optimal and avoid hitting the [limits](#limits
 
 - Only keep necessary values in memory.
 
-  For example, for an auction house experience, you only need to maintain the highest bid. You can use `Class.MemoryStoreQueue:UpdateAsync()` on one key to keep the highest bid rather than keeping all bids in your data structure.
+  For example, for an auction house experience, you only need to maintain the highest bid. You can use `Class.MemoryStoreSortedMap:UpdateAsync()` on one key to keep the highest bid rather than keeping all bids in your data structure.
 
 - Use [exponential backoff](https://en.wikipedia.org/wiki/Exponential_backoff) to help stay below API request limits.
 
   For example, if you receive a `DataUpdateConflict`, you might retry after two seconds, then four, eight, etc. rather than constantly sending requests to `Class.MemoryStoreService` to get the correct response.
 
-- Split giant data structures into multiple smaller ones by [sharding](https://en.wikipedia.org/wiki/Shard_(database_architecture)).
+- Split giant data structures into multiple smaller ones by [sharding](<https://en.wikipedia.org/wiki/Shard_(database_architecture)>).
 
-  It's often easier to manage data in smaller structures rather than storing everything in one large data structure. This approach can also help avoid usage and rate limits. For example, if you have a sorted map that uses prefixes for its keys, consider separating each prefix into its own sorted map. For an especially popular experience, you might even separate users into multiple maps based on the first digits of their user IDs.
+  It's often easier to manage data in smaller structures rather than storing everything in one large data structure. This approach can also help avoid usage and rate limits. For example, if you have a sorted map that uses prefixes for its keys, consider separating each prefix into its own sorted map. For an especially popular experience, you might even separate users into multiple maps based on the last digits of their user IDs.
 
 - Compress stored values.
 
   For example, consider using the [LZW](https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch) algorithm to reduce the stored value size.
+
+- Enroll in Extended Services.
+
+  You can increase your Storage and Request Limit quotas by onboarding onto [Extended Services](https://create.roblox.com/docs/cloud-services/extended-services)
 
 ## Observability
 
@@ -91,7 +113,7 @@ The following table lists and describes all status codes of API responses availa
 <table>
   <thead>
     <tr>
-      <th>Status Code</th>
+      <th>Status code</th>
       <th>Description</th>
     </tr>
   </thead>
@@ -156,7 +178,7 @@ The following table lists states codes from client side, which are currently not
 <table>
   <thead>
     <tr>
-      <th>Status Code</th>
+      <th>Status code</th>
       <th>Description</th>
     </tr>
   </thead>
@@ -312,7 +334,7 @@ The following table lists and describes the recommended solution for each respon
   </tbody>
 </table>
 
-## Testing and Debugging in Studio
+## Test and debug in Studio
 
 The data in `Class.MemoryStoreService` is isolated between Studio and production, so changing the data in Studio doesn't affect production behavior. This means that your API calls from Studio don't access production data, allowing you to safely test memory stores and new features before going to production.
 

@@ -1,16 +1,16 @@
 ---
-title: Immersive Narrative
+title: Immersive narrative
 comments:
-next: /resources/the-mystery-of-duvall-drive/streaming-in-immersion
-prev: /resources/the-mystery-of-duvall-drive/materializing-the-world
+next: /resources/the-mystery-of-duvall-drive/stream-in-immersion
+prev: /resources/the-mystery-of-duvall-drive/materialize-the-world
 description: Explains the narrative concepts used in The Mystery of Duvall Drive.
 ---
 
 Like the [Beyond the Dark](../../resources/beyond-the-dark/index.md) demo, one of our earliest decisions was to have as much of the gameplay and story told diegetically within the world itself. This can be a difficult process when you want to balance both communicating progress to the player through the user interface while also making them feel as though they really are within the world you've built. To meet these goals for our experience, we broke the way we communicate information to players down into four techniques:
 
-1. **Visual Cues** - Objects, images, or arrangement of assets that passively reinforce story or give hints to the player when it makes sense for the world.
+1. **Visual cues** - Objects, images, or arrangement of assets that passively reinforce story or give hints to the player when it makes sense for the world.
 2. **Lore** - When a player clicks/taps on specific items in the house, important story information displays **on the entire screen**. This narrative is only visible to the player that clicked/tapped the object. The tone is always informational in tone and phrasing.
-3. **Thought Bubbles** - When a player clicks/taps on specific items in the house, a text dialogue "reaction" displays **near the object**. This narrative is only visible to the player that clicked/tapped the object. The tone is always first person and observational.
+3. **Thought bubbles** - When a player clicks/taps on specific items in the house, a text dialogue "reaction" displays **near the object**. This narrative is only visible to the player that clicked/tapped the object. The tone is always first person and observational.
 4. **Announcements** - When a player clicks/taps on a corrupted item in the house, third-person dialogue displays on **every player's screen at once**. This narrative sometimes transitions all players to the corrupted state of the room they are in.
 
 In this section, we will demonstrate how we used these techniques and specific features to immerse players into our narrative while still encouraging exploration, communicating progress, and keeping gameplay both intimate to the individual player and fair in a multiplayer experience.
@@ -28,7 +28,7 @@ In this section, we will demonstrate how we used these techniques and specific f
   </figure>
 </GridContainer>
 
-## Visual Cues
+## Visual cues
 
 A visual cue is an important tool to both reinforce narrative and tell players what they need to know about their objective **without using words**. Using an arrangement of assets, such as chalkboards, statues, and wallpaper, we were able to passively provide a depth of information about the main characters of Duvall Drive, as well as guidance on how to complete puzzles without having to include invasive UI elements. We began this process by first figuring out what we wanted to communicate to the player, then how it would make sense to communicate that within the world of our experience. For example, we wanted players to understand how obsessed the grandfather was in his mission to defy death, so we left his room in disarray with a lot of his research and several walls with his scribbled thoughts.
 
@@ -69,11 +69,11 @@ We initially used `Class.Highlight` for every object a player could interact wit
   <figcaption>Fun fact: we originally had lore on everything you could click on! This wasn't helpful because players weren't sure what information was important and what was just for flavor. Eventually we removed much of the lore and used visual cues to leave the rest of the narrative to the player's imagination.</figcaption>
 </figure>
 
-After the player clicked on the object with the lore, we needed a way to display the information on top of the screen. We decided to create an overlay by using a `Class.ScreenGui` as our on-screen UI container with a child `Class.Frame` to control the sizing and rescaling of its children `Class.TextLabel|TextLabels` and `Class.ImageLabel|ImageLabels`. We set the positions and scale of the `Class.TextLabel|TextLabels` and `Class.ImageLabel|ImageLabels` properties so they fit visually together and would scale for different devices players use to access the experience. For information on how to use these UI elements, see [On-Screen UI Containers](../../ui/on-screen-containers.md), [Frames](../../ui/frames.md), and [Labels](../../ui/labels.md).
+After the player clicked on the object with the lore, we needed a way to display the information on top of the screen. We decided to create an overlay by using a `Class.ScreenGui` as our on-screen UI container with a child `Class.Frame` to control the sizing and rescaling of its children `Class.TextLabel|TextLabels` and `Class.ImageLabel|ImageLabels`. We set the positions and scale of the `Class.TextLabel|TextLabels` and `Class.ImageLabel|ImageLabels` properties so they fit visually together and would scale for different devices players use to access the experience.
 
 <img src="../../assets/resources/mystery-of-duvall-drive/immersive-narrative/jacob-photo-album.png" width="60%" />
 
-`Class.TextLabel|TextLabels` and `Class.ImageLabel|ImageLabels` affect visual elements of their respective text and images, including their color, transparency, size, and arrangement. For `Class.TextLabel|TextLabels` specifically, you can adjust their `Class.TextLabel.TextScaled` and `Class.TextLabel.RichText` properties to control the layout and visual styling of text. `Class.TextLabel.TextScaled` allows you to scale text to fill the entire parent UI element's space, and `Class.TextLabel.RichText` allows you to use simple markup tags to style sections of text in bold, italics, color, or even different fonts! For more information, see [Automatic Sizing](../../ui/automatic-sizing.md#textscaled) and [Rich Text Markup](../../ui/rich-text.md).
+`Class.TextLabel|TextLabels` and `Class.ImageLabel|ImageLabels` affect visual elements of their respective text and images, including their color, transparency, size, and arrangement. For `Class.TextLabel|TextLabels` specifically, you can adjust their `Class.TextLabel.TextScaled` and `Class.TextLabel.RichText` properties to control the layout and visual styling of text. `Class.TextLabel.TextScaled` allows you to scale text to fill the entire parent UI element's space, and `Class.TextLabel.RichText` allows you to use simple markup tags to style sections of text in bold, italics, color, or even different fonts.
 
 <img src="../../assets/resources/mystery-of-duvall-drive/immersive-narrative/lore-template.png" width="100%" />
 
@@ -81,7 +81,7 @@ We knew that players would be accessing this experience from a variety of device
 
 <img src="../../assets/resources/mystery-of-duvall-drive/immersive-narrative/overlay-back-button.png" width="30%" />
 
-## Thought Bubbles
+## Thought bubbles
 
 We needed a way for the player's character to communicate ideas to the player, such as providing additional narrative flavor or reinforcing what they needed to do. Our solution was to display thought bubbles, or **text reactions from the player's character**, near non-lore objects whenever the player selected them. This narrative only displays to the player that clicked or tapped the object, and the tone is always first person and observational.
 

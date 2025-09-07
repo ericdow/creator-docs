@@ -1,5 +1,5 @@
 ---
-title: Private Servers
+title: Private servers
 description: Private servers are a subscription-based feature that allows users to decide who can play an experience with them.
 ---
 
@@ -9,29 +9,26 @@ A **private server** is a subscription-based feature that allows a user to decid
 
 Private servers offer users privacy in circumstances like:
 
-- Playing experiences with their friends.
+- Playing experiences with their connections.
 - Holding gatherings such as classes, meetings, or parties.
 - Recording and/or streaming without other users.
 - Gathering in-experience resources.
 
 <Alert severity="warning">
-You cannot enable both [Paid Access](../monetization/paid-access.md) and private servers.
+You cannot enable [paid access in Robux](../monetization/paid-access-robux.md) or [paid access in local currency](../monetization/paid-access-local-currency.md) and private servers at the same time.
 </Alert>
 
 <Alert severity="warning">
 Players under the age of 13 may not be able to join private servers depending on their privacy and parental control settings.
 </Alert>
 
-## Enabling Private Servers
+## Enable private servers
 
 Before you can enable private servers, your experience must be **public** to all users.
 
 To create a private server:
 
-1. Open [Game Settings](../../studio/game-settings.md) from the [Home](../../studio/home-tab.md) tab.
-
-   <img src="../../assets/studio/general/Home-Tab-Game-Settings.png" width="760" alt="Game Settings button indicated in Home tab" />
-
+1. Open Studio's **File**&nbsp;⟩ **Game Settings** window.
 1. In the left-hand navigation, click **Monetization**.
 1. Enable the **Private Servers** toggle. Additional settings appear for setting how to monetize private servers:
 

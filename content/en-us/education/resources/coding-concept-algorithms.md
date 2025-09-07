@@ -1,9 +1,9 @@
 ---
-title: Coding Concept - Algorithms
+title: Coding concept - Algorithms
 description: Learn about algorithms and creating your own practical applications.
 ---
 
-## Algorithms in Real Life and In Code
+## Algorithms in real life and in code
 
 An **algorithm** uses a series of steps to determine an outcome. Steps can be a set of directions, comparisons, or even a mathematical formula.
 
@@ -31,7 +31,7 @@ Stick figures are something that everyone knows how to draw, but rarely think ab
 
 </Alert>
 
-## Creating Algorithms in Code
+## Create algorithms in code
 
 In real life, we don't usually think about the algorithms we use everyday. Computers however, need algorithms to be coded step-by-step and use at least one of three methods to solve a problem or produce an outcome.
 
@@ -48,7 +48,7 @@ In real life, we don't usually think about the algorithms we use everyday. Compu
     <td>
     ```lua
     if time == 0 then
-      stopLightColor = red
+    	stopLightColor = red
     end
     ```
     </td>
@@ -77,8 +77,8 @@ In real life, we don't usually think about the algorithms we use everyday. Compu
     <td>
     ```lua
     for countDown = 10, 1, -1 do
-      time -= 1
-      task.wait(1)
+    	time -= 1
+    	task.wait(1)
     end
     ```
     </td>
@@ -86,7 +86,7 @@ In real life, we don't usually think about the algorithms we use everyday. Compu
 </tbody>
 </table>
 
-## Combining Algorithms
+## Combine algorithms
 
 Much like larger problems can be broken into smaller problems, some algorithms can be broken down into a series of smaller algorithms.
 
@@ -94,7 +94,7 @@ Much like larger problems can be broken into smaller problems, some algorithms c
 
 Think of your real-life morning time algorithm to get dressed. If that's your main algorithm, it might use one algorithm for picking out your clothes, and a second algorithm for putting clothes on.
 
-```lua title='Getting Dressed Pseudocode'
+```lua title="Getting Dressed Pseudocode"
 -- First algorithm for picking clothes
 local function pickClothes()
     pick top clothing

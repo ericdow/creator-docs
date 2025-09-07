@@ -5,7 +5,7 @@ description: A double-precision floating-point number.
 
 The **number** data type, or `double`, represents a [double-precision (64-bit) floating-point](https://wikipedia.org/wiki/Double-precision_floating-point_format) number. Numbers can range from -1.7 \* 10<sup>308</sup> to 1.7 \* 10<sup>308</sup> (around 15 digits of precision, positive or negative).
 
-## Signed and Unsigned
+## Signed and unsigned
 
 The sign of the number indicates whether it's positive or negative. For example, `1` is positive and `-1` is negative. In Luau, the number `-0` is equivalent to `0`.
 
@@ -17,7 +17,7 @@ print(-0 > -1)  --> true
 print(-0 < -1)  --> false
 ```
 
-## Number Classifications
+## Number classifications
 
 Luau doesn't distinguish between integers and numbers, but the API reference sometimes distinguishes between them to be more specific about how to use each API.
 
@@ -35,7 +35,7 @@ The `int64` number type refers to a signed 64-bit integer, which ranges from -2<
 
 ## Notation
 
-Numbers are notated with the most significant digits first (big-endian). There are multiple ways to notate number literals in Roblox Lua:
+Numbers are notated with the most significant digits first (big-endian). There are multiple ways to notate number literals in Luau:
 
 - [Decimal (base-10)](https://wikipedia.org/wiki/Decimal) — Write the digits of the number normally using digits 0–9 with a single optional decimal point, for example `7`, `1.25`, or `-22.5`.
 - [Scientific notation](https://wikipedia.org/wiki/Scientific_notation) — Write a decimal number followed by `e` or `e+`, then an integer to raise the decimal number to a power of 10. For instance, `12e3` is 12 × 10^3 (12,000).
@@ -43,14 +43,14 @@ Numbers are notated with the most significant digits first (big-endian). There a
 - [Binary (base-2)](https://wikipedia.org/wiki/Binary_number) — Begin the number with `0b` followed by 0s or 1s, for instance `0b1100` (12 in decimal format).
 
 <Alert severity="info">
-To aid in the readability of long numbers, you can include underscores anywhere within a number literal without changing the value, <b>except</b> at the beginning where this would make it an identifier. For example, <InlineCode>1_234_567</InlineCode> is the same as <InlineCode>1234567</InlineCode>, both of which are equal to 1,234,567.
+To aid in the readability of long numbers, you can include underscores anywhere within a number literal without changing the value, <b>except</b> at the beginning where this would make it an identifier. For example, `1_234_567` is the same as `1234567`, both of which are equal to 1,234,567.
 </Alert>
 
 ## Operations
 
 You can use logical and relational [operators](./operators.md) to manipulate and compare numbers. You can also use mathematical functions such as `Library.math.sqrt()` and `Library.math.exp()` in the `Library.math` library and bitwise operations in the `Library.bit32` library.
 
-## Type Introspection
+## Type introspection
 
 You can determine if a value `x` is a number by using `type(x)` or `typeof(x)`. Both return the string `number` if `x` is a number.
 
@@ -68,7 +68,7 @@ print(typeof(testDecimal))  --> number
 print(typeof(testString))  --> string
 ```
 
-## Rounding Functions
+## Round functions
 
 You can round numbers using `Library.math.floor()`, `Library.math.ceil()`, or `Library.math.modf()`. These functions return an integer result if Luau can represent it as an integer. If the number is too large, Luau returns it as a float.
 

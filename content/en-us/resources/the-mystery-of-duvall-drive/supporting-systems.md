@@ -1,5 +1,5 @@
 ---
-title: Supporting Systems
+title: Supporting systems
 comments:
 prev: /resources/the-mystery-of-duvall-drive/foundational-gameplay-systems
 description: Explains the supporting systems and functions in The Mystery of Duvall Drive.
@@ -19,7 +19,7 @@ When a player was near an item of interest, such as a seal, we wanted to have th
 
 This `Class.LocalScript` utilizes a new engine feature `Class.Highlight` that draws an outline of an object and/or fills the object's interior with a defined color; for more information on how to use this feature, see [Highlighting Objects](../../effects/highlighting.md). `Class.Highlight|Highlights` and the mouse cursor **[OnItemIndicator](#onitemindicator)** systems work together, so `Class.Highlight|Highlights` not only determine if a mesh needs a highlight, but it also provides a type of mesh for **OnItemIndicator**.
 
-`HighlightItemsFunc` is used to communicate with other client systems. For example, [**EventManager**](../../resources/the-mystery-of-duvall-drive/foundational-gameplay-systems.md#eventmanager) uses it with an **Enable** command to enable or disable a `Class.Highlight` in certain cutscenes, and **OnItemIndicator** uses `GetType` to enquire about the type of object it is. To detect when an item is no longer present, such as when a corrupt room is destroyed, we connect to `Class.CollectionService.GetInstanceRemovedSignal`.
+`HighlightItemsFunc` is used to communicate with other client systems. For example, [EventManager](../../resources/the-mystery-of-duvall-drive/foundational-gameplay-systems.md#eventmanager) uses it with an **Enable** command to enable or disable a `Class.Highlight` in certain cutscenes, and **OnItemIndicator** uses `GetType` to enquire about the type of object it is. To detect when an item is no longer present, such as when a corrupt room is destroyed, we connect to `Class.CollectionService.GetInstanceRemovedSignal`.
 
 ## Lore and ThoughtBubbles
 
@@ -31,7 +31,7 @@ Note that we use `Class.Camera.ViewportPointToRay` or `Class.Camera.ScreenPointT
 
 ThoughtBubbles are overall similar, using a raycast to check if a mesh or its parents have a **ThoughtBubble** tag. It also uses the ThoughtText attribute for text, and a **ThoughtBubble** tag to point to a placeholder object used for positioning the UI in the world. Thought bubbles that use the same positional object but have different text have different cooldowns.
 
-### Special Cases
+### Special cases
 
 Lore has a couple of special cases, one of which is the corrupted seals. When a player clicks a corrupted seal, it displays lore UI, and it waits for a click to start a mission, which affects the game flow. This is handled by the [`GameStateClient`](../../resources/the-mystery-of-duvall-drive/foundational-gameplay-systems.md#gamestatemanager) that uses a bindable `LoreManagerFunc` to request lore UI. A callback is provided to the Lore system by `GameStateClient` to know when lore is "closed" by the player. Another special case is when **ThoughtBubbles** and **Lore** tags are on the same object. In this case, to avoid an overlap of lore and thought bubble text, we run the thought bubble after the lore is closed.
 
@@ -65,7 +65,7 @@ An object with an animated `Class.SurfaceGui` would have an Animator `Class.Modu
 
 ## LocalSpaceAnimations
 
-The **LocalSpaceAnimations** `Class.LocalScript` uses a **LocalSpaceRotation** tag to rotate mostly "cosmetic" objects with a given rotational velocity and delay around either the X, Y, or Z axis. We used this either for distant objects that players wouldn't interact with, or for smaller objects that don't affect simulation much. Parameters defined through the `Speed`, `Delay`, and `Axis` values. For implementation details, see [Rotating Cloud Meshes](../../resources/the-mystery-of-duvall-drive/developing-a-moving-world.md#rotating-cloud-meshes).
+The **LocalSpaceAnimations** `Class.LocalScript` uses a **LocalSpaceRotation** tag to rotate mostly "cosmetic" objects with a given rotational velocity and delay around either the X, Y, or Z axis. We used this either for distant objects that players wouldn't interact with, or for smaller objects that don't affect simulation much. Parameters defined through the `Speed`, `Delay`, and `Axis` values. For implementation details, see [Rotating Cloud Meshes](../../resources/the-mystery-of-duvall-drive/develop-a-moving-world.md#rotating-cloud-meshes).
 
 ## HeadlampManager
 
@@ -89,7 +89,7 @@ The **PlayerMissionRespawn** script uses a **RespawnVolume** tag and `Class.Coll
 
 When processing `GameEvents.PlayerRespawn`, the script can use `RespawnPositions`, if mission config provides it. If not, it uses `TeleportPositions` for the specific mission. We don't have a "checkpoint" system, so `CalcClosestTeleportPos` just selects closest **Respawn** or **Teleport** spots from where the player hit the `RespawnVolume`, using the only horizontal, "2D" distance.
 
-## Small Helper Systems
+## Small helper systems
 
 ### PianoManager
 
@@ -108,12 +108,12 @@ Some grabbable objects are important for gameplay, such as seals, and we didn't 
 In a few missions, we teleport players a short distance within a mission, such as [respawning players](../../resources/the-mystery-of-duvall-drive/main-design-requirements.md#respawning-players) who fall off a spinning platform. To simplify setting up this type of teleportation, which we call "Portals" in script, a helper function `ProcessPortal` in **DemoUtils** is used. For example, if P1 is the part defining the initial trigger, and P2 is the part defining destination player transform, the following code snippet could define such portal functionality:
 
 ```lua
-P1.Touched:Connect(function (otherPart) utils.ProcessPortal(otherPart, P2) end)
+P1.Touched:Connect(function(otherPart) utils.ProcessPortal(otherPart, P2) end)
 ```
 
-**ProcessPortal** handles checking that otherPart is a human, teleporting the player through a `Datatype.CFrame` coordinate change, and invoking a small cutscene to hide the transition using a **Teleport_Jump** event in [**EventManager**](../../resources/the-mystery-of-duvall-drive/foundational-gameplay-systems.md#eventmanager).
+**ProcessPortal** handles checking that otherPart is a human, teleporting the player through a `Datatype.CFrame` coordinate change, and invoking a small cutscene to hide the transition using a **Teleport_Jump** event in [EventManager](../../resources/the-mystery-of-duvall-drive/foundational-gameplay-systems.md#eventmanager).
 
-### Configuration Scripts
+### Configuration scripts
 
 We have several configuration, data definition, and common functionality scripts:
 
@@ -121,7 +121,7 @@ We have several configuration, data definition, and common functionality scripts
 
 **DemoGlobalSettings**. We develop in one place, but release (and playtest) in others. The script checks placeID and enables/disables various cheats and debugging functionality.
 
-**DemoUtils**. Various utility functions. Dealing with transforms. Setting visibility, anchored or other properties. Checking for a point in a box. Finding objects in hierarchy by "dotted" name. Managing TempStorage (that can be used to temporarily move models "somewhere far" and bring back later). Click detector helpers. Grabbing support. Support for checking tags (especially along the hierarchy). Connecting triggers to [**EventManager**](../../resources/the-mystery-of-duvall-drive/foundational-gameplay-systems.md#eventmanager).
+**DemoUtils**. Various utility functions. Dealing with transforms. Setting visibility, anchored or other properties. Checking for a point in a box. Finding objects in hierarchy by "dotted" name. Managing TempStorage (that can be used to temporarily move models "somewhere far" and bring back later). Click detector helpers. Grabbing support. Support for checking tags (especially along the hierarchy). Connecting triggers to [EventManager](../../resources/the-mystery-of-duvall-drive/foundational-gameplay-systems.md#eventmanager).
 
 **AudioUtils**. A couple of functions to play weighted random sounds from a set.
 

@@ -14,6 +14,7 @@ import { Emoji } from './utils.js';
 import { addToSummaryOfRequirements } from './console.js';
 import { createNewPullRequestComment, requiredCheckMessage } from './github.js';
 import { IConfig } from './config.js';
+import { getFileImports } from './imports.js';
 // Double escape the regular expressions to combine them
 
 /** Page Links */
@@ -224,6 +225,11 @@ export const getNonRobloxLinks = (content: string) => {
       relativeLinks.push(link);
     }
   });
+  const fileImports = getFileImports(content);
+  fileImports.files.forEach((link) => {
+    // 0 for unknown line number
+    relativeLinks.push({ lineNumber: 0, ref: link });
+  });
   return { httpLinks, relativeLinks };
 };
 
@@ -274,14 +280,11 @@ ${requiredCheckMessage}`;
   }
 };
 
-const closedSourceDirectories = ['content/en-us/reference/cloud/'];
+const closedSourceDirectories = ['content/en-us/release-notes/'];
 
 const closedSourceFiles = [
   'content/en-us/index/index.md',
-  'content/en-us/production/promotion/advertising-on-roblox.md',
-  'content/en-us/production/promotion/complying-with-advertising-standards.md',
-  'content/en-us/production/promotion/discovery.md',
-  'content/en-us/production/promotion/sponsoring-items.md',
+  'content/en-us/resources/scripting-libraries.md',
   'content/en-us/samples/index.md',
 ];
 
@@ -317,9 +320,10 @@ const processRelativeLink = ({
   }
 
   // Create messages
-  const shortIntro = `${Emoji.NoEntry} Requirement: In line ${link.lineNumber}, the `;
-  const fullIntro = `${Emoji.NoEntry} Requirement: In ${filePath}, line ${link.lineNumber}, the `;
-  const message = `check for relative links couldn't find the file \`${urlNoHash}\`. Please double-check and fix the link to this file. Relative links are case-sensitive.`;
+  const lineNumberMessage = link.lineNumber ? `line ${link.lineNumber}, ` : '';
+  const shortIntro = `${Emoji.NoEntry} Requirement: In ${lineNumberMessage}`;
+  const fullIntro = `${Emoji.NoEntry} Requirement: In ${filePath}, ${lineNumberMessage}`;
+  const message = `the check for relative links couldn't find the file \`${urlNoHash}\`. Please double-check and fix the link to this file. Relative links are case-sensitive.`;
 
   // Log messages
   console.log(shortIntro + message);

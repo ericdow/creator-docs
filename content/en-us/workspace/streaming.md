@@ -1,16 +1,16 @@
 ---
-title: Instance Streaming
-description: Instance streaming allows the Roblox engine to dynamically load and unload 3D content in regions of the world.
+title: Instance streaming
+description: Instance streaming allows the Roblox Engine to dynamically load and unload 3D content in regions of the world.
 ---
 
-In-experience **instance streaming** allows the Roblox engine to dynamically load and unload 3D content and related instances in regions of the world. This can improve the overall player experience in several ways, for example:
+In-experience **instance streaming** allows the Roblox Engine to dynamically load and unload 3D content and related instances in regions of the world. This can improve the overall player experience in several ways, for example:
 
 - **Faster join times** &mdash; Players can start playing in one part of the world while more of the world loads in the background.
 - **Memory efficiency** &mdash; Experiences can be played on devices with less memory since content is dynamically streamed in and out. More immersive and detailed worlds can be played on a wider range of devices.
 - **Improved performance** &mdash; Better frame rates and performance, as the server can spend less time and bandwidth synchronizing changes between the world and players in it. Clients spend less time updating instances that aren't currently relevant to the player.
 - **Level of detail** &mdash; Distant models and terrain remain visible even when they're not streamed to clients, keeping the experience optimized without entirely sacrificing background visuals.
 
-## Enabling Streaming
+## Enable streaming
 
 Instance streaming is enabled through the **StreamingEnabled** property of the **Workspace** object in Studio. This property cannot be set in a script. Streaming is enabled by default for new places created in Studio.
 
@@ -18,14 +18,14 @@ Instance streaming is enabled through the **StreamingEnabled** property of the *
 
 Once enabled, it's recommended that you adhere to the following practices:
 
-- Because clients will not typically have the entire `Class.Workspace` available locally, use the appropriate tool/API to ensure that instances exist before attempting to access them in a `Class.LocalScript`. For example, utilize [per‑model streaming controls](#per-model-streaming-controls), [detect instance streaming](#detecting-instance-streaming), or use `Class.Instance:WaitForChild()|WaitForChild()` on objects that may not exist.
+- Because clients will not typically have the entire `Class.Workspace` available locally, use the appropriate tool/API to ensure that instances exist before attempting to access them in a `Class.LocalScript`. For example, utilize [per‑model streaming controls](#per-model-streaming-controls), [detect instance streaming](#detect-instance-streaming), or use `Class.Instance:WaitForChild()|WaitForChild()` on objects that may not exist.
 - Minimize placement of 3D content outside of `Class.Workspace`. Content in containers such as `Class.ReplicatedStorage` or `Class.ReplicatedFirst` is ineligible for streaming and may negatively impact join time and memory usage.
-- If you move a player's character by setting its `Datatype.CFrame`, do so from a server-side `Class.Script` and use [streaming requests](#requesting-area-streaming) to more quickly load data around the character's new location.
-- Manually set the player's `Class.Player.ReplicationFocus|ReplicationFocus` only in unique situations such as in experiences that don't use a `Class.Player.Character`. In these cases, make sure the focus is near the object(s) that the player controls to ensure content continues to stream in around the player's interaction point.
+- If you move a player's character by setting its `Datatype.CFrame`, do so from a server-side `Class.Script` and use [streaming requests](#request-area-streaming) to more quickly load data around the character's new location.
+- Manually set [replication foci](#replication-focus) only in unique situations such as experiences that don't use a `Class.Player.Character` or where streaming should occur in multiple areas of the experience. In these cases, make sure the foci are near objects that the player controls or those that should continue simulating physically on the client, and try to minimize the overall number of foci used.
 
-## Technical Behavior
+## Technical behavior
 
-### Streaming In
+### Stream in
 
 By default, when a player joins an experience with instance streaming enabled, instances in the `Class.Workspace` are replicated to the client, **excluding** the following:
 
@@ -40,9 +40,9 @@ Then, during gameplay, the server may stream necessary instances to the client, 
 
 <figcaption><sup>1</sup> Terrain is treated uniquely, in that the instance replicates to the client when the experience loads, but terrain regions only stream in when needed</figcaption><br />
 
-<h4>Model Behavior</h4>
+<h4>Model behavior</h4>
 
-Models set to non-default behavior like [Atomic](#atomic) stream in under special rules as outlined in [Per‑Model Streaming Controls](#per-model-streaming-controls). However, default (nonatomic) models are sent differently based on whether [ModelStreamingBehavior](#modelstreamingbehavior) is set to **Default** (**Legacy**) or **Improved**.
+Models set to non-default behavior like [Atomic](#atomic) stream in under special rules as outlined in [per‑model streaming controls](#per-model-streaming-controls). However, default (nonatomic) models are sent differently based on whether [ModelStreamingBehavior](#modelstreamingbehavior) is set to **Default** (**Legacy**) or **Improved**.
 
 <Tabs>
 <TabItem label="Default / Legacy">
@@ -75,9 +75,9 @@ When [ModelStreamingBehavior](#modelstreamingbehavior) is set to **Improved**, m
 </TabItem>
 </Tabs>
 
-### Streaming Out
+### Stream out
 
-During gameplay, a client may stream out (remove from the player's `Class.Workspace`) regions and the `Class.BasePart|BaseParts` contained within them, based on the behavior set by [StreamOutBehavior](#streamoutbehavior). The process begins with regions furthest away from the player's character (or `Class.Player.ReplicationFocus|ReplicationFocus`) and moves in closer as needed. Regions inside the [StreamingMinRadius](#streamingminradius) range never stream out.
+During gameplay, a client may stream out (remove from the player's `Class.Workspace`) regions and the `Class.BasePart|BaseParts` contained within them, based on the behavior set by [StreamOutBehavior](#streamoutbehavior). The process begins with regions furthest away from the [replication foci](#replication-focus) and moves in closer as needed. Regions inside the [StreamingMinRadius](#streamingminradius) range never stream out.
 
 When an instance streams out, it is parented to `nil` so that any existing Luau state will reconnect if the instance streams back in. As a result, removal signals such as `Class.Instance.ChildRemoved|ChildRemoved` or `Class.Instance.DescendantRemoving|DescendantRemoving` fire on its **parent** or **ancestor**, but the instance itself is not destroyed in the same sense as an `Class.Instance:Destroy()` call.
 
@@ -88,7 +88,7 @@ To further anticipate stream out, examine these scenarios:
     <tr>
       <th>Scenario</th>
       <th>Example</th>
-	  <th>Streaming Behavior</th>
+	  <th>Streaming behavior</th>
     </tr>
   </thead>
   <tbody>
@@ -110,7 +110,7 @@ To further anticipate stream out, examine these scenarios:
   </tbody>
 </table>
 
-<h4>Model Behavior</h4>
+<h4>Model behavior</h4>
 
 If you set [ModelStreamingBehavior](#modelstreamingbehavior) to **Improved**, the engine may stream out [Default](#default--nonatomic) ([Nonatomic](#default--nonatomic)) models when they're eligible to stream out, potentially freeing up memory on the client and reducing the instances which need property updates.
 
@@ -121,7 +121,7 @@ Under **Improved** model streaming behavior, streaming out of [Default](#default
 - A spatial model only streams out completely when its last remaining `Class.BasePart` descendant streams out, since some of the model's spatial parts may be near to the player/replication focus and some far away.
 - A non‑spatial model only streams out when an ancestor streams out, equivalent to legacy streaming out behavior.
 
-### Assemblies and Mechanisms
+### Assemblies and mechanisms
 
 When at least one part of an [assembly](../physics/assemblies.md) is eligible for streaming in, all of the assembly's parts also stream in. However, an assembly will not stream **out** until **all** of its parts are eligible for streaming out. During streaming, all of the `Class.Constraint|Constraints` and `Class.Attachment|Attachments` descending from `Class.BasePart|BaseParts` and atomic or persistent `Class.Model|Models` also stream, helping to ensure consistent physics updates on clients.
 
@@ -130,8 +130,8 @@ Note that assemblies with **anchored** parts are treated slightly differently th
 <table>
   <thead>
     <tr>
-      <th>Assembly Composition</th>
-      <th>Streaming Behavior</th>
+      <th>Assembly composition</th>
+      <th>Streaming behavior</th>
     </tr>
   </thead>
   <tbody>
@@ -150,7 +150,7 @@ Note that assemblies with **anchored** parts are treated slightly differently th
 Avoid creating moving assemblies with unnecessarily large numbers of instances, as all of the instances streaming in unison may cause network/CPU spikes.
 </Alert>
 
-### Timing Delay
+### Timing delay
 
 There may be a slight delay of ~10 milliseconds between when a part is created on the server and when it gets replicated to clients. In each of the following scenarios, you may need to use `Class.Instance:WaitForChild()|WaitForChild()` and other techniques rather than assuming that events and property updates always occur at the same time as part streaming.
 
@@ -159,7 +159,7 @@ There may be a slight delay of ~10 milliseconds between when a part is created o
     <tr>
       <th>Scenario</th>
       <th>Example</th>
-	  <th>Streaming Behavior</th>
+	  <th>Streaming behavior</th>
     </tr>
   </thead>
   <tbody>
@@ -181,7 +181,7 @@ There may be a slight delay of ~10 milliseconds between when a part is created o
   </tbody>
 </table>
 
-## Streaming Properties
+## Streaming properties
 
 The following properties control how instance streaming applies to your experience. All of these properties are **non-scriptable** and must be set on the **Workspace** object in Studio.
 
@@ -197,11 +197,11 @@ Your experience may behave in unintended ways if a player moves into a region of
 
 ### StreamingMinRadius
 
-The **StreamingMinRadius** property indicates the radius around the player's character (or `Class.Player.ReplicationFocus|ReplicationFocus`) in which instances stream in at the highest priority. Care should be taken when increasing the default, as doing so will require more memory and more server bandwidth at the expense of other components.
+The **StreamingMinRadius** property indicates the radius around the [replication foci](#replication-focus) in which instances stream in at the highest priority. Care should be taken when increasing the default, as doing so will require more memory and more server bandwidth at the expense of other components.
 
 ### StreamingTargetRadius
 
-The **StreamingTargetRadius** property controls the maximum distance away from the player's character (or `Class.Player.ReplicationFocus|ReplicationFocus`) in which instances stream in. Note that the engine is allowed to retain previously loaded instances beyond the target radius, memory permitting.
+The **StreamingTargetRadius** property controls the maximum distance away from the [replication foci](#replication-focus) in which instances stream in. Note that the engine is allowed to retain previously loaded instances beyond the target radius, memory permitting.
 
 A smaller **StreamingTargetRadius** reduces server workload, as the server will not stream in additional instances beyond the set value. However, the target radius is also the maximum distance players will be able to see the full detail of your experience, so you should pick a value that creates a nice balance between these.
 
@@ -211,13 +211,13 @@ A smaller **StreamingTargetRadius** reduces server workload, as the server will 
 
 ### StreamOutBehavior
 
-The **StreamOutBehavior** property sets the [streaming out](#streaming-out) behavior according to one of the following values:
+The **StreamOutBehavior** property sets the [streaming out](#stream-out) behavior according to one of the following values:
 
 <table>
   <thead>
     <tr>
       <th>Setting</th>
-      <th>Streaming Behavior</th>
+      <th>Streaming behavior</th>
     </tr>
   </thead>
   <tbody>
@@ -236,7 +236,31 @@ The **StreamOutBehavior** property sets the [streaming out](#streaming-out) beha
   </tbody>
 </table>
 
-## Per-Model Streaming Controls
+## Replication focus
+
+By default, streaming occurs around the local player's character's `Class.Model.PrimaryPart|PrimaryPart`, although you can specify a different replication focus point through `Class.Player.ReplicationFocus`.
+
+You can also add and remove additional replication foci through `Class.Player:AddReplicationFocus()` and `Class.Player:RemoveReplicationFocus()` to dynamically enable streaming in multiple areas of the experience.
+
+<Alert severity="warning">
+Use caution when adding additional replication foci as each additional focus increases the server's workload for streaming and updating regions. For example, a single player with nine dynamically moving foci could generate server networking and streaming processing comparable to ten players moving around the experience.
+
+On the client, too many foci for a player can limit the engine's ability to adjust to memory limitations and make it more likely for clients to be killed by the OS for using too much memory.
+</Alert>
+
+<Tabs>
+<TabItem label="Physics Simulation">
+Client-side physics simulation only occurs in streamed areas, even for locally created instances and for [persistent](#persistent) instances. If you have instances that you'd like to keep simulating even when they're far away from the character, create an additional replication focus near those instances.
+</TabItem>
+<TabItem label="Movement Between Zones">
+In many experiences, it's common for players to move back and forth between the same areas frequently, for example between their "home&nbsp;base" and a "trading&nbsp;hub." In such cases, you can create a replication focus point in each area to ensure those areas are readily present on client devices.
+</TabItem>
+<TabItem label="Distant Viewpoints">
+Multiple replication points are useful when players can view specific, important regions through a scope, such as enemy bases scattered across a barren landscape. In such cases, you can create a replication focus point in each base to ensure players see details and simulated physics from afar.
+</TabItem>
+</Tabs>
+
+## Per-model streaming controls
 
 Globally, the [ModelStreamingBehavior](#modelstreamingbehavior) property lets you control how models are streamed in on join. Additionally, to avoid issues with streaming on a per-model basis and minimize use of `Class.Instance:WaitForChild()|WaitForChild()`, you can customize how `Class.Model|Models` and their descendants stream through their `Class.Model.ModelStreamingMode|ModelStreamingMode` property.
 
@@ -250,7 +274,7 @@ When a `Class.Model` is set to **Default** or **Nonatomic**, streaming behavior 
   <thead>
     <tr>
       <th>[ModelStreamingBehavior](#modelstreamingbehavior)</th>
-      <th>Technical Behavior</th>
+      <th>Technical behavior</th>
     </tr>
   </thead>
   <tbody>
@@ -265,7 +289,7 @@ When a `Class.Model` is set to **Default** or **Nonatomic**, streaming behavior 
   </tbody>
 </table>
 
-See [Technical Behavior](#technical-behavior) for more details.
+See [technical behavior](#technical-behavior) for more details.
 
 ### Atomic
 
@@ -275,9 +299,11 @@ An atomic model is only streamed out when all of its descendant parts are eligib
 
 <img src="../assets/optimization/streaming/ModelStreamingMode-Atomic.svg" width="800" height="336" alt="A diagram showing Atomic model streaming along with children." />
 
-```lua title='LocalScript' highlight='2, 5-6'
+```lua title="LocalScript" highlight="2, 5-6"
+local Workspace = game:GetService("Workspace")
+
 -- Atomic model does not exist at load time; use WaitForChild()
-local model = workspace:WaitForChild("Model")
+local model = Workspace:WaitForChild("Model")
 
 -- Descendant parts stream in with model and are immediately accessible
 local meshPart = model.MeshPart
@@ -290,9 +316,11 @@ local part = model.Part
 
 <img src="../assets/optimization/streaming/ModelStreamingMode-Persistent.svg" width="800" height="336" alt="A diagram showing Persistent model streaming along with children." />
 
-```lua title='LocalScript' highlight='2, 5-6'
+```lua title="LocalScript" highlight="2, 5-6"
+local Workspace = game:GetService("Workspace")
+
 -- Persistent model does not exist at load time; use WaitForChild()
-local model = workspace:WaitForChild("Model")
+local model = Workspace:WaitForChild("Model")
 
 -- Descendant parts stream in with model and are immediately accessible
 local meshPart = model.MeshPart
@@ -313,13 +341,13 @@ Runtime performance impacts of persistent models after replication are mostly th
 
 Models set to **PersistentPerPlayer** behave the same as [Persistent](#persistent) for players that have been added using `Class.Model:AddPersistentPlayer()`. For other players, behavior is the same as [Atomic](#atomic). You can revert a model from player persistence via `Class.Model:RemovePersistentPlayer()`.
 
-## Requesting Area Streaming
+## Request area streaming
 
-If you set the `Datatype.CFrame` of a player character to a region which isn't currently loaded, [streaming pause](#customizing-the-pause-screen) occurs, if enabled. If you know the character will be moving to a specific area, you can call `Class.Player:RequestStreamAroundAsync()` to request that the server sends regions around that location to the client.
+If you set the `Datatype.CFrame` of a player character to a region which isn't currently loaded, [streaming pause](#customize-the-pause-screen) occurs, if enabled through `Enum.StreamingIntegrityMode`. If you know the character will be moving to a specific area, you can call `Class.Player:RequestStreamAroundAsync()` to request that the server sends regions around that location to the client.
 
 The following scripts show how to fire a client-to-server [remote event](../scripting/events/remote.md) to teleport a player within a place, yielding at the streaming request before moving the character to a new `Datatype.CFrame`.
 
-```lua title='Script - Teleport Player Character' highlight='7, 10-14'
+```lua title="Script - Teleport Player Character" highlight="7, 10-14"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local teleportEvent = ReplicatedStorage:WaitForChild("TeleportEvent")
@@ -340,7 +368,7 @@ end
 teleportEvent.OnServerEvent:Connect(teleportPlayer)
 ```
 
-```lua title='LocalScript - Fire Remote Event'
+```lua title="LocalScript - Fire Remote Event"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local teleportEvent = ReplicatedStorage:WaitForChild("TeleportEvent")
@@ -351,10 +379,33 @@ teleportEvent:FireServer(teleportTarget)
 ```
 
 <Alert severity="error">
- Requesting streaming around an area is **not a guarantee** that the content will be present when the request completes, as streaming is affected by the client's network bandwidth, memory limitations, and other factors.
+Requesting streaming around an area is **not a guarantee** that the content will be present when the request completes, as streaming is affected by the client's network bandwidth, memory limitations, and other factors.
 </Alert>
 
-## Detecting Instance Streaming
+## Customize the pause screen
+
+If players can encounter streaming pauses in your experience, you might want to customize the pause screen. The `Class.Player.GameplayPaused` property indicates the player's current pause state. This property can be used with a `Class.Instance:GetPropertyChangedSignal()|GetPropertyChangedSignal()` connection to show or hide a custom GUI.
+
+```lua title="LocalScript"
+local Players = game:GetService("Players")
+local GuiService = game:GetService("GuiService")
+local player = Players.LocalPlayer
+
+-- Disable default pause modal
+GuiService:SetGameplayPausedNotificationEnabled(false)
+
+local function onPauseStateChanged()
+  if player.GameplayPaused then
+    -- Show custom GUI
+  else
+    -- Hide custom GUI
+  end
+end
+
+player:GetPropertyChangedSignal("GameplayPaused"):Connect(onPauseStateChanged)
+```
+
+## Detect instance streaming
 
 In some cases, it's necessary to detect when an object streams in or out and react to that event. A useful pattern for streaming detection is as follows:
 
@@ -362,7 +413,7 @@ In some cases, it's necessary to detect when an object streams in or out and rea
 
 2. From a single `Class.LocalScript`, detect when a tagged object streams in or out through `Class.CollectionService:GetInstanceAddedSignal()|GetInstanceAddedSignal()` and `Class.CollectionService:GetInstanceRemovedSignal()|GetInstanceRemovedSignal()`, then handle the object accordingly. For example, the following code adds tagged `Class.Light` objects into a "flicker" loop when they stream in and removes them when they stream out.
 
-   ```lua title='LocalScript - CollectionService Streaming Detection' highlight='10-15'
+   ```lua title="LocalScript - CollectionService Streaming Detection" highlight="10-15"
    local CollectionService = game:GetService("CollectionService")
 
    local tagName = "FlickerLightSource"
@@ -392,30 +443,7 @@ In some cases, it's necessary to detect when an object streams in or out and rea
    end
    ```
 
-## Customizing the Pause Screen
-
-The `Class.Player.GameplayPaused` property indicates the player's current pause state. This property can be used with a `Class.Instance:GetPropertyChangedSignal()|GetPropertyChangedSignal()` connection to show or hide a custom GUI.
-
-```lua title='LocalScript'
-local Players = game:GetService("Players")
-local GuiService = game:GetService("GuiService")
-local player = Players.LocalPlayer
-
--- Disable default pause modal
-GuiService:SetGameplayPausedNotificationEnabled(false)
-
-local function onPauseStateChanged()
-	if player.GameplayPaused then
-		-- Show custom GUI
-	else
-		-- Hide custom GUI
-	end
-end
-
-player:GetPropertyChangedSignal("GameplayPaused"):Connect(onPauseStateChanged)
-```
-
-## Model Level of Detail
+## Model level of detail
 
 When streaming is enabled, `Class.Model|Models` outside of the currently streamed area will not be visible by default. However, you can instruct the engine to render lower resolution "imposter" meshes for models that are not present on clients through each model's `Class.Model.LevelOfDetail|LevelOfDetail` property.
 
@@ -435,8 +463,8 @@ When streaming is enabled, `Class.Model|Models` outside of the currently streame
 <table>
   <thead>
     <tr>
-      <th>Model Setting</th>
-      <th>Streaming Behavior</th>
+      <th>Model setting</th>
+      <th>Streaming behavior</th>
     </tr>
   </thead>
   <tbody>

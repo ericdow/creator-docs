@@ -1,9 +1,9 @@
 ---
-title: Control Structures
+title: Control structures
 description: Control structures are statements that manage the flow of Luau code execution.
 ---
 
-Control structures are statements that manage the flow of Luau code execution. There are four main types of control structures:
+**Control structures** are statements that manage the flow of Luau code execution. There are four main types of control structures:
 
 - An [if then else](#if-statements) statement executes code only if a specified condition is `true`. The code execution doesn't repeat.
 - A [while loop](#while-loops) executes code only if a specified condition is `true`, and repeats execution while the condition remains `true`.
@@ -12,7 +12,7 @@ Control structures are statements that manage the flow of Luau code execution. T
 
 The condition for `if` statements, `while` loops, and `repeat` loops can be any Luau expression or value. If a value isn't `false` or `nil`, then Luau evaluates it as `true` in conditional statements. Unlike other scripting languages, Luau considers both zero and the empty string as `true`.
 
-## If Statements
+## If statements
 
 The basic `if` statement tests its condition. If the condition is true, then Luau executes the code between `then` and `end`.
 
@@ -30,7 +30,7 @@ else
 end
 ```
 
-## While Loops
+## While loops
 
 A `while`—`do` loop evaluates if a specified condition is true or false. If the condition is `false` or `nil`, then the loop ends, and Luau skips the code in the loop. If the condition is `true`, then Luau executes the code in the loop and repeats the process.
 
@@ -59,7 +59,7 @@ Timer reached zero!
 ]]
 ```
 
-### Infinite Loops
+### Infinite loops
 
 You can use a `while`—`do` loop to write infinite game loops by setting `true` as the condition.
 
@@ -79,10 +79,10 @@ Looping...
 ```
 
 <Alert severity="error">
-Always include a delay such as <InlineCode>task.wait()</InlineCode> in an infinite loop. Omitting it freezes the experience and crashes Studio.
+Always include a delay such as `Library.task.wait()` in an infinite loop. Omitting it freezes the experience and crashes Studio.
 </Alert>
 
-## Repeat Loops
+## Repeat loops
 
 The `repeat`—`until` loop repeats until a condition is true. The conditional test evaluates **after** the code block runs, so the code block always runs at least once. Unlike other languages, the Luau scope of a local variable declared inside a `repeat`—`until` loop includes the condition.
 
@@ -110,11 +110,11 @@ Goblins repopulated!
 ]]
 ```
 
-## For Loops
+## For loops
 
 A for loop executes code a set number of times, either based on a [numerical counter](#numeric-for-loops) or the number of [items in a collection](#generic-for-loops).
 
-### Numeric For Loops
+### Numeric for loops
 
 A `for`—`do` loop determines the number of times to execute the loop using a counter. The loop is declared with a start value, end value, and optional increment.
 
@@ -156,13 +156,13 @@ end
 ]]
 ```
 
-### Generic For Loops
+### Generic for loops
 
 The generic `for` loop iterates over items in a collection rather than a sequence of numbers. With generic `for` loops, you can execute code for each item in the collection, and can easily use each item in the code.
 
 For loops need a function, or iterator, to iterate over different types of collections. The global `ipairs()` returns an iterator for arrays, and the global `pairs()` returns an iterator for dictionaries. The `Library.string` library provides `Library.string.gmatch()` to iterate over strings.
 
-### Generalized Iteration
+### Generalized iteration
 
 In Luau, you can iterate over a table using the `in` keyword directly on the table, instead of using an iterator function such as `ipairs()`:
 
@@ -178,21 +178,17 @@ Generalized iteration also lets you use the `__iter` metamethod to create a cust
 local myTable = {1, 2, 3, 4, 5}
 
 myMetatable = {
-	__iter = function(self)
-		local i = #self
-		local firstRun = true
+	__iter = function(t)
+		local i = #t + 1
+
 		return function()
-			if firstRun then
-				firstRun = false
-				return i, self[i]
-			else
-				i -= 1
-				if i > 0 then
-					return i, self[i]
-				end
+			i -= 1
+
+			if i > 0 then
+				return i, t[i]
 			end
 		end
-	end
+	end,
 }
 
 setmetatable(myTable, myMetatable)
@@ -200,6 +196,14 @@ setmetatable(myTable, myMetatable)
 for i, v in myTable do
 	print(i, v)
 end
+
+--[[ Resulting output:
+5 5
+4 4
+3 3
+2 2
+1 1
+]]
 ```
 
 #### Arrays
@@ -209,7 +213,7 @@ The `ipairs()` function returns an iterator that iterates through numerical indi
 ```lua
 local array = {"a", "b", "c", "d", "e"}
 for index, value in ipairs(array) do
-    print(index, value)
+	print(index, value)
 end
 
 --[[ Resulting output:
@@ -227,15 +231,15 @@ The `pairs()` function returns an iterator that iterates through all indices (in
 
 ```lua
 local dictionary = {
-	[1] = "a";
-	["Hello"]="b";
-	[5] = "c";
-[true] = "d";
-	["World"] = "f";
-[false] = "e";
+	[1] = "a",
+	["Hello"] = "b",
+	[5] = "c",
+	[true] = "d",
+	["World"] = "f",
+	[false] = "e"
 }
 for key, value in pairs(dictionary) do
-    print(key, value)
+	print(key, value)
 end
 
 --[[ Resulting output:
@@ -248,9 +252,9 @@ World f
 ]]
 ```
 
-### Breaking Loops
+## Break loops
 
-To force a loop to end, use the `break` command. The following code sample shows how to break an infinite `while`—`do` loop.
+To force a loop to end, use the `break` keyword. The following code sample shows how to break an infinite `while`—`do` loop.
 
 ```lua
 local secondsElapsed = 0
@@ -276,4 +280,20 @@ print("Five seconds elapsed. Time to move on!")
 5
 Five seconds elapsed. Time to move on!
 ]]
+```
+
+## Continue loops
+
+To force a loop to iterate and start again, use the `continue` keyword. A `for` loop will iterate the counter; `while` and `repeat`—`until` will check the loop condition before continuing. The following code sample gets all children of an `Class.Instance` of a specific `Class.Instance.ClassName|ClassName`.
+
+```lua
+local function GetChildrenOfClass(parent: Instance, className: string): {Instance}
+	local children = {}
+	for _, child in parent:GetChildren() do
+		if child.ClassName ~= className then continue end  -- Iterates the loop
+		table.insert(children, child)
+	end
+
+	return children
+end
 ```

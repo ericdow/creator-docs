@@ -1,22 +1,22 @@
 ---
-title: Luau and C# Comparison
+title: Luau and C# comparison
 description: Explains the similarities and differences between the C# and Luau programming languages.
 ---
 
 Roblox uses the Luau programming language. The following code samples and tables indicate some of the differences between syntaxes for C# and Luau.
 
-## Line Endings
+## Line endings
 
 You don't need semicolons in Luau, but they don't break the syntax.
 
-## Reserved Keywords
+## Reserved keywords
 
 The following table has Luau's reserved keywords mapped to their C# equivalent. Note it doesn't show all C# keywords.
 
 <table>
     <thead>
         <tr>
-            <th>Lua</th>
+            <th>Luau</th>
             <th>C#</th>
         </tr>
     </thead>
@@ -110,7 +110,7 @@ The following table has Luau's reserved keywords mapped to their C# equivalent. 
 
 ## Comments
 
-```lua title='Comments in Luau'
+```lua title="Comments in Luau"
 -- Single line comment
 
 --[[ Resulting output:
@@ -118,7 +118,7 @@ The following table has Luau's reserved keywords mapped to their C# equivalent. 
 --]]
 ```
 
-```cs title='Comments in C#'
+```cs title="Comments in C#"
 // Single line comment
 
 /*
@@ -128,7 +128,7 @@ The following table has Luau's reserved keywords mapped to their C# equivalent. 
 
 ## Strings
 
-```lua title='Strings in Luau'
+```lua title="Strings in Luau"
 -- Multi-line string
 local multiLineString = [[This is a string that,
 when printed, appears
@@ -140,7 +140,7 @@ local s2 = "made with two parts."
 local endString = s1 .. s2
 ```
 
-```cs title='Strings in C#'
+```cs title="Strings in C#"
 // Multi-line string
 string multiLineString1 = "This is a string that,\nwhen printed, appears\n on multiple lines.";
 
@@ -158,11 +158,11 @@ string endString = s1 + s2;
 
 To learn more about tables in Luau, see [Tables](./tables.md).
 
-### Dictionary Tables
+### Dictionary tables
 
 You can use tables in Luau as dictionaries just like in C#.
 
-```lua title='Dictionary Tables in Luau'
+```lua title="Dictionary Tables in Luau"
 local dictionary = {
 	val1 = "this",
 	val2 = "is"
@@ -175,7 +175,7 @@ dictionary.val1 = nil  -- Removes 'val1' from table
 dictionary["val3"] = "a dictionary"  -- Overwrites 'val3' or sets new key-value pair
 ```
 
-```cs title='Dictionary Tables in C#'
+```cs title="Dictionary Tables in C#"
 Dictionary dictionary = new Dictionary()
 {
 	{ "val1", "this" },
@@ -189,11 +189,11 @@ dictionary["val3"] = "a dictionary";  // Overwrites 'val3' or sets new key-value
 dictionary.Add("val3", "a dictionary");  // Creates a new key-value pair
 ```
 
-### Numerically-Indexed Tables
+### Numerically-indexed tables
 
 You can use tables in Luau as arrays just like in C#. Indices start at `1` in Luau and `0` in C#.
 
-```lua title='Numerically-Indexed Tables in Luau'
+```lua title="Numerically-Indexed Tables in Luau"
 local npcAttributes = {"strong", "intelligent"}
 
 print(npcAttributes[1])  -- Outputs 'strong'
@@ -211,7 +211,7 @@ table.insert(npcAttributes, 1, "brave")
 table.remove(npcAttributes, 3)
 ```
 
-```cs title='Numerically-Indexed Tables in C#'
+```cs title="Numerically-Indexed Tables in C#"
 List npcAttributes = new List{"strong", "intelligent"};
 
 Console.WriteLine(npcAttributes[0]);  // Outputs 'strong'
@@ -231,13 +231,13 @@ npcAttributes.Remove(2);
 
 ## Operators
 
-### Conditional Operators
+### Conditional operators
 
 <table>
     <thead>
         <tr>
             <th>Operator</th>
-            <th>Lua</th>
+            <th>Luau</th>
             <th>C#</th>
         </tr>
     </thead>
@@ -285,13 +285,13 @@ npcAttributes.Remove(2);
     </tbody>
 </table>
 
-### Arithmetic Operators
+### Arithmetic operators
 
 <table>
     <thead>
         <tr>
             <th></th>
-            <th>Lua</th>
+            <th>Luau</th>
             <th>C#</th>
         </tr>
     </thead>
@@ -333,7 +333,7 @@ npcAttributes.Remove(2);
 
 In Luau, variables don't specify their type when you declare them. Luau variables don't have access modifiers, although you may prefix "private" variables with an underscore for readability.
 
-```lua title='Variables in Luau'
+```lua title="Variables in Luau"
 local stringVariable = "value"
 
 -- "Public" declaration
@@ -343,7 +343,7 @@ local variableName
 local _variableName
 ```
 
-```cs title='Variables in C#'
+```cs title="Variables in C#"
 string stringVariable = "value";
 
 // Public declaration
@@ -357,7 +357,7 @@ string variableName;
 
 In Luau, you can write variables and logic in a tighter scope than their function or class by nesting the logic within `do` and `end` keywords, similar to curly brackets `{}` in C#. For more details, see [Scope](./scope.md).
 
-```lua title='Scoping in Luau'
+```lua title="Scoping in Luau"
 local outerVar = 'Outer scope text'
 
 do
@@ -373,7 +373,7 @@ print('3: ' .. outerVar)        -- prints "3: "Inner scope modified text"
 -- Attempting to print 'innerVar' here would fail
 ```
 
-```cs title='Scoping in C#'
+```cs title="Scoping in C#"
 var outerVar = "Outer scope text";
 
 {
@@ -389,9 +389,9 @@ Console.WriteLine("3: " + outerVar);		// prints "3: "Inner scope modified text"
 // Attempting to print 'innerVar' here would fail
 ```
 
-## Conditional Statements
+## Conditional statements
 
-```lua title='Conditional Statements in Luau'
+```lua title="Conditional Statements in Luau"
 -- One condition
 if boolExpression then
 	doSomething()
@@ -407,7 +407,7 @@ else
 end
 ```
 
-```cs title='Conditional Statements in C#'
+```cs title="Conditional Statements in C#"
 // One condition
 if (boolExpression) {
 	doSomething();
@@ -426,13 +426,13 @@ else {
 }
 ```
 
-### Conditional Operator
+### Conditional operator
 
-```lua title='Conditional Operator in Luau'
+```lua title="Conditional Operator in Luau"
 local max = if x > y then x else y
 ```
 
-```cs title='Conditional Operator in C#'
+```cs title="Conditional Operator in C#"
 int max = (x > y) ? x : y;
 ```
 
@@ -440,9 +440,9 @@ int max = (x > y) ? x : y;
 
 To learn more about loops in Luau, see [Control Structures](./control-structures.md).
 
-### While and Repeat Loops
+### While and repeat loops
 
-```lua title='While and Repeat Loops in Luau'
+```lua title="While and Repeat Loops in Luau"
 while boolExpression do
 	doSomething()
 end
@@ -452,7 +452,7 @@ repeat
 until not boolExpression
 ```
 
-```cs title='While and Repeat Loops in C#'
+```cs title="While and Repeat Loops in C#"
 while (boolExpression) {
 	doSomething();
 }
@@ -462,9 +462,9 @@ do {
 } while (boolExpression)
 ```
 
-### For Loops
+### For loops
 
-```lua title='Generic For Loops in Luau'
+```lua title="Generic For Loops in Luau"
 -- Forward loop
 for i = 1, 10 do
 	doSomething()
@@ -476,7 +476,7 @@ for i = 10, 1, -1 do
 end
 ```
 
-```cs title='Generic For Loops in C#'
+```cs title="Generic For Loops in C#"
 // Forward loop
 for (int i = 1; i <= 10; i++) {
 	doSomething();
@@ -488,7 +488,7 @@ for (int i = 10; i >= 1; i--) {
 }
 ```
 
-```lua title='For Loops Over Tables in Luau'
+```lua title="For Loops Over Tables in Luau"
 local abcList = {"a", "b", "c"}
 
 for i, v in ipairs(abcList) do
@@ -502,7 +502,7 @@ for k, v in pairs(abcDictionary) do
 end
 ```
 
-```cs title='For Loops Over Lists in C#'
+```cs title="For Loops Over Lists in C#"
 List<string> abcList = new List<string>{"a", "b", "c"};
 
 foreach (string v in abcList) {
@@ -524,32 +524,32 @@ Luau also supports [generalized iteration](./control-structures.md#generalized-i
 
 To learn more about functions in Luau, see [Functions](./functions.md).
 
-### Generic Functions
+### Generic functions
 
-```lua title='Generic Functions in Luau'
+```lua title="Generic Functions in Luau"
 -- Generic function
 local function increment(number)
 	return number + 1
 end
 ```
 
-```cs title='Generic Functions in C#'
+```cs title="Generic Functions in C#"
 // Generic function
 int increment(int number) {
 	return number + 1;
 }
 ```
 
-### Variable Argument Number
+### Variable argument number
 
-```lua title='Variable Argument Number in Luau'
+```lua title="Variable Argument Number in Luau"
 -- Variable argument number
 local function variableArguments(...)
 	print(...)
 end
 ```
 
-```cs title='Variable Argument Number in C#'
+```cs title="Variable Argument Number in C#"
 // Variable argument number
 void variableArguments(params string[] inventoryItems) {
 	for (item in inventoryItems) {
@@ -558,9 +558,9 @@ void variableArguments(params string[] inventoryItems) {
 }
 ```
 
-### Named Arguments
+### Named arguments
 
-```lua title='Named Arguments in Luau'
+```lua title="Named Arguments in Luau"
 -- Named arguments
 local function namedArguments(args)
 	return args.name .. "'s birthday: " .. args.dob
@@ -569,7 +569,7 @@ end
 namedArguments{name="Bob", dob="4/1/2000"}
 ```
 
-```cs title='Named Arguments in C#'
+```cs title="Named Arguments in C#"
 // Named arguments
 string namedArguments(string name, string dob) {
 	return name + "'s birthday: " + dob;
@@ -578,9 +578,9 @@ string namedArguments(string name, string dob) {
 namedArguments(name: "Bob", dob: "4/1/2000");
 ```
 
-## Try-Catch Structures
+## Try-catch structures
 
-```lua title='Try/Catch Structures in Luau'
+```lua title="Try/Catch Structures in Luau"
 local function fireWeapon()
 	if not weaponEquipped then
 		error("No weapon equipped!")
@@ -594,7 +594,7 @@ if not success then
 end
 ```
 
-```cs title='Try/Catch Structures in C#'
+```cs title="Try/Catch Structures in C#"
 void fireWeapon() {
 	if (!weaponEquipped) {
 		// Use a user-defined exception

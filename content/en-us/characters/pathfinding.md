@@ -1,5 +1,5 @@
 ---
-title: Character Pathfinding
+title: Character pathfinding
 description: Pathfinding is the process of moving a character along a logical path to reach a destination.
 ---
 
@@ -7,28 +7,41 @@ description: Pathfinding is the process of moving a character along a logical pa
 
 <video controls src="../assets/avatar/pathfinding/Showcase.mp4" width="100%" alt="Video showcase of character pathfinding across a series of bridges"></video>
 
-## Navigation Visualization
+## Navigation visualization
 
-To assist with pathfinding layout and debugging, Studio can render a **navigation mesh**. Colored areas show where a character might walk or swim, while non-colored areas are blocked. The small arrows indicate areas that a character will attempt to reach by jumping.
+To assist with pathfinding layout and debugging, Studio can render a navigation mesh and [modifier](#pathfinding-modifiers) labels. To enable them, toggle on **Navigation&nbsp;mesh** and **Pathfinding&nbsp;modifiers** from the [Visualization&nbsp;Options](../studio/ui-overview.md#visualization-options) widget in the upper‑right corner of the 3D viewport.
 
-<img src="../assets/avatar/pathfinding/Navigation-Mesh.jpg"
-    width="800" alt="Navigation mesh showing in Studio" />
+<img src="../assets/studio/general/Visualization-Options.png" width="780" alt="A close up view of the 3D viewport with the Visualization Options button indicated in the upper-right corner." />
 
-In addition, Studio can render **navigation labels** that indicate specific materials and region labels that are taken into consideration when using [pathfinding modifiers](#pathfinding-modifiers), as well as link point labels assigned to [pathfinding links](#pathfinding-links).
+With **Navigation mesh** enabled, colored areas show where a character might walk or swim, while non-colored areas are blocked. The small arrows indicate areas that a character will attempt to reach by jumping, assuming you set `AgentCanJump` to `true` when [creating the path](#create-paths).
 
-<img src="../assets/avatar/pathfinding/Navigation-Labels.jpg"
-    width="800" alt="Navigation labels showing on navigation mesh" />
+<img src="../assets/avatar/pathfinding/Navigation-Mesh.jpg" width="800" alt="Navigation mesh showing in Studio" />
 
-To enable navigation visualization:
+With **Pathfinding modifiers** enabled, text labels indicate specific materials and regions that are taken into consideration when using [pathfinding modifiers](#pathfinding-modifiers).
 
-1. Open **File** &rarr; **Studio Settings**.
-1. In the **Studio** tab, within the **Visualization** section, enable **Show&nbsp;Navigation&nbsp;Mesh** and, optionally, **Show&nbsp;Navigation&nbsp;Labels**.
+<img src="../assets/avatar/pathfinding/Navigation-Labels.jpg" width="800" alt="Navigation labels showing on navigation mesh" />
 
-## Creating Paths
+## Known limitations
+
+Pathfinding features specific limitations to ensure efficient processing and optimal performance.
+
+### Vertical placement limit
+
+Pathfinding calculations consider only parts within certain vertical boundaries:
+
+- Lower Boundary &mdash; Parts with a bottom **Y** coordinate less than -65,536 studs are ignored.
+- Upper Boundary &mdash; Parts with a top **Y** coordinate exceeding 65,536 studs are ignored.
+- Vertical Span &mdash; The vertical distance from the lowest part's bottom **Y** coordinate to the highest part's top **Y** coordinate must not exceed 65,536 studs; otherwise, the pathfinding system will ignore those parts during the pathfinding computation.
+
+### Search distance limitation
+
+The direct line-of-sight distance for pathfinding from the start to the finish point must not exceed 3,000 studs. Exceeding this distance will result in a `Enum.PathStatus|NoPath` status.
+
+## Create paths
 
 Pathfinding is initiated through `Class.PathfindingService` and its `Class.PathfindingService:CreatePath()|CreatePath()` function.
 
-```lua title='LocalScript' highlight='1, 3'
+```lua title="LocalScript" highlight="1, 3"
 local PathfindingService = game:GetService("PathfindingService")
 
 local path = PathfindingService:CreatePath()
@@ -47,37 +60,37 @@ local path = PathfindingService:CreatePath()
 </thead>
 <tbody>
    <tr>
-     <td>**AgentRadius**</td>
+     <td>`AgentRadius`</td>
      <td>Agent radius, in studs. Useful for determining the minimum separation from obstacles.</td>
      <td>integer</td>
      <td>`2`</td>
    </tr>
    <tr>
-     <td>**AgentHeight**</td>
+     <td>`AgentHeight`</td>
      <td>Agent height, in studs. Empty space smaller than this value, like the space under stairs, will be marked as non-traversable.</td>
      <td>integer</td>
      <td>`5`</td>
    </tr>
    <tr>
-     <td>**AgentCanJump**</td>
+     <td>`AgentCanJump`</td>
      <td>Determines whether jumping during pathfinding is allowed.</td>
      <td>boolean</td>
      <td>`true`</td>
    </tr>
 	 <tr>
-     <td>**AgentCanClimb**</td>
+     <td>`AgentCanClimb`</td>
      <td>Determines whether climbing `Class.TrussPart|TrussParts` during pathfinding is allowed.</td>
      <td>boolean</td>
      <td>`false`</td>
    </tr>
    <tr>
-     <td>**WaypointSpacing**</td>
+     <td>`WaypointSpacing`</td>
      <td>Spacing between intermediate waypoints in path. If set to `Library.math.huge`, there will be no intermediate waypoints.</td>
      <td>number</td>
      <td>`4`</td>
    </tr>
    <tr>
-     <td>**Costs**</td>
+     <td>`Costs`</td>
      <td>Table of materials or defined `Class.PathfindingModifier|PathfindingModifiers` and their cost for traversal. Useful for making the agent prefer certain materials/regions over others. See [modifiers](#pathfinding-modifiers) for details.</td>
      <td>table</td>
      <td>`nil`</td>
@@ -85,7 +98,7 @@ local path = PathfindingService:CreatePath()
 </tbody>
 </table>
 
-```lua title='LocalScript' highlight='3-10'
+```lua title="LocalScript" highlight="3-10"
 local PathfindingService = game:GetService("PathfindingService")
 
 local path = PathfindingService:CreatePath({
@@ -98,11 +111,11 @@ local path = PathfindingService:CreatePath({
 })
 ```
 
-Note that the agent can climb `Class.TrussPart|TrussParts` during pathfinding assuming you set `AgentCanClimb` to `true` when [creating the path](#creating-paths) and nothing blocks the agent from the truss climbing path. A climbable path has the **Climb** label and the [cost](#setting-material-costs) for a climbable path is **1** by default.
+Note that the agent can climb `Class.TrussPart|TrussParts` during pathfinding assuming you set `AgentCanClimb` to `true` when [creating the path](#create-paths) and nothing blocks the agent from the truss climbing path. A climbable path has the **Climb** label and the [cost](#set-material-costs) for a climbable path is **1** by default.
 
 <img src="../assets/avatar/pathfinding/Path-TrussPart.jpg" width="800" alt="Path going up a climbable TrussPart ladder" />
 
-```lua title='LocalScript - Truss Climbing Path' highlight='6,8'
+```lua title="LocalScript - Truss Climbing Path" highlight="6,8"
 local PathfindingService = game:GetService("PathfindingService")
 
 local path = PathfindingService:CreatePath({
@@ -113,18 +126,19 @@ local path = PathfindingService:CreatePath({
 })
 ```
 
-## Moving Along Paths
+## Move along paths
 
 This section uses the following pathfinding script for the player's character. To test while reading:
 
 1. Copy the code into a `Class.LocalScript` within `Class.StarterCharacterScripts`.
-1. Edit line 11 to a `Datatype.Vector3` destination that the player character can reach.
+1. Set the `TEST_DESTINATION` variable to a `Datatype.Vector3` destination in your 3D world that the player character can reach.
 1. Proceed through the following sections to learn about path computation and character movement.
 
-```lua title='LocalScript - Character Pathfinding' highlight='11'
+```lua title="LocalScript - Character Pathfinding" highlight="11"
 local PathfindingService = game:GetService("PathfindingService")
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
+local Workspace = game:GetService("Workspace")
 
 local path = PathfindingService:CreatePath()
 
@@ -185,14 +199,15 @@ end
 followPath(TEST_DESTINATION)
 ```
 
-### Computing the Path
+### Compute the path
 
 After you've created a valid path with `Class.PathfindingService:CreatePath()|CreatePath()`, it must be **computed** by calling `Class.Path:ComputeAsync()` with a `Datatype.Vector3` for both the starting point and destination.
 
-```lua title='LocalScript - Character Pathfinding' highlight='5, 21'
+```lua title="LocalScript - Character Pathfinding" highlight="5, 21"
 local PathfindingService = game:GetService("PathfindingService")
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
+local Workspace = game:GetService("Workspace")
 
 local path = PathfindingService:CreatePath()
 
@@ -217,14 +232,15 @@ end
 
 <img src="../assets/avatar/pathfinding/Path-Start-End.jpg" width="800" alt="Path start/end marked on series of islands and bridges" />
 
-### Getting Waypoints
+### Get waypoints
 
 Once the `Class.Path` is computed, it will contain a series of **waypoints** that trace the path from start to end. These points can be gathered with the `Class.Path:GetWaypoints()` function.
 
-```lua title='LocalScript - Character Pathfinding' highlight='13, 24, 26'
+```lua title="LocalScript - Character Pathfinding" highlight="13, 24, 26"
 local PathfindingService = game:GetService("PathfindingService")
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
+local Workspace = game:GetService("Workspace")
 
 local path = PathfindingService:CreatePath()
 
@@ -258,14 +274,15 @@ end
 <figcaption>Waypoints indicated across computed path</figcaption>
 </figure>
 
-### Path Movement
+### Path movement
 
 Each waypoint consists of both a **position** (`Datatype.Vector3`) and **action** (`Enum.PathWaypointAction|PathWaypointAction`). To move a character containing a `Class.Humanoid`, like a typical Roblox character, the easiest way is to call `Class.Humanoid:MoveTo()` from waypoint to waypoint, using the `Class.Humanoid.MoveToFinished|MoveToFinished` event to detect when the character reaches each waypoint.
 
-```lua title='LocalScript - Character Pathfinding' highlight='40-51, 54-55'
+```lua title="LocalScript - Character Pathfinding" highlight="40-51, 54-55"
 local PathfindingService = game:GetService("PathfindingService")
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
+local Workspace = game:GetService("Workspace")
 
 local path = PathfindingService:CreatePath()
 
@@ -326,18 +343,19 @@ end
 
 <video controls src="../assets/avatar/pathfinding/Simple-Path.mp4" width="800" alt="Video of character following simple path across islands and bridges"></video>
 
-### Handling Blocked Paths
+### Handle blocked paths
 
 Many Roblox worlds are dynamic; parts might move or fall and floors may collapse. This can block a computed path and prevent the character from reaching its destination. To handle this, you can connect the `Class.Path.Blocked` event and re-compute the path around whatever blocked it.
 
 <Alert severity="warning">
-Paths may also become blocked somewhere **behind** the agent, such as a pile of rubble falling on a path as the agent runs away, but that doesn't mean the agent should stop moving. The conditional statement on line&nbsp;31 makes sure that the path is re-computed only if the blocked waypoint is **ahead** of the current waypoint.
+Paths may also become blocked somewhere **behind** the agent, such as a pile of rubble falling on a path as the agent runs away, but that doesn't mean the agent should stop moving. The <Typography noWrap>`if blockedWaypointIndex >= nextWaypointIndex`</Typography> check makes sure that the path is re-computed only if the blocked waypoint is **ahead** of the current waypoint.
 </Alert>
 
-```lua title='LocalScript - Character Pathfinding' highlight='16, 29-37'
+```lua title="LocalScript - Character Pathfinding" highlight="16, 29-37"
 local PathfindingService = game:GetService("PathfindingService")
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
+local Workspace = game:GetService("Workspace")
 
 local path = PathfindingService:CreatePath()
 
@@ -380,24 +398,25 @@ end
 Currently, `Class.Model|Models` containing a `Class.Humanoid` instance, including typical player characters, will **not** be considered for path [computation](#computing-the-path) or path blockage, although the agent may still be blocked by those models physically.
 </Alert>
 
-## Pathfinding Modifiers
+## Pathfinding modifiers
 
 By default, `Class.Path:ComputeAsync()` returns the **shortest** path between the starting point and destination, with the exception that it attempts to avoid jumps. This looks unnatural in some situations&nbsp;&mdash; for instance, a path may go through water rather than over a nearby bridge simply because the path through water is geometrically shorter.
 
 <img src="../assets/avatar/pathfinding/Paths-Shortest-Best.jpg" width="800" alt="Two paths indicated with the shorter path not necessarily more logical" />
 
-To optimize pathfinding even further, you can implement **pathfinding modifiers** to compute smarter paths across various [materials](#setting-material-costs), around defined [regions](#working-with-regions), or through [obstacles](#ignoring-obstacles).
+To optimize pathfinding even further, you can implement **pathfinding modifiers** to compute smarter paths across various [materials](#set-material-costs), around defined [regions](#work-with-regions), or through [obstacles](#ignore-obstacles).
 
-### Setting Material Costs
+### Set material costs
 
 When working with `Class.Terrain` and `Class.BasePart` materials, you can include a `Costs` table within `Class.PathfindingService:CreatePath()|CreatePath()` to make certain materials more traversable than others. All materials have a default cost of **1** and any material can be defined as non-traversable by setting its value to `Library.math.huge`.
 
 Keys in the `Costs` table should be string names representing `Enum.Material` names, for example `Water` for `Enum.Material.Water`.
 
-```lua title='LocalScript - Character Pathfinding' highlight='6-10'
+```lua title="LocalScript - Character Pathfinding" highlight="6-10"
 local PathfindingService = game:GetService("PathfindingService")
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
+local Workspace = game:GetService("Workspace")
 
 local path = PathfindingService:CreatePath({
 	Costs = {
@@ -410,9 +429,9 @@ local path = PathfindingService:CreatePath({
 
 <video controls src="../assets/avatar/pathfinding/Bridge-Path.mp4" width="800" alt="Video showing how material costs determine preference of non-water traversal"></video>
 
-### Working With Regions
+### Work with regions
 
-In some cases, [material preference](#setting-material-costs) is not enough. For example, you might want characters to avoid a **defined region**, regardless of the materials underfoot. This can be achieved by adding a `Class.PathfindingModifier` object to a part.
+In some cases, [material preference](#set-material-costs) is not enough. For example, you might want characters to avoid a **defined region**, regardless of the materials underfoot. This can be achieved by adding a `Class.PathfindingModifier` object to a part.
 
 1. Create an `Class.BasePart.Anchored|Anchored` part around the dangerous region and set its `Class.BasePart.CanCollide|CanCollide` property to **false**.
 
@@ -424,10 +443,11 @@ In some cases, [material preference](#setting-material-costs) is not enough. For
 
 1. Include a `Costs` table within `Class.PathfindingService:CreatePath()|CreatePath()` containing a matching key and associated numeric value. A modifier can be defined as non-traversable by setting its value to `Library.math.huge`.
 
-   ```lua title='LocalScript - Character Pathfinding' highlight='6-8'
+   ```lua title="LocalScript - Character Pathfinding" highlight="6-8"
    local PathfindingService = game:GetService("PathfindingService")
    local Players = game:GetService("Players")
    local RunService = game:GetService("RunService")
+   local Workspace = game:GetService("Workspace")
 
    local path = PathfindingService:CreatePath({
    	Costs = {
@@ -438,7 +458,7 @@ In some cases, [material preference](#setting-material-costs) is not enough. For
 
    <video controls src="../assets/avatar/pathfinding/GeyserBlocker-Path.mp4" width="800"></video>
 
-### Ignoring Obstacles
+### Ignore obstacles
 
 In some cases, it's useful to pathfind through solid obstacles as if they didn't exist. This lets you compute a path through specific physical blockers, versus the computation failing outright.
 
@@ -454,7 +474,7 @@ In some cases, it's useful to pathfind through solid obstacles as if they didn't
 
    <img src="../assets/avatar/pathfinding/Zombie-Full-Path.jpg" width="750" alt="Zombie NPC path passing through the previously blocking door" />
 
-## Pathfinding Links
+## Pathfinding links
 
 Sometimes it's necessary to find a path across a space that cannot be normally traversed, such as across a chasm, and perform a custom action to reach the next waypoint. This can be achieved through the `Class.PathfindingLink` object.
 
@@ -464,6 +484,7 @@ Using the island example from above, you can make the agent use a boat instead o
 
 To create a `Class.PathfindingLink` using this example:
 
+1. <Chip label="optional" size="small" variant="outlined" color="primary" /> To assist with visualization and debugging, toggle on **Pathfinding&nbsp;links** from the [Visualization&nbsp;Options](../studio/ui-overview.md#visualization-options) widget in the upper‑right corner of the 3D viewport.
 1. Create two `Class.Attachment|Attachments`, one on the boat's seat and one near the boat's landing point.
 
    <img src="../assets/avatar/pathfinding/PathfindingLink-Attachments.jpg" width="750" alt="Attachments created for pathfinding link's start and end" />
@@ -480,10 +501,11 @@ To create a `Class.PathfindingLink` using this example:
 
 1. Include a `Costs` table within `Class.PathfindingService:CreatePath()|CreatePath()` containing both a `Water` key and a custom key matching the `Class.PathfindingLink.Label|Label` property name. Assign the custom key a lower value than `Water`.
 
-   ```lua title='LocalScript - Character Pathfinding' highlight='6-9'
+   ```lua title="LocalScript - Character Pathfinding" highlight="6-9"
    local PathfindingService = game:GetService("PathfindingService")
    local Players = game:GetService("Players")
    local RunService = game:GetService("RunService")
+   local Workspace = game:GetService("Workspace")
 
    local path = PathfindingService:CreatePath({
    	Costs = {
@@ -495,10 +517,11 @@ To create a `Class.PathfindingLink` using this example:
 
 1. In the event which fires when a waypoint is reached, add a custom check for the `Class.PathfindingLink.Label|Label` modifier name and take a different action than `Class.Humanoid:MoveTo()`&nbsp;&mdash; in this case, calling a function to seat the agent in the boat, move the boat across the water, and continue the agent's path upon arrival at the destination island.
 
-   ```lua title='LocalScript - Character Pathfinding' highlight='52-56, 72'
+   ```lua title="LocalScript - Character Pathfinding" highlight="52-56, 72"
    local PathfindingService = game:GetService("PathfindingService")
    local Players = game:GetService("Players")
    local RunService = game:GetService("RunService")
+   local Workspace = game:GetService("Workspace")
 
    local path = PathfindingService:CreatePath({
    	Costs = {
@@ -568,7 +591,7 @@ To create a `Class.PathfindingLink` using this example:
    end
 
    function useBoat()
-   	local boat = workspace.BoatModel
+   	local boat = Workspace.BoatModel
 
    	humanoid.Seated:Connect(function()
    		-- Start boat moving if agent is seated
@@ -597,14 +620,14 @@ To create a `Class.PathfindingLink` using this example:
 
    <video controls src="../assets/avatar/pathfinding/Boat-Path.mp4" width="800" alt="Video showing character using the PathfindingLink to traverse the water using the boat" ></video>
 
-## Streaming Compatibility
+## Streaming compatibility
 
 In-experience [instance streaming](../workspace/streaming.md) is a powerful feature that dynamically loads and unloads 3D content as a player's character moves around the world. As they explore the 3D space, new subsets of the space stream to their device and some of the existing subsets might stream out.
 
 Consider the following best practices for using `Class.PathfindingService` in streaming-enabled experiences:
 
-- Streaming can block or unblock a given path as a character moves along it. For example, while a character runs through a forest, a tree might stream in somewhere ahead of them and obstruct the path. To make pathfinding work seamlessly with streaming, it's highly recommended that you use the [Handling Blocked Paths](#handling-blocked-paths) technique and re-compute the path when necessary.
+- Streaming can block or unblock a given path as a character moves along it. For example, while a character runs through a forest, a tree might stream in somewhere ahead of them and obstruct the path. To make pathfinding work seamlessly with streaming, it's highly recommended that you use the [handling blocked paths](#handle-blocked-paths) technique and re-compute the path when necessary.
 
-- A common approach in pathfinding is to use the coordinates of existing objects for [computation](#computing-the-path), such as setting a path destination to the position of an existing **TreasureChest** model in the world. This approach is fully compatible with server-side `Class.Script|Scripts` since the server has full view of the world at all times, but `Class.LocalScript|LocalScripts` and `Class.ModuleScript|ModuleScripts` that run on the client may fail if they attempt to compute a path to an object that's not streamed in.
+- A common approach in pathfinding is to use the coordinates of existing objects for [computation](#compute-the-path), such as setting a path destination to the position of an existing **TreasureChest** model in the world. This approach is fully compatible with server-side `Class.Script|Scripts` since the server has full view of the world at all times, but `Class.LocalScript|LocalScripts` and `Class.ModuleScript|ModuleScripts` that run on the client may fail if they attempt to compute a path to an object that's not streamed in.
 
   To address this issue, consider setting the destination to the position of a `Class.BasePart` within a [persistent](../workspace/streaming.md#model-streaming-controls) model. Persistent models load soon after the player joins and they never stream out, so a client-side script can connect to the `Class.Workspace.PersistentLoaded|PersistentLoaded` event and safely access the model for creating waypoints after the event fires.

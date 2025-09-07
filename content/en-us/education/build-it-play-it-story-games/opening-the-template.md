@@ -1,5 +1,5 @@
 ---
-title: Opening the Template
+title: Open the template
 description: Part of the Story Games series that teaches you to code in Roblox. Open the template used to code the story game experience.
 next: /education/build-it-play-it-story-games/first-challenge
 prev: /education/build-it-play-it-story-games/writing-the-story
@@ -7,14 +7,14 @@ prev: /education/build-it-play-it-story-games/writing-the-story
 
 With the story created, it's time to turn that vision into code using Roblox.
 
-## Starting Roblox Studio
+## Start Roblox Studio
 
 The experience will be created using **Roblox Studio**. It's free to use and can instantly publish games to iPhone, Android, Xbox Live, PC, Mac, and VR.
 
 1. Open **Roblox Studio** by double-clicking the it's icon on the desktop (Windows) or clicking the dock icon (Mac).
 2. On the login screen, enter your Roblox username and password, then click Log In.
 
-## Opening the Template
+## Open the template
 
 A template has been created that has everything needed for the experience to work, except the code for the actual story. Templates are pre-made worlds that you can use as a base for your own experiences.
 
@@ -26,9 +26,9 @@ A template has been created that has everything needed for the experience to wor
 
 2. In Roblox Studio, in the top left, click **File** > **Open from File** and select the downloaded file.
 
-   <img src="../../assets/education/story-games/openFromFile.png" />
+   <img src="../../assets/education/story-games/openFromFile.png" width="40%" />
 
-## Closing Extra Windows
+## Close extra windows
 
 The first time you launch Roblox Studio, extra windows might open up that you don't need right now. Closing the extra windows will give you more space to see what you're doing.
 
@@ -36,6 +36,13 @@ The first time you launch Roblox Studio, extra windows might open up that you do
 
    <img src="../../assets/education/story-games/CloseToolbox.png" />
 
-2. Leave the **Explorer** window on the right side open. Make Studio look like the image below. If you don't see the Explorer, click on the View tab and click the Explorer icon.
+2. Leave the **Explorer** window on the right side open. Studio should look like the image below:
 
    <img src="../../assets/education/story-games/studio-setup.jpg" />
+
+   <Alert severity="warning">
+   If you don't see the windows on the right, enable them by going to the **Home** tab and clicking the **Explorer** and **Properties** buttons.
+
+   <img src="../../assets/education/general/OpenExplorerandProperties.png" />
+
+   </Alert>

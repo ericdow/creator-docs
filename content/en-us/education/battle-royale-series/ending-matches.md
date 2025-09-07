@@ -1,5 +1,5 @@
 ---
-title: Ending Matches
+title: End matches
 description: Create a battle royale experience in Roblox Studio. Write scripts that handle victory conditions or time running out.
 next: /education/battle-royale-series/cleanup-and-reset
 prev: /education/battle-royale-series/creating-a-gui
@@ -7,7 +7,7 @@ prev: /education/battle-royale-series/creating-a-gui
 
 Matches can end in a few conditions including timers running out or a single player being left.
 
-## Managing Defeated Players
+## Manage defeated players
 
 Right now, defeated players respawn in the arena. Instead, send them back to the lobby to wait for the next match.
 
@@ -16,7 +16,7 @@ Right now, defeated players respawn in the arena. Instead, send them back to the
 - Set the player's RespawnLocation property to the lobbySpawn.
 - Reload the character with `Class.Player:LoadCharacter()`. Remember, `Class.Player:LoadCharacter()|LoadCharacter()` recreates the player at their spawn, removing any tools they had.
 
-## Using Anonymous Functions
+## Use anonymous functions
 
 Anonymous functions are commonly used in advanced scripts under specific situations. Before defining them, it's important to understand a situation your script may encounter.
 
@@ -28,11 +28,11 @@ A sample anonymous function is below that shows the syntax.
 
 ```lua
 myPlayer.Died:Connect(function()
-  print(player)
+	print(player)
 end)
 ```
 
-### Coding the Died Event
+### Code the died event
 
 For this function, whenever a player's character dies, they'll trigger the function that respawns them.
 
@@ -40,14 +40,14 @@ For this function, whenever a player's character dies, they'll trigger the funct
 
    ```lua
    local function preparePlayer(player, whichSpawn)
-     player.RespawnLocation = whichSpawn
-     player:LoadCharacter()
+   	player.RespawnLocation = whichSpawn
+   	player:LoadCharacter()
 
-     local character = player.Character or player.CharacterAdded:Wait()
-     local sword = playerWeapon:Clone()
-     sword.Parent = character
+   	local character = player.Character or player.CharacterAdded:Wait()
+   	local sword = playerWeapon:Clone()
+   	sword.Parent = character
 
-     local humanoid = character:WaitForChild("Humanoid")
+   	local humanoid = character:WaitForChild("Humanoid")
    end
    ```
 
@@ -66,9 +66,9 @@ For this function, whenever a player's character dies, they'll trigger the funct
    ```lua
    local humanoid = character:WaitForChild("Humanoid")
 
-     humanoid.Died:Connect(function()
-       respawnPlayerInLobby(player)
-     end)
+   humanoid.Died:Connect(function()
+   	respawnPlayerInLobby(player)
+   end)
    ```
 
 4. Start a **server** and play a match. Test that when a player dies, they respawn in the lobby. To defeat players, walk up to them and use your weapon until you can confirm they've respawned in the lobby.
@@ -86,11 +86,11 @@ For this function, whenever a player's character dies, they'll trigger the funct
 
 Note, there are also some different ways of testing if desired.
 
-- To kill a player, in the Server > Output Window > Command Bar, copy and paste: `workspace.Player1.Humanoid.Health = 0`. Press <kbd>Enter</kbd> to run the command. To remove other players, use Player2, Player3, etc.
+- To kill a player, in the Server > Output window > Command Bar, copy and paste: `workspace.Player1.Humanoid.Health = 0`. Press <kbd>Enter</kbd> to run the command. To remove other players, use Player2, Player3, etc.
 - Setting GameSettings > `matchDuration` to a longer time can give you more time to find and take out all players.
 - To have quicker tests, change GameSettings > `minimumPlayers` to smaller number, like 2.
 
-## Ending the Game
+## End the game
 
 Now that defeated players respawn, start working on ending the game. Remember creating the MatchEnd event? It'll be fired when either the timer runs out or a winner is found.
 
@@ -123,7 +123,7 @@ GameSettings.endStates = {
 }
 ```
 
-### Ending with a Timer
+### End with a timer
 
 When the timer ends, fire the Match End event and send the matching end state variable. That way, other scripts listening for that event can respond accordingly. Remember that while events fire signals, that can also send data that's received by listening scripts, like `TimerUp` or `FoundWinner`.
 
@@ -131,17 +131,17 @@ When the timer ends, fire the Match End event and send the matching end state va
 
    ```lua
    while true do
-     displayManager.updateStatus("Waiting for Players")
+   	displayManager.updateStatus("Waiting for Players")
 
-     repeat
-       task.wait(gameSettings.intermissionDuration)
-     until #Players:GetPlayers() >= gameSettings.minimumPlayers
+   	repeat
+   		task.wait(gameSettings.intermissionDuration)
+   	until #Players:GetPlayers() >= gameSettings.minimumPlayers
 
-     displayManager.updateStatus("Get ready!")
-     task.wait(gameSettings.transitionTime)
+   	displayManager.updateStatus("Get ready!")
+   	task.wait(gameSettings.transitionTime)
 
-     matchManager.prepareGame()
-     local endState = matchEnd.Event:Wait()
+   	matchManager.prepareGame()
+   	local endState = matchEnd.Event:Wait()
    end
    ```
 
@@ -149,18 +149,18 @@ When the timer ends, fire the Match End event and send the matching end state va
 
    ```lua
    while true do
-     displayManager.updateStatus("Waiting for Players")
+   	displayManager.updateStatus("Waiting for Players")
 
-     repeat
-       task.wait(gameSettings.intermissionDuration)
-     until #Players:GetPlayers() >= gameSettings.minimumPlayers
+   	repeat
+   		task.wait(gameSettings.intermissionDuration)
+   	until #Players:GetPlayers() >= gameSettings.minimumPlayers
 
-     displayManager.updateStatus("Get ready!")
-     task.wait(gameSettings.transitionTime)
+   	displayManager.updateStatus("Get ready!")
+   	task.wait(gameSettings.transitionTime)
 
-     matchManager.prepareGame()
-     local endState = matchEnd.Event:Wait()
-     print("Game ended with: " .. endState)
+   	matchManager.prepareGame()
+   	local endState = matchEnd.Event:Wait()
+   	print("Game ended with: " .. endState)
    end
    ```
 
@@ -176,7 +176,7 @@ When the timer ends, fire the Match End event and send the matching end state va
 
    -- Local Functions
    local function timeUp()
-     matchEnd:Fire(gameSettings.endStates.TimerUp)
+   	matchEnd:Fire(gameSettings.endStates.TimerUp)
    end
    ```
 
@@ -184,18 +184,18 @@ When the timer ends, fire the Match End event and send the matching end state va
 
    <img src="../../assets/education/battle-royale-series/arena_6_showEndGame.png" />
 
-### Troubleshooting Tips
+### Troubleshooting tips
 
 At this point, the message wasn't displayed, try one of the following below.
 
 - Check that wherever the end state variables are called, that they're written exactly, like here: `gameSettings.endStates.TimerUp`.
 - Make sure to use : (colon operator) with the `Class.Fire|Fire()` **instead** of the dot operator, like in `matchEnd:Fire()`.
 
-## Coding a Winning Match
+## Code a winning match
 
 Next, the script needs to identify winning players, remove losing players, and run cleanup such as stopping the timer. Matches will also end if one player is left. To see if the `FoundWinner` condition is met, you'll need a function that checks the number left in the table tracking players in a match.
 
-### Checking Player Count
+### Check player count
 
 Matches will end if there's only one player left. To check this, the script needs to track the players in a round. Once one player is left, a winner can be assigned.
 
@@ -246,13 +246,13 @@ Matches will end if there's only one player left. To check this, the script need
 
    ```lua
    local function checkPlayerCount()
-     if #activePlayers == 1 then
-       matchEnd:Fire(gameSettings.endStates.FoundWinner)
-     end
+   	if #activePlayers == 1 then
+   		matchEnd:Fire(gameSettings.endStates.FoundWinner)
+   	end
    end
    ```
 
-### Removing a Player
+### Remove a player
 
 An accurate count can't be kept unless players are removed. When a player is defeated, keep an accurate player count by removing them from the player table. Then, check the size of the active player table to see if there's a winner.
 
@@ -260,9 +260,9 @@ An accurate count can't be kept unless players are removed. When a player is def
 
    ```lua
    local function checkPlayerCount()
-     if #activePlayers == 1 then
-       matchEnd:Fire(gameSettings.endStates.FoundWinner)
-     end
+   	if #activePlayers == 1 then
+   		matchEnd:Fire(gameSettings.endStates.FoundWinner)
+   	end
    end
 
    local function removeActivePlayer(player)
@@ -274,11 +274,11 @@ An accurate count can't be kept unless players are removed. When a player is def
 
    ```lua
    local function removeActivePlayer(player)
-     for playerKey, whichPlayer in activePlayers do
-       if whichPlayer == player then
+   	for playerKey, whichPlayer in activePlayers do
+   		if whichPlayer == player then
 
-       end
-     end
+   		end
+   	end
    end
    ```
 
@@ -296,17 +296,17 @@ An accurate count can't be kept unless players are removed. When a player is def
 
    ```lua
    local function removeActivePlayer(player)
-     for playerKey, whichPlayer in activePlayers do
-       if whichPlayer == player then
-         table.remove(activePlayers, playerKey)
-         playersLeft.Value = #activePlayers
-         checkPlayerCount()
-       end
-     end
+   	for playerKey, whichPlayer in activePlayers do
+   		if whichPlayer == player then
+   			table.remove(activePlayers, playerKey)
+   			playersLeft.Value = #activePlayers
+   			checkPlayerCount()
+   		end
+   	end
    end
    ```
 
-### Connecting Events and Testing
+### Connect events and test
 
 To use the function just created, call it from within the anonymous function connected to the player's `Died` event.
 
@@ -314,22 +314,22 @@ To use the function just created, call it from within the anonymous function con
 
    ```lua
    humanoid.Died:Connect(function()
-       respawnPlayerInLobby(player)
-       removeActivePlayer(player)
-     end)
+   	respawnPlayerInLobby(player)
+   	removeActivePlayer(player)
+   end)
    ```
 
-2. To see if a winning player is found, start a **test server**. When there is only one player left you should see FoundWinner in the output window.
+2. To see if a winning player is found, start a **test server**. When there is only one player left you should see FoundWinner in the Output window.
 
    <img src="../../assets/education/battle-royale-series/arena_6_showGameEndFoundWinner.png" />
 
-3. Continue testing and let the match end. Notice as a new match starts, an error appears in the Output Window:
+3. Continue testing and let the match end. Notice as a new match starts, an error appears in the Output window:
 
    <img src="../../assets/education/battle-royale-series/arena_6_showGameTimerError.png" />
 
 This error is because the timer wasn't stopped, which will be fixed in the next section.
 
-### Stopping the Timer
+### Stop the timer
 
 Whenever a match ends with a winning player, the timer should stop as well. To halt the timer before time is up, have the timer stop whenever the match end event fires. This is one of the benefits of creating events. They can be reused in multiple situations to script cause and effect relationships.
 
@@ -341,11 +341,11 @@ Whenever a match ends with a winning player, the timer should stop as well. To h
 
    -- Local Functions
    local function stopTimer()
-     myTimer:stop()
+   	myTimer:stop()
    end
 
    local function timeUp()
-     matchEnd:Fire(gameSettings.endStates.TimerUp)
+   	matchEnd:Fire(gameSettings.endStates.TimerUp)
    end
    ```
 
@@ -354,8 +354,8 @@ Whenever a match ends with a winning player, the timer should stop as well. To h
    ```lua
    -- Module Functions
    function MatchManager.prepareGame()
-     playerManager.sendPlayersToMatch()
-     matchStart:Fire()
+   	playerManager.sendPlayersToMatch()
+   	matchStart:Fire()
    end
 
    matchStart.Event:Connect(startTimer)
@@ -366,15 +366,15 @@ Whenever a match ends with a winning player, the timer should stop as well. To h
 
 3. **Test** that the previous error no longer appears by starting a **server**. Eliminate all but one player and then wait a few seconds once the match ends.
 
-## Next Steps
+## Next steps
 
 While the two win conditions are finished, there are still some tasks left to finish the game loop. For instance, the winning player isn't ever teleported to the lobby. In the next lesson, you'll display how the match ended to players and reset the game, finally completing the whole loop.
 
-## Completed Scripts
+## Completed scripts
 
 Below are completed scripts to double check your work.
 
-### PlayerManager Script
+### PlayerManager script
 
 ```lua
 local PlayerManager = {}
@@ -427,7 +427,6 @@ local function respawnPlayerInLobby(player)
 	player:LoadCharacter()
 end
 
-
 local function onPlayerJoin(player)
 	player.RespawnLocation = lobbySpawn
 end
@@ -446,7 +445,6 @@ local function preparePlayer(player, whichSpawn)
 		respawnPlayerInLobby(player)
 		removeActivePlayer(player)
 	end)
-
 end
 
 -- Module Functions
@@ -454,10 +452,9 @@ function PlayerManager.sendPlayersToMatch()
 	local arenaSpawns = spawnLocations:GetChildren()
 
 	for playerKey, whichPlayer in Players:GetPlayers() do
-		table.insert(activePlayers,whichPlayer)
-		local spawnLocation = arenaSpawns[1]
+		table.insert(activePlayers, whichPlayer)
+		local spawnLocation = table.remove(arenaSpawns, 1)
 		preparePlayer(whichPlayer, spawnLocation)
-		table.remove(arenaSpawns, 1)
 	end
 
 	playersLeft.Value = #activePlayers
@@ -469,7 +466,7 @@ Players.PlayerAdded:Connect(onPlayerJoin)
 return PlayerManager
 ```
 
-### GameSettings Script
+### GameSettings script
 
 ```lua
 local GameSettings = {}
@@ -489,7 +486,7 @@ GameSettings.endStates = {
 return GameSettings
 ```
 
-### GameManager Script
+### GameManager script
 
 ```lua
 -- Services
@@ -522,7 +519,7 @@ while true do
 end
 ```
 
-### MatchManager Script
+### MatchManager script
 
 ```lua
 local MatchManager = {}
@@ -565,11 +562,10 @@ local function startTimer()
 
 	while myTimer:isRunning() do
 		-- Adding +1 makes sure the timer display ends at 1 instead of 0.
-		timeLeft.Value = (math.floor(myTimer:getTimeLeft() + 1))
+		timeLeft.Value = (myTimer:getTimeLeft() + 1) // 1
 		-- By not setting the time for wait, it offers more accurate looping
 		task.wait()
 	end
-
 end
 
 -- Module Functions

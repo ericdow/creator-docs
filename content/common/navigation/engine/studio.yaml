@@ -1,21 +1,24 @@
 defaultType: markdown
 backTo:
-  title: Back to Guides
+  title: Back to platform
   path: /platform
 navigation:
   - heading: Roblox Studio
-  - title: Overview # merge working in studio content into here
+  - title: Overview
     path: /studio/
-  - title: Setting Up Studio
-    path: /studio/setting-up-roblox-studio
-  - title: Studio Interface
+  - title: Setup
+    path: /studio/setup
+  - title: Assistant for Studio
+    path: /assistant/guide
+    section:
+      - title: Prompt guide and examples
+        path: /assistant/prompt-engineering
+  - title: Interface
     path: /studio/ui-overview
-  - title: Customization
-    path: /studio/customization
-  - heading: Building Tools
-  - title: Align Tool
+  - heading: Building tools
+  - title: Align
     path: /studio/align-tool
-  - title: Pivot Tools
+  - title: Pivot
     path: /studio/pivot-tools
   - title: Terrain Editor
     path: /studio/terrain-editor
@@ -25,27 +28,16 @@ navigation:
     path: /studio/texture-generator
   - title: Rig Builder
     path: /studio/rig-builder
-  - heading: Scripting Tools
+  - heading: Scripting tools
   - title: Script Editor
     path: /studio/script-editor
   - title: Debugging
     path: /studio/debugging
-  - heading: Testing Tools
-  - title: Studio Testing Modes
+  - heading: Testing tools
+  - title: Testing modes
     path: /studio/testing-modes
-  - title: Output Window
+  - title: Output
     path: /studio/output
-  - title: MicroProfiler
-    path: /studio/microprofiler/
-    section:
-      - title: Overview
-        path: /studio/microprofiler/
-      - title: Task Scheduler
-        path: /studio/microprofiler/task-scheduler
-      - title: Tag Table
-        path: /studio/microprofiler/tag-table
-      - title: Using MicroProfiler
-        path: /studio/microprofiler/using-microprofiler
   - title: Developer Console
     path: /studio/developer-console
     section:
@@ -53,35 +45,37 @@ navigation:
         path: /studio/developer-console
       - title: Script Profiler
         path: /studio/optimization/scriptprofiler
-      - title: Memory Usage
+      - title: Memory usage
         path: /studio/optimization/memory-usage
-  - heading: UI Reference
-  - title: Quick Access Tools
+  - heading: UI reference
+  - title: Quick access tools
     path: /studio/quick-access
-  - title: Home Tab
+  - title: Home tab
     path: /studio/home-tab
-  - title: Model Tab
+  - title: Model tab
     path: /studio/model-tab
-  - title: Avatar Tab
+  - title: Avatar tab
     path: /studio/avatar-tab
-  - title: Test Tab
+  - title: Test tab
     path: /studio/test-tab
-  - title: View Tab
+  - title: View tab
     path: /studio/view-tab
-  - title: Plugins Tab
+  - title: Plugins tab
     path: /studio/plugins-tab
-  - title: Script Tab
+  - title: Script tab
     path: /studio/script-tab
-  - title: Explorer Window
+  - title: Explorer window
     path: /studio/explorer
-  - title: Properties Window
+  - title: Properties window
     path: /studio/properties
   - title: Game Settings
     path: /studio/game-settings
-  - title: Studio Shortcuts
+  - title: Avatar Settings
+    path: /studio/avatar-settings
+  - title: Shortcuts
     path: /studio/shortcuts
   - heading: Plugins
-  - title: Creating and Publishing
+  - title: Overview
     path: /studio/plugins
-  - title: Building Studio Widgets
-    path: /studio/building-studio-widgets
+  - title: Build widgets
+    path: /studio/build-studio-widgets

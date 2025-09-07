@@ -1,12 +1,12 @@
 ---
-title: User Interface
+title: User interface
 prev: /resources/beyond-the-dark/sound-design
 description: Explains the design concepts for user-interface effects in Beyond The Dark.
 ---
 
 We wanted to add an interactive map UI to let users consume information in the space station that looked and felt like it lived in this world. We decided to build the map inside the 3D space instead of on a screen that overlays the experience. This type of diegetic visualization allows for more immersion with the world as opposed to feeling like it is a completely separate experience.
 
-## Designing the Map
+## Design the map
 
 To design the map:
 
@@ -23,7 +23,7 @@ To design the map:
    src="../../assets/resources/beyond-the-dark/user-interface/UI-Export.png"
    width="80%" />
 
-## Building the map
+## Build the map
 
 Building the map inside Studio involved using `Class.Part|Parts` and `Class.SurfaceGui|SurfaceGuis`.
 
@@ -63,8 +63,8 @@ Building the map inside Studio involved using `Class.Part|Parts` and `Class.Surf
    src="../../assets/resources/beyond-the-dark/user-interface/UITweenModule.png"
    width="320" />
 
-   ```lua title='UITweenModule ModuleScript'
-   local tweenService = game:GetService("TweenService")
+   ```lua title="UITweenModule ModuleScript"
+   local TweenService = game:GetService("TweenService")
    local UITween = {}
 
    -- for fading images
@@ -79,7 +79,7 @@ Building the map inside Studio involved using `Class.Part|Parts` and `Class.Surf
    		delay --Delay time
    	)
 
-   	local tween = tweenService:Create(object, tweenAlpha, {Transparency = amount})
+   	local tween = TweenService:Create(object, tweenAlpha, {Transparency = amount})
    	tween:Play()
    end
 
@@ -94,7 +94,7 @@ Building the map inside Studio involved using `Class.Part|Parts` and `Class.Surf
    		delay --Delay time
    	)
 
-   	local tween = tweenService:Create(object, tweenAlpha, {ImageTransparency = amount})
+   	local tween = TweenService:Create(object, tweenAlpha, {ImageTransparency = amount})
    	tween:Play()
    end
 
@@ -110,7 +110,7 @@ Building the map inside Studio involved using `Class.Part|Parts` and `Class.Surf
    		delay --Delay time
    	)
 
-   	local tween = tweenService:Create(object, tweenAlpha, {BackgroundTransparency = amount})
+   	local tween = TweenService:Create(object, tweenAlpha, {BackgroundTransparency = amount})
    	tween:Play()
    end
 
@@ -126,7 +126,7 @@ Building the map inside Studio involved using `Class.Part|Parts` and `Class.Surf
    		delay --Delay time
    	)
 
-   	local tween1 = tweenService:Create(object, tweenAlpha, {TextTransparency = amount})
+   	local tween1 = TweenService:Create(object, tweenAlpha, {TextTransparency = amount})
    	tween1:Play()
    end
 
@@ -151,7 +151,7 @@ Building the map inside Studio involved using `Class.Part|Parts` and `Class.Surf
    		callback
    	)
 
-   	local tween = tweenService:Create(object, tweenSize, {Size = size})
+   	local tween = TweenService:Create(object, tweenSize, {Size = size})
    	tween:Play()
    end
 
@@ -168,7 +168,7 @@ Building the map inside Studio involved using `Class.Part|Parts` and `Class.Surf
    		callback
    	)
 
-   	local tween = tweenService:Create(object, tweenSize, {Rotation = rotation})
+   	local tween = TweenService:Create(object, tweenSize, {Rotation = rotation})
    	tween:Play()
    end
 
@@ -176,7 +176,7 @@ Building the map inside Studio involved using `Class.Part|Parts` and `Class.Surf
    function UITween.blur(object, amount, time)
 
    	local tweenInfo = TweenInfo.new(time, Enum.EasingStyle.Linear, Enum.EasingDirection.Out, 0, false, 0)
-   	local tween = tweenService:Create(object, tweenInfo, {Size = amount})
+   	local tween = TweenService:Create(object, tweenInfo, {Size = amount})
    	tween:Play()
    end
 
@@ -184,14 +184,14 @@ Building the map inside Studio involved using `Class.Part|Parts` and `Class.Surf
    function UITween.turnOn(object, amount, time)
 
    	local tweenInfo = TweenInfo.new(time, Enum.EasingStyle.Linear, Enum.EasingDirection.Out, 0, false, 0)
-   	local tween = tweenService:Create(object, tweenInfo, {Brightness = amount})
+   	local tween = TweenService:Create(object, tweenInfo, {Brightness = amount})
    	tween:Play()
    end
 
    return UITween
    ```
 
-   ```lua title='Applying UI Tween to Objects'
+   ```lua title="Applying UI Tween to Objects"
    local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
    -- Add UITween Module

@@ -1,5 +1,5 @@
 ---
-title: Modeling Setup
+title: Modeling setup
 description: Setup your Blender environment with the correct files and templates to model efficiently.
 next: /art/accessories/creating/trimming
 prev: /art/accessories/creating/
@@ -28,9 +28,9 @@ This modeling tutorial covers the following processes:
 6. Sculpting fabric and other details onto the mesh object.
 7. Closing the holes in your mesh, making it watertight.
 
-## Setting Up Mesh
+## Set up mesh
 
-To get your project started, download and open Roblox's [Clothing_Cage.blend](../../../assets/modeling/meshes/reference-files/Clothing_Cage_Template.blend) project and begin setting up your basic project objects.
+To get your project started, download and open Roblox's [Clothing_Cage.blend](../../../assets/modeling/meshes/reference-files/Clothing_Cage_Templates.zip) project and begin setting up your basic project objects.
 
 <GridContainer numColumns="2">
   <figure>
@@ -45,10 +45,10 @@ To get your project started, download and open Roblox's [Clothing_Cage.blend](..
 
 To set up your project and your initial mesh object:
 
-1. Download the [Clothing_Cage.blend](../../../assets/modeling/meshes/reference-files/Clothing_Cage_Template.blend) project. This project includes the inner and outer cage mesh that you will use as temporary mannequins.
+1. Download the [Clothing_Cage.blend](../../../assets/modeling/meshes/reference-files/Clothing_Cage_Templates.zip) project. This project includes the inner and outer cage mesh that you will use as temporary mannequins.
 2. Open this file, click **Save As**, and save the project with a new name. This will be your main Blender project for the clothing accessory.
 3. In the Outliner, copy and paste **InnerCage** object to duplicate it.
-4. With the duplicated object highlighted, right-click in the viewport and select **Parent** > **Parent and Clear Transformation**.
+4. With the duplicated object highlighted, right-click in the viewport and select **Parent** > **Parent and Keep Transformation**.
 5. In the Outliner, right-click and delete the extra **Cage.001 data object**.
 6. Rename the duplicated object as "LongSleeve".
 7. Rename the original cages as "LongSleeve_OuterCage" and "LongSleeve_InnerCage", respectively.
@@ -56,7 +56,7 @@ To set up your project and your initial mesh object:
 
    <video controls src="../../../assets/art/accessories/creating/Modeling_00.mp4" width="100%"></video>
 
-## Clearing Extra Attributes
+## Clear extra attributes
 
 The cage mesh objects in the template include some helper vertex color properties that need to be removed from your clothing mesh. If left in, the vertex colors may clash with the texture of the object after importing in Studio.
 

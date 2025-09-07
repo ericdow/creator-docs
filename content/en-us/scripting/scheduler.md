@@ -1,11 +1,11 @@
 ---
-title: Scheduling Code
+title: Schedule code
 description: Explains how to schedule code so it executes after a specific action or cycle has completed.
 ---
 
-Scheduling code is useful in many situations, such as ensuring code executes after a specific action or cycle has completed, or delaying code for a specific duration of time. You can use the `Library.task` library to optimize Roblox's [Task Scheduler](../studio/microprofiler/task-scheduler.md) to manage and schedule code. You can also use a similar library called `Library.coroutine` to schedule code which has some additional functionality.
+Scheduling code is useful in many situations, such as ensuring code executes after a specific action or cycle has completed, or delaying code for a specific duration of time. You can use the `Library.task` library to optimize Roblox's [task scheduler](../performance-optimization/microprofiler/task-scheduler.md) to manage and schedule code. You can also use a similar library called `Library.coroutine` to schedule code which has some additional functionality.
 
-### Common Methods
+### Common methods
 
 The following are the most common `Library.task` methods used to schedule code. You should use the task methods over legacy scheduling methods, such as `Global.RobloxGlobals.wait()`, to ensure that your code runs optimally.
 
@@ -15,14 +15,14 @@ Certain legacy global methods, such as (`Global.RobloxGlobals.spawn()`, `Global.
 
 The following table lists the relevant legacy global methods and their preferred, more optimized counterparts:
 
-| Legacy Global Methods                   | Task Methods                                       | Additional Alternatives                            |
+| Legacy global methods                   | Task methods                                       | Additional alternatives                            |
 | :-------------------------------------- | :------------------------------------------------- | :------------------------------------------------- |
 | `wait()`                                | `Library.task.wait()`                              | `Class.RunService.Heartbeat`                       |
 | `wait(n)`                               | `Library.task.wait()\|task.wait(n)`                |                                                    |
 | `spawn(f)`                              | `Library.task.defer()\|task.defer(f)`              | `Library.task.delay()\|task.delay(0, f)`           |
 | `delay(n, f)`                           | `Library.task.delay()\|task.delay(n, f)`           |                                                    |
-| `spawn(function () f(uv1, ...) end)`    | `Library.task.defer()\|task.defer(f, uv1, ...)`    | `Library.task.delay()\|task.delay(0, f, uv1, ...)` |
-| `delay(n, function () f(uv1, ...) end)` | `Library.task.delay()\|task.delay(n, f, uv1, ...)` |                                                    |
+| `spawn(function() f(uv1, ...) end)`    | `Library.task.defer()\|task.defer(f, uv1, ...)`    | `Library.task.delay()\|task.delay(0, f, uv1, ...)` |
+| `delay(n, function() f(uv1, ...) end)` | `Library.task.delay()\|task.delay(n, f, uv1, ...)` |                                                    |
 
 #### task.spawn
 
@@ -65,8 +65,8 @@ print("B")
 Since the actual delay time may vary, the following code sample illustrates how you can calculate it by passing the current time as an argument:
 
 ```lua
-task.delay(2, function (scheduledTime)
-    print(os.clock() - scheduledTime) --> 2.038702
+task.delay(2, function(scheduledTime)
+	print(os.clock() - scheduledTime) --> 2.038702
 end, os.clock())
 ```
 

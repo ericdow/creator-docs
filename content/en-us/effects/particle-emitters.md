@@ -1,5 +1,5 @@
 ---
-title: Particle Emitters
+title: Particle emitters
 description: Particle emitters emit 2D images to simulate special effects like fire, smoke, and sparks.
 ---
 
@@ -7,7 +7,7 @@ A `Class.ParticleEmitter` is an object that emits customizable 2D images (partic
 
 <video src="../assets/lighting-and-effects/particle-emitter/Showcase.mp4" controls width="100%" alt="Video of particles emitting from a MeshPart in the 3D world"></video>
 
-## Creating a Particle Emitter
+## Create particle emitters
 
 You can parent a `Class.ParticleEmitter` to an `Class.Attachment` or an object of the `Class.BasePart` class. When parented to a `Class.BasePart`, particles spawn randomly within the part's bounding box or [shape](#shape); when parented to an `Class.Attachment`, particles spawn from the attachment's position.
 
@@ -22,19 +22,19 @@ itself instead of using `Class.ParticleEmitter.EmissionDirection|EmissionDirecti
 
 <video src="../assets/lighting-and-effects/particle-emitter/Emission-Direction.mp4" controls width="800" alt="Video of the particle emission direction changing faces on a parent MeshPart"></video>
 
-To create a particle emitter on a given `Class.BasePart` or `Class.Attachment`:
+To create a particle emitter on a part or attachment:
 
 1. In the **Explorer** window, hover over the part or attachment and click the &CirclePlus; button. A contextual menu displays.
 2. From the menu, insert a **ParticleEmitter**. The particle emitter immediately emits particles within the part's area or from the attachment's position.
 
    <img src="../assets/studio/explorer/MeshPart-ParticleEmitter.png" width="320" alt="ParticleEmitter object as child of MeshPart in Explorer hierarchy" />
 
-## Customizing Particles
+## Customize particles
 
 By experimenting with the following properties, you can customize a particle's visual appearance to make unique gameplay elements like bursting volcanos, magical dust, and dust motes.
 
 <Alert severity="info">
-The visual quality of your particles can change depending on the graphic settings on the player's device. To review your particles across quality levels, it's recommended to open **Studio Settings**, search for **Editor Quality Level**, and set it to the both the lowest and highest level after you finish customizing your particles.
+The visual quality of your particles can change depending on the graphic settings on the player's device. To review your particles across quality levels, it's recommended to open [Studio Settings](../studio/setup.md#customization), search for **Editor Quality Level**, and set it to the both the lowest and highest level after you finish customizing your particles.
 </Alert>
 
 ### Texture
@@ -53,15 +53,12 @@ If you're creating an image to use as a particle texture, it's best to use `.png
 
 <Alert severity="info">
 For steps on how to import an image for use as a particle texture,
-see [Importing Assets](../projects/assets/manager.md#importing-assets).
+see [here](../projects/assets/manager.md#asset-import).
 </Alert>
 
 To insert an image into a particle emitter:
 
-1. In the menu bar, navigate to the **Home** tab and select **Toolbox**. The **Toolbox** window displays.
-
-   <img src="../assets/studio/general/Home-Tab-Toolbox.png" width="716" alt="Toolbox indicated in Home tab" />
-
+1. Navigate to the toolbar's **Home** tab and select **Toolbox**. The **Toolbox** window displays.
 2. If you want to insert an image that you have previously imported, click the **Inventory** tab. If you want to insert an image from another creator, click the **Creator Store** tab.
 
    <img src="../assets/studio/toolbox/Inventory-Tab.png" width="360" alt="Inventory tab indicated in Studio's Toolbox" />
@@ -207,7 +204,7 @@ Note that changing `Class.ParticleEmitter.Speed|Speed` does not affect active pa
 
 ### Rate
 
-The `Class.ParticleEmitter.Rate|Rate` property sets the number of particles that emit per second. A single particle emitter can create up to 500 particles per second. For best performance, keep the particle rate as low as possible and experiment with [size](#size) and [other properties](#other-properties) to achieve the desired visual effect.
+The `Class.ParticleEmitter.Rate|Rate` property sets the number of particles that emit per second. A single particle emitter can create up to 400 particles per second (100 per second on mobile). For best performance, keep the particle rate as low as possible and experiment with [size](#size) and [other properties](#other-properties) to achieve the desired visual effect.
 
 <Alert severity="warning">
 Particle count can impact performance due to overdraw, especially when particles are overlapping. The more layers of transparent effects on screen, the more costly it is on the GPU.
@@ -222,7 +219,7 @@ orientation mode to use for an emitter's particle geometry.
 <thead>
 <tr>
 <td>Orientation</td>
-<td>Particle Behavior</td>
+<td>Particle behavior</td>
 </tr>
 </thead>
 <tbody>
@@ -250,21 +247,21 @@ orientation mode to use for an emitter's particle geometry.
   <figcaption>Expected outcome of particle orientation</figcaption>
 </figure>
 
-### Light Emission
+### LightEmission
 
 The `Class.ParticleEmitter.LightEmission|LightEmission` property determines the blending of particle `Class.ParticleEmitter.Texture|Texture` colors with the colors behind them. A value of 0 uses normal blending mode while a value of 1 uses additive blending. Higher values can make particles glow even in environments with low lighting.
 
 <video src="../assets/lighting-and-effects/particle-emitter/LightEmission.mp4" controls width="800" alt="Video showing light emission values of 0 vs. 1"></video>
 
-### Spread Angle
+### SpreadAngle
 
 The `Class.ParticleEmitter.SpreadAngle|SpreadAngle` property has an **X** and a **Y** value which determine the range of angles from which a particle can emit. The range is calculated from both sides around the axes; for example, a value of `(45, 0)` emits particles in a range of 0&deg; to 45&deg; away from the `Class.ParticleEmitter.EmissionDirection|EmissionDirection` across the **X** axis.
 
 <video src="../assets/lighting-and-effects/particle-emitter/SpreadAngle.mp4" controls width="800" alt="Video of X axis spread angle 0° vs. 45°"></video>
 
-### Wind Influence
+### WindAffectsDrag
 
-If you've enabled [global&nbsp;wind](../environment/global-wind.md) in an experience, particles will follow the global wind vector as long as the emitter's `Class.ParticleEmitter.WindAffectsDrag|WindAffectsDrag` property is enabled and its `Class.ParticleEmitter.Drag|Drag` property is greater than 0.
+If you've enabled [global wind](../environment/global-wind.md) in an experience, particles will follow the global wind vector as long as the emitter's `Class.ParticleEmitter.WindAffectsDrag|WindAffectsDrag` property is enabled and its `Class.ParticleEmitter.Drag|Drag` property is greater than 0.
 
 <img src="../assets/studio/properties/ParticleEmitter-WindAffectsDrag.png" width="320" alt="Drag and WindAffectsDrag properties shown in Properties window of Studio" />
 
@@ -436,14 +433,14 @@ The `Class.ParticleEmitter.FlipbookStartRandom|FlipbookStartRandom` property det
 </TabItem>
 </Tabs>
 
-### Other Properties
+### Other properties
 
 To further customize particles, consider the following emitter properties, and click through to the `Class.ParticleEmitter` reference page for more details.
 
 <Tabs>
 <TabItem label="Appearance">
 
-The following appearance properties are in addition to [color](#color), [light emission](#light-emission), [orientation](#orientation), [size](#size), [texture](#texture), [transparency](#transparency), [squash](#squash), and [flipbooks](#flipbooks).
+The following appearance properties are in addition to [color](#color), [light emission](#lightemission), [orientation](#orientation), [size](#size), [texture](#texture), [transparency](#transparency), [squash](#squash), and [flipbooks](#flipbooks).
 
 <table>
 <thead>
@@ -471,7 +468,7 @@ The following appearance properties are in addition to [color](#color), [light e
 </TabItem>
 <TabItem label="Emission">
 
-The following emission properties are in addition to [emission direction](#creating-a-particle-emitter), [lifetime](#lifetime), [speed](#speed), [rate](#rate), [spread angle](#spread-angle), and [shape](#shape).
+The following emission properties are in addition to [emission direction](#create-particle-emitters), [lifetime](#lifetime), [speed](#speed), [rate](#rate), [spread angle](#spreadangle), and [shape](#shape).
 
 <table>
 <thead>
@@ -499,7 +496,7 @@ The following emission properties are in addition to [emission direction](#creat
 </TabItem>
 <TabItem label="Motion">
 
-The following motion properties are in addition to [wind influence](#wind-influence).
+The following motion properties are in addition to [wind influence](#windaffectsdrag).
 
 <table>
 <thead>

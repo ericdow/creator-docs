@@ -29,7 +29,7 @@ files as `Class.MeshPart|MeshParts` as outlined in [Meshes](../parts/meshes.md).
 
 By default, parts are rigid bodies that follow real-world physical mechanics,
 including gravity, collision, and momentum. You can connect related parts
-together as a single [**assembly**](../physics/assemblies.md) using a
+together as a single [assembly](../physics/assemblies.md) using a
 `Class.WeldConstraint`, or a joint like `Class.Motor6D` or `Class.Bone`. As an
 assembly, the connected parts act as a single rigid entity, referencing a common
 position, orientation, and scale.
@@ -38,32 +38,44 @@ You can use a `Class.Model` container to group related parts together and access
 the group as a single assembly in the [Explorer](../studio/explorer.md). See
 [Models](../parts/models.md) for more information.
 
-## Basic Part Types
+## Basic Part types
 
 `Class.Part` objects can take the shape of blocks, spheres, cylinders, wedges, or corner wedges. In addition, `Class.TrussPart` acts as a truss beam that characters can climb like a ladder.
 
-<table>
-<thead>
-<tr>
-<th><center>Block</center></th>
-<th><center>Sphere</center></th>
-<th><center>Cylinder</center></th>
-<th><center>Wedge</center></th>
-<th><center>Corner Wedge</center></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><img src="../assets/modeling/parts/Basic-Part-Block.png" alt="A single gray block part" /></td>
-<td><img src="../assets/modeling/parts/Basic-Part-Sphere.png" alt="A single gray sphere part" /></td>
-<td><img src="../assets/modeling/parts/Basic-Part-Cylinder.png" alt="A single gray cylinder part" /></td>
-<td><img src="../assets/modeling/parts/Basic-Part-Wedge.png" alt="A single gray wedge part" /></td>
-<td><img src="../assets/modeling/parts/Basic-Part-Corner-Wedge.png" alt="A single gray corner wedge part" /></td>
-</tr>
-</tbody>
-</table>
+<Grid container spacing={1}>
+<Grid item XSmall={4} XLarge={2}>
+	<figure>
+	<img src="../assets/modeling/parts/Basic-Part-Block.png" alt="A single Block part." />
+	<figcaption><center>Block</center></figcaption>
+	</figure>
+</Grid>
+<Grid item XSmall={4} XLarge={2}>
+	<figure>
+	<img src="../assets/modeling/parts/Basic-Part-Sphere.png" alt="A single Sphere part." />
+	<figcaption><center>Sphere</center></figcaption>
+	</figure>
+</Grid>
+<Grid item XSmall={4} XLarge={2}>
+	<figure>
+	<img src="../assets/modeling/parts/Basic-Part-Cylinder.png" alt="A single Cylinder part." />
+	<figcaption><center>Cylinder</center></figcaption>
+	</figure>
+</Grid>
+<Grid item XSmall={4} XLarge={2}>
+	<figure>
+	<img src="../assets/modeling/parts/Basic-Part-Wedge.png" alt="A single Wedge part." />
+	<figcaption><center>Wedge</center></figcaption>
+	</figure>
+</Grid>
+<Grid item XSmall={4} XLarge={2}>
+	<figure>
+	<img src="../assets/modeling/parts/Basic-Part-Corner-Wedge.png" alt="A single Corner Wedge part." />
+	<figcaption><center>Corner Wedge</center></figcaption>
+	</figure>
+</Grid>
+</Grid>
 
-## Part Properties
+## Part properties
 
 Each part has a variety of properties that you can customize through the [Properties](../studio/properties.md) window.
 
@@ -71,117 +83,137 @@ Each part has a variety of properties that you can customize through the [Proper
 
 The following are commonly utilized properties:
 
-- `Class.BasePart|Anchored` controls if
-  physics affects the position of the part. When this property is set to true, the part
-  never changes position due to gravity or any other force.
-  You should anchor most parts in your experience, otherwise gravity and physics
-  affect your parts as soon as the experience begins, and this might lead to
-  unwanted changes to your scenery and props.
-- `Class.BasePart|CanCollide` controls
-  whether or not a part can collide with other parts. When this property is
-  set to true, the part is impenetrable and the physics engine accounts for it within your
-  experience.
-  Conversely, when this property is set to false, the part can pass through anything,
-  and the physics engine does **not** account for it.
-- `Class.BasePart|Transparency` sets
-  a part's visibility to any value between the default value of 0 (fully visible) and 1 (fully transparent).
-  If you have many partially transparent parts, they can slow down performance. To
-  alleviate this, merge them using <a href="../parts/solid-modeling.md">solid modeling</a>.
+- `Class.BasePart|Anchored` controls if physics affects the position of the part. When this property is set to true, the part never changes position due to gravity or any other force. You should anchor most parts in your experience or gravity and physics will affect your parts as soon as the experience runs.
 
-## Inserting Parts
+  <Alert severity="success">
+  To view lighted outlines around the base of anchored parts in order to visualize which parts cannot move under gravity or physics, toggle on **Anchored&nbsp;parts** from the [Visualization&nbsp;Options](../studio/ui-overview.md#visualization-options) widget in the upper‑right corner of the 3D viewport.
+  </Alert>
+
+- `Class.BasePart|CanCollide` controls whether or not a part can collide with other parts. When this property is set to true, the part is impenetrable and the physics engine accounts for it within your experience. Conversely, when this property is set to false, the part can pass through anything, and the physics engine does **not** account for it.
+- `Class.BasePart|Transparency` sets a part's visibility to any value between the default value of 0 (fully visible) and 1 (fully transparent). If you have many partially transparent parts, they can slow down performance. To alleviate this, merge them using [solid modeling](../parts/solid-modeling.md).
+
+## Insert parts
 
 The **Part** button inserts a new part into the workspace. Clicking the small dropdown arrow on the button lets you select either **Block**, **Sphere**, **Wedge**, **Corner&nbsp;Wedge**, or **Cylinder**.
 
-<img src="../assets/studio/general/Model-Tab-Part-Tools.png" width="660" alt="Studio's Model tab with the Insert Part tool and its Part Type Picker highlighted." />
+<img src="../assets/studio/general/Insert-Part-Tool.png" width="300" alt="Part tool and its part type picker highlighted." />
 
 <Alert severity="info">
-To insert a `Class.TrussPart` (not available on the insertion menu), use the [Explorer](../studio/explorer.md) as outlined [here](../studio/explorer.md#inserting-and-parenting).
+To insert a `Class.TrussPart` (not available on the insertion menu), use the [Explorer](../studio/explorer.md) as outlined [here](../studio/explorer.md#insert-and-parent).
 </Alert>
 
-## Selecting Parts
+## Select parts
 
-As you hover over parts in the viewport, they are outlined to indicate their potential selection. You can select an outlined part by clicking it, or you can select multiple parts by holding <kbd>Shift</kbd>, <kbd>Ctrl</kbd>, or <kbd>⌘</kbd> as you hover over and click them.
+As you hover over parts in the viewport, they are outlined to indicate their potential selection. You can select an outlined part by clicking it, or you can select multiple parts by holding <kbd>Shift</kbd>, <kbd>Ctrl</kbd>, or <kbd>⌘</kbd> as you hover over and click them. See [here](../studio/ui-overview.md#object-selection) for advanced methods of selecting parts in the 3D viewport.
 
-See [here](../studio/ui-overview.md#selecting-objects) for advanced methods of selecting parts in the 3D viewport.
+<img src="../assets/studio/general/Editor-Window-Object-Selection.jpg" width="800" alt="Multiple models selected in 3D viewport"/>
 
-## Manipulating Parts
+## Transform parts
 
 You can move, scale, and rotate selected parts either through modeling tools or by setting a new position, size, or orientation in the [Properties](#part-properties) window.
 
 When using the tools, you can move, scale, or rotate parts in either **world** orientation or **local** orientation by pressing <kbd>Ctrl</kbd><kbd>L</kbd> on Windows or <kbd>⌘</kbd><kbd>L</kbd> on Mac. When you enable local orientation,
-the arrow axis indicators change to a part's local orientation, and an **L** indicator displays. For more information, see [Object and World Space](../workspace/index.md).
+the arrow axis indicators change to a part's local orientation, and an **L** indicator displays.
 
 <Tabs>
   <TabItem label="World">
-    <img src="../assets/modeling/parts/Manipulate-World-Orientation.png" width="480" alt="An angled gray block part with draggers in World orientation mode." />
+    <img src="../assets/modeling/parts/Move-World-Orientation.png" width="720" height="405" alt="An angled block part with draggers in World orientation mode." />
   </TabItem>
   <TabItem label="Local">
-    <img src="../assets/modeling/parts/Manipulate-Local-Orientation.png" width="480" alt="An angled gray block part with draggers in Local orientation mode. The L to signify that the object is in Local orientation mode is highlighted." />
+    <img src="../assets/modeling/parts/Move-Local-Orientation.png" width="720" height="405" alt="An angled block part with draggers in Local orientation mode." />
   </TabItem>
+</Tabs><br />
+
+Tool transform **snapping** increments are based on **studs** for moving/scaling or **degrees** for rotating, each adjustable in the toolbar. While transforming, you can temporarily toggle snapping by holding the <kbd>Shift</kbd> key.
+
+<img src="../assets/studio/general/Transform-Snapping.png" width="563" alt="Transform snapping tools indicated in Studio's toolbar." />
+
+### Move
+
+You can move a selected part to a new position using the **Move** tool (default shortcut <kbd>2</kbd>) or by **cursor&nbsp;dragging**. While moving a part, you can temporarily toggle snapping by holding <kbd>Shift</kbd>.
+
+<Tabs>
+<TabItem label="Move Tool">
+<figure>
+<img src="../assets/studio/general/Transform-Tool-Move.png" width="562" alt="Studio toolbar with the Move tool highlighted." />
+</figure>
+
+To move a part by an axis dragger along the **X**, **Y**, or **Z** axis, click/drag an arrow pointing along the desired axis of movement.
+
+<img src="../assets/modeling/parts/Transform-Move.png" width="720" alt="A block part with the Move tool's visual aids." />
+
+After releasing the drag, the numerical **distance indicator** remains visible. If desired, fine‑tune the distance that was moved by clicking inside the indicator and entering any number.
+
+<img src="../assets/modeling/parts/Transform-Move-Indicator.png" width="720" alt="A moved part showing the distance moved in an indicator/input field" />
+
+If you drag a part by its [pivot](../studio/pivot-tools.md) point while the **Move** tool is selected, the pivot will "soft&nbsp;snap" to surfaces and edges of nearby parts.
+
+<img src="../assets/modeling/parts/Transform-Move-Pivot-Snap.png" width="720" alt="A block part with an offset pivot soft-snapping to the surface of a nearby part." />
+
+</TabItem>
+<TabItem label="Cursor Drag">
+<figure>
+To move a part by cursor dragging, click anywhere on the part to grab it. If snapping is **enabled**, a ruler will appear as you hover, showing what point you'll grab the part by. As you drag the part around, another ruler will appear on the surface/edge of nearby parts, indicating alignment of the grab point.
+
+<img src="../assets/modeling/parts/Transform-Move-Ruler-Snap.png" width="720" alt="A block part showing the grab point and snapping ruler on a neighboring part." />
+
+If snapping is **disabled**, the part will "soft&nbsp;snap" to surfaces and edges of nearby parts.
+
+<img src="../assets/modeling/parts/Transform-Move-Cursor-Drag-Snap.png" width="720" alt="A block part soft-snapping to the corner edges of a neighboring part." />
+
+While cursor dragging, <kbd>T</kbd> and <kbd>R</kbd> can be used to quickly rotate the part in 90&deg; increments around the point you picked it up by. <kbd>T</kbd> tilts the part 90&deg; towards the camera, while <kbd>R</kbd> rotates the part 90&deg; around the normal of the hovered surface.
+
+<img src="../assets/modeling/parts/Transform-Move-Cursor-Drag-T-R.png" width="720" alt="Diagram showing how parts can be tilted and rotated with the T and R keys respectively." />
+</figure>
+</TabItem>
 </Tabs>
 
-### Moving Parts
+### Scale
 
-Parts move on the **X** (red), **Y** (green), and **Z** (blue) axes. You can move a part to a new position using the **Move** tool.
+To scale (resize) a selected part along the **X**, **Y**, or **Z** axis, use the **Scale** tool (default shortcut <kbd>3</kbd>) and click/drag a handle. While dragging, you can temporarily toggle snapping by holding <kbd>Shift</kbd>.
 
-1. In the **Tools** section, select the **Move** tool, then select the part you want to move.
+<img src="../assets/studio/general/Transform-Tool-Scale.png" width="562" alt="Studio toolbar with the Scale tool highlighted." />
 
-   <img src="../assets/studio/general/Model-Tab-Move.png" width="830" alt="Studio's Model tab with the Move tool highlighted." />
+<img src="../assets/modeling/parts/Transform-Scale.png" width="720" alt="A block part with the Scale tool's visual aids." />
 
-2. Click and drag the arrow that is pointing in the direction you want to move the part.
+### Rotate
 
-   <img src="../assets/modeling/parts/Manipulate-Move.png" alt="An angled gray block part with the Move tool's visual aids." width="600" />
+To rotate a selected part around the **X**, **Y**, or **Z** axis, use the **Rotate** tool (default shortcut <kbd>4</kbd>) and click/drag a rotation ring. While dragging, you can temporarily toggle snapping by holding <kbd>Shift</kbd>.
 
-### Scaling Parts
+<img src="../assets/studio/general/Transform-Tool-Rotate.png" width="562" alt="Studio toolbar with the Rotate tool highlighted." />
 
-Parts scale on the **X** (red), **Y** (green), and **Z** (blue) axes. You can make a part larger or smaller by using the **Scale** tool.
+<img src="../assets/modeling/parts/Transform-Rotate.png" width="720" alt="A block part with the Rotate tool's visual aids." />
 
-1. In the **Tools** section, select the **Scale** tool, then select the part you want to scale.
-
-   <img src="../assets/studio/general/Model-Tab-Scale.png" width="830" alt="Studio's Model tab with the Scale tool highlighted." />
-
-2. Click and drag a ball to scale the part in that direction.
-
-   <img src="../assets/modeling/parts/Manipulate-Scale.png" alt="An angled gray block part with the Scale tool's visual aids." width="600" />
-
-### Rotating Parts
-
-Parts rotate on the **X** (red), **Y** (green), and **Z** (blue) axes. You can rotate a part to a new angle using the **Rotate** tool.
-
-1. In the **Tools** section, select the **Rotate** tool, then select the part you want to rotate.
-
-   <img src="../assets/studio/general/Model-Tab-Rotate.png" width="830" alt="Studio's Model tab with the Rotate tool highlighted." />
-
-2. Click and drag a circle to rotate the part in that direction.
-
-   <img src="../assets/modeling/parts/Manipulate-Rotate.png" alt="An angled gray block part with the Rotate tool's visual aids." width="600" />
-
-## Coloring Parts
+## Color parts
 
 While a part is gray by default, you can change it to any color through the following methods.
 
-### Hexagon Map
+### Hexagon map
 
-Clicking the small dropdown arrow on the **Color** widget reveals a hexagonal color picker and, by default, applies the chosen color to all selected parts. Once you've selected a color, you can quickly apply it to other parts by selecting those parts and clicking the **Color** button itself.
+Clicking the small dropdown arrow on the **Color** widget reveals a hexagonal color picker.
 
-<img src="../assets/studio/general/Model-Tab-Color-Tools.png" width="772" alt="Studio's Model tab with the Color button's components highlighted." />
+<img src="../assets/studio/general/Color-Picker.png" width="373" alt="Color widget's hexagonal picker." />
 
-### Colors Popup
+By default, clicking the overall **Color** button applies the chosen color to any **selected** parts. If you prefer a fill/paint workflow instead, toggle on **Color&nbsp;Action&nbsp;as&nbsp;Tool** and then click parts in the 3D viewport to apply the chosen color.
+
+<img src="../assets/studio/general/Model-Tab-Color-Action-As-Tool.png" width="704" alt="Studio's Model tab with the Color Action as Tool selector indicated." />
+
+### Colors popup
 
 The **Colors** popup allows you to set a color through your operating system's color picker widget. To access it, navigate to the [Properties](../studio/properties.md) window and click the small box to the left of the `Class.BasePart.Color|Color` property.
 
 <img src="../assets/studio/properties/Color-Picker.png" alt="A close up view of the Properties window with the Color property's color box highlighted." width="320" />
 
-### RGB Value
+### RGB value
 
 To define a specific RGB color value for a part, enter an RGB value into the
 `Class.BasePart.Color|Color` property field.
 
 <img src="../assets/studio/properties/Color-RGB-Entry.png" alt="A close up view of the Properties window with the Color property's RGB color value highlighted." width="320" />
 
-## Applying Materials
+## Apply materials
 
-Similar to [color](#coloring-parts), you can customize a part's **material** to simulate real-world materials such as wood, glass, or fabric. When selecting a material, consider the following:
+Similar to [color](#color-parts), you can customize a part's **material** to simulate real-world materials such as wood, glass, or fabric. When selecting a material, consider the following:
 
 - **Material affects the physical traits of a part, not just its appearance**. For example, the **Concrete** material is heavier than the **Plastic** material, so a concrete brick will have higher density than a plastic brick and sink in water faster.
 
@@ -193,7 +225,7 @@ Similar to [color](#coloring-parts), you can customize a part's **material** to 
       <figcaption>SmoothPlastic</figcaption>
     </figure>
     <figure>
-      <img src="../assets/modeling/parts/Material-Neon.jpg" alt="An angled red block part with a glowing neon material."/>
+      <img src="../assets/modeling/parts/Material-Neon.png" alt="An angled red block part with a glowing neon material."/>
       <figcaption>Neon</figcaption>
     </figure>
   </GridContainer>

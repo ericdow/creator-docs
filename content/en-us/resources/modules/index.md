@@ -1,9 +1,9 @@
 ---
-title: Developer Modules
-description: Developer Modules let you easily add powerful social features to your experiences.
+title: Developer modules
+description: Developer modules let you easily add powerful social features to your experiences.
 ---
 
-**Developer Modules** let you easily add powerful social features to your experiences. Each module is **designed to work out of the box**, so the moment you press play it will simply work. If this isn't your style, you can configure each module to work in different ways.
+**Developer modules** let you easily add powerful social features to your experiences. Each module is **designed to work out of the box**, so the moment you press play it will simply work. If this isn't your style, you can configure each module to work in different ways.
 
 <GridContainer numColumns="2">
   <figure>
@@ -55,10 +55,5 @@ description: Developer Modules let you easily add powerful social features to yo
     <Button href="../../resources/modules/social-interactions.md" fullWidth size='large' color='primary' variant='contained' style={{marginBottom:"4px;"}}>Social Interactions</Button>
 	  <video controls src="../../assets/developer-modules/social-interactions/Showcase-SM.mp4" width="100%"></video>
     <figcaption>Add a touch of realism to your avatars</figcaption>
-  </figure>
-  <figure>
-    <Button href="../../resources/modules/event-sequencer.md" fullWidth size='large' color='primary' variant='contained' style={{marginBottom:"4px;"}}>Event Sequencer</Button>
-	  <video controls src="../../assets/developer-modules/event-sequencer/Seek-Bar-SM.mp4" width="100%"></video>
-    <figcaption>Build live events on a structured sequence</figcaption>
   </figure>
 </GridContainer>

@@ -1,5 +1,5 @@
 ---
-title: Best Practices when designing MemoryStore Data Structures
+title: Best practices when designing MemoryStore data structures
 description: Explains how to best design data structures to reduce the chance of experiencing throttling.
 ---
 
@@ -7,7 +7,7 @@ Depending on the data structure type, MemoryStoreService enforces [limits](../..
 
 Each Roblox experience has the [Memory Store Observability Dashboard](../../cloud-services/memory-stores/observability.md), which includes a set of charts that you can use to monitor memory store usage.
 
-## Sorted Maps and Queues
+## Sorted maps and queues
 
 Sorted maps and queues both have limits on the maximum number of items and maximum total memory. Additionally, the items in one of these data structures always reside on a single partition. Every request to one of those data structures is a request to the same partition.
 
@@ -21,7 +21,7 @@ Sharding is the process of storing a set of related data across multiple data st
 
 The key challenge to sharding is finding a way to spread the data across multiple data structures in a way that maintains the same functionality as the original.
 
-### Sharding a Sorted Map
+### Sharding a sorted map
 
 To shard a sorted map, consider splitting your data into alphabetic subsections with character ranges. For example, assume that you only have keys with the first letter from A-Z, and you believe four sorted maps is sufficient for your current use case and future growth:
 
@@ -32,15 +32,15 @@ To shard a sorted map, consider splitting your data into alphabetic subsections 
 Use a helper function to get the correct sorted map from an item key. This way, you don't have to repeat the same block of code for every function call.
 </Alert>
 
-```lua title='Sharding a Sorted Map'
+```lua title="Sharding a Sorted Map"
 -- Initialize the MemoryStore Service
-local memoryStore = game:GetService("MemoryStoreService")
+local MemoryStoreService = game:GetService("MemoryStoreService")
 
 -- Create your Sorted Map buckets
-local sm_AtoG = memoryStore:GetSortedMap("AtoG")
-local sm_HtoM = memoryStore:GetSortedMap("HtoM")
-local sm_NtoT = memoryStore:GetSortedMap("NtoT")
-local sm_UtoZ = memoryStore:GetSortedMap("UtoZ")
+local sm_AtoG = MemoryStoreService:GetSortedMap("AtoG")
+local sm_HtoM = MemoryStoreService:GetSortedMap("HtoM")
+local sm_NtoT = MemoryStoreService:GetSortedMap("NtoT")
+local sm_UtoZ = MemoryStoreService:GetSortedMap("UtoZ")
 
 -- Helper function to retrieve the correct bucket from the Item Key
 local function getSortedMapBucket(itemKey)
@@ -56,7 +56,7 @@ local function getSortedMapBucket(itemKey)
 end
 
 -- Initialize player names with default value of 0
-for i,player in pairs(game.Players:GetChildren()) do
+for _, player in game:GetService("Players"):GetPlayers() do
 	local bucket = getSortedMapBucket(player)
 	bucket:SetAsync(player, 0, 600)
 end
@@ -68,7 +68,7 @@ local playerScore = bucket:GetAsync(player)
 print(playerScore)
 ```
 
-### Sharding a Queue
+### Sharding a queue
 
 Sharding a queue is tricker than sharding a sorted map. Although you want to spread the request throughput across multiple queues, adds, reads, and removes only ever occur at the front or back of the queue.
 
@@ -81,15 +81,15 @@ One solution is to use a revolving queue, which means creating multiple queues a
    - For remove operations, pass the IDs from the read to each queue.
    - For add operations, add to the queue at the add pointer and increment the pointer.
 
-```lua title='Sharding a Queue'
+```lua title="Sharding a Queue"
 -- Initialize the MemoryStore Service
-local memoryStore = game:GetService("MemoryStoreService")
+local MemoryStoreService = game:GetService("MemoryStoreService")
 
 -- Create your Queues
-local q1 = memoryStore:GetQueue("q1")
-local q2 = memoryStore:GetQueue("q2")
-local q3 = memoryStore:GetQueue("q3")
-local q4 = memoryStore:GetQueue("q4")
+local q1 = MemoryStoreService:GetQueue("q1")
+local q2 = MemoryStoreService:GetQueue("q2")
+local q3 = MemoryStoreService:GetQueue("q3")
+local q4 = MemoryStoreService:GetQueue("q4")
 
 -- Put the Queues in an Array
 local queueArr = { q1, q2, q3, q4 }
@@ -106,32 +106,32 @@ end
 -- Create a local function that reads n items from the queue
 local function readFromQueue(count, allOrNothing, waitTimeout)
 	local endIndex = count % 4
-  local countPerQueue = math.floor(count / 4)
+	local countPerQueue = count // 4
 	local items = {}
 	local ids = {}
 
 	-- loop through each queue
-    for i = 1, 4, 1 do
+	for i = 1, 4, 1 do
 		-- determine if this queue will read an extra item
-        local diff = i - readIndex
-        if diff < 0 then
-            diff = diff + 4
-        end
+		local diff = i - readIndex
+		if diff < 0 then
+			diff += 4
+		end
 
-        local queue = queueArr[i]
+		local queue = queueArr[i]
 
 		-- read items from each queue
 		-- +1 items if matches extra read criteria
-        if diff < endIndex then
-            items[i], ids[i] = queue:ReadAsync(countPerQueue + 1, allOrNothing, waitTimeout)
-        else
-            items[i], ids[i] = queue:ReadAsync(countPerQueue, allOrNothing, waitTimeout)
-        end
-    end
+		if diff < endIndex then
+			items[i], ids[i] = queue:ReadAsync(countPerQueue + 1, allOrNothing,waitTimeout)
+		else
+			items[i], ids[i] = queue:ReadAsync(countPerQueue, allOrNothing,waitTimeout)
+		end
+	end
 
-    readIndex = rotateIndex(readIndex, count)
+	readIndex = rotateIndex(readIndex, count)
 
-    return items, ids
+	return items, ids
 end
 
 -- Create a local function that removes n items from the queue
@@ -151,7 +151,7 @@ end
 
 -- Write some code!
 
-for i,player in pairs(game.Players:GetChildren()) do
+for _, player in game:GetService("Players"):GetPlayers() do
 	addToQueue(player, 600, 0)
 end
 
@@ -159,7 +159,7 @@ local players, ids = readFromQueue(20, true, -1)
 removeFromQueue(ids)
 ```
 
-## Hash Maps
+## Hash maps
 
 Hash maps do not have individual memory or item count limits and are automatically sharded, but you can still encounter throttling if you use them poorly.
 

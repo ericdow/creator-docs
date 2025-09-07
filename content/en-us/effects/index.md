@@ -6,7 +6,7 @@ description: Learn how to add visual effects to your experiences.
 You can create special effects by parenting special effect objects to other
 objects or attachments.
 
-## Light Sources
+## Light sources
 
 Light sources let you attach lighting effects to objects or attachments. There
 are three types of light sources:
@@ -23,20 +23,20 @@ are three types of light sources:
 
 <GridContainer numColumns="3">
   <figure>
-    <img src="../assets/lighting-and-effects/light-sources/PointLight-Range-8.jpg" />
-    <figcaption>Point Lights</figcaption>
+    <img src="../assets/lighting-and-effects/light-sources/PointLight-Range-8.jpg" alt="" />
+    <figcaption>Point lights</figcaption>
   </figure>
   <figure>
-    <img src="../assets/lighting-and-effects/light-sources/SpotLight-Face-Bottom.jpg" />
+    <img src="../assets/lighting-and-effects/light-sources/SpotLight-Face-Bottom.jpg" alt="" />
     <figcaption>Spotlights</figcaption>
   </figure>
   <figure>
-    <img src="../assets/lighting-and-effects/light-sources/SurfaceLight-Angle-0.jpg" />
-    <figcaption>Surface Lights</figcaption>
+    <img src="../assets/lighting-and-effects/light-sources/SurfaceLight-Angle-0.jpg" alt="" />
+    <figcaption>Surface lights</figcaption>
   </figure>
 </GridContainer>
 
-## Particle Emitters
+## Particle emitters
 
 A [particle emitter](../effects/particle-emitters.md) is an object that emits customizable 2D images (particles) into the world, useful for simulating special effects like fire, smoke, and sparks.
 
@@ -71,20 +71,19 @@ width="100%"></video>
 
 ## Highlighting
 
-`Class.Highlight` is a visual effect you can use to call attention to a specific
-object within your experience.
+`Class.Highlight` is a visual effect which you can use to call attention to a specific object within an experience, such as to provide visual feedback that the object is important and/or interactable. See [Highlighting Objects](../effects/highlighting.md) for details.
 
 <GridContainer numColumns="3">
   <figure>
-    <img src="../assets/ui/highlighting-objects/OutlineTransparency-1.jpg" width="95%" />
-    <figcaption>Original Object</figcaption>
+    <img src="../assets/ui/highlighting-objects/OutlineTransparency-1.jpg" alt="A tree mesh against a grey background." />
+    <figcaption>Base object</figcaption>
   </figure>
   <figure>
-    <img src="../assets/ui/highlighting-objects/Overview-Yellow-Outline.jpg" width="96%" />
-    <figcaption>Object with a yellow outline and black interior</figcaption>
+    <img src="../assets/ui/highlighting-objects/Adding-Highlight.jpg" alt="The same tree mesh with a white outline and a red highlight interior." />
+    <figcaption>White outline, 50% red interior</figcaption>
   </figure>
   <figure>
-    <img src="../assets/ui/highlighting-objects/Overview-Yellow-Interior.jpg" width="91%" />
-    <figcaption>Object with a black outline and yellow interior</figcaption>
+    <img src="../assets/ui/highlighting-objects/Overview-Yellow-Outline.jpg" alt="The same tree mesh with a yellow outline and a black highlight interior." />
+    <figcaption>Yellow outline, black interior</figcaption>
   </figure>
 </GridContainer>

@@ -1,5 +1,5 @@
 import markdownlint, { LintError } from 'markdownlint';
-import markdownLintConfig from '../../../.markdownlint.json' assert { type: 'json' };
+import markdownLintConfig from '../../../.markdownlint.json' with { type: 'json' };
 import { createNewPullRequestComment, requiredCheckMessage } from './github.js';
 import { IConfig } from './config.js';
 import { addToSummaryOfRequirements } from './console.js';
@@ -18,8 +18,8 @@ export const getMarkdownLintErrors = ({
     handleRuleFailures: true,
   };
 
-  const {fileContent: fileErrors } = markdownlint.sync(options);
-  return fileErrors
+  const { fileContent: fileErrors } = markdownlint.sync(options);
+  return fileErrors;
 };
 
 export const processMarkdownLintError = ({
@@ -48,7 +48,7 @@ export const processMarkdownLintError = ({
 
   /** Pull Request */
   if (config.postPullRequestComments) {
-    const body = `The content quality library [markdownlint](https://github.com/DavidAnson/markdownlint) says: 
+    const body = `The content quality library [markdownlint](https://github.com/DavidAnson/markdownlint) says:
 
 - ${lintError.ruleDescription} (${errorNames})
 ${lintError.errorDetail ? `- ${lintError.errorDetail}.` : ''}

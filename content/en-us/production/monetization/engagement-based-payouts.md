@@ -1,34 +1,32 @@
 ---
-title: Engagement-Based Payouts
+title: Engagement-based payouts
 description: Engagement-based payouts allow you to earn Robux based on the share of time Roblox Premium members engage in your experience.
 ---
 
-Automatic **engagement-based payouts** let you earn Robux based on the share of time that [Premium](https://www.roblox.com/premium/membership) members engage in an experience, regardless of the experience's size. These payouts are in addition to earnings from other [monetization](../../production/monetization/index.md) methods such as [Passes](../../production/monetization/game-passes.md).
-
-To encourage Premium subscriber growth and increase your potential to earn engagement-based payouts, you can add the [Premium Purchase Modal](#premium-purchase-modal) directly into an experience.
-
-<Alert severity="warning">
-[Paid Access](../../production/monetization/paid-access.md) experiences are not eligible for engagement-based payouts.
+<Alert severity="info">
+Effective July 24, 2025, the Engagement-Based Payouts program is deprecated and has been replaced by the [Creator Rewards](../../creator-rewards.md) program.
 </Alert>
 
-## Accessing Payout Data
+Automatic **engagement-based payouts** let you earn Robux based on the share of time that [Premium](https://www.roblox.com/premium/membership) members engage in an experience, regardless of the experience's size. These payouts are in addition to earnings from other [monetization](../../production/monetization/index.md) methods such as [Passes](../../production/monetization/game-passes.md).
+
+To encourage Premium subscriber growth and increase your potential to earn engagement-based payouts, you can add the [Premium Purchase Modal](#premium-purchase-modal) directly into an experience. Keep in mind, users from some countries may not have access to Premium subscriptions.
+
+## Access payout data
 
 Payout data can provide vital feedback to help you understand what factors drive Premium subscribers to your experiences.
 
 To access payout data:
 
 1. Navigate to your [Creations](https://create.roblox.com/dashboard/creations) page on **Creator Dashboard** and select your experience.
-
 2. Navigate to the **Monetization** tab and select **Engagement Payouts**.
-   <img src="../../assets/monetization/engagement-based-payouts/navigation.png" width="40%" />
 
-### Engagement Payouts
+### Engagement payouts
 
 The **Engagement-Based Payouts** charts track payout data based on the following metrics:
 
 - **Premium Playtime Robux Earned:** The amount you can expect to earn for Premium subscriber engagement. This is not based on the daily time Premium subscribers spend engaging with the experience; instead, this metric aggregates each user's behavior over the past 28 days. As such, even though they have similar trends, this metric has no direct mathematical relationship with the Premium Playtime Score.
 
--  **Premium Playtime Score:** The amount of time Premium subscribers engage with the experience per day. This metric can provide immediate feedback on the impact of new features you release.
+- **Premium Playtime Score:** The amount of time Premium subscribers engage with the experience per day. This metric can provide immediate feedback on the impact of new features you release.
 
 - **Premium Visits:** How many visits are from Premium members.
 
@@ -38,7 +36,7 @@ The **Engagement-Based Payouts** charts track payout data based on the following
 Note that the dotted "projected earnings" line becomes solid after the payout amount is final, at which point Roblox adds the payout to your **Pending Robux** amount [here](https://www.roblox.com/transactions).
 </Alert><br />
 
-## Premium Purchase Modal
+## Premium purchase modal
 
 One strategy to increase engagement-based payouts is to encourage [Premium](https://www.roblox.com/premium/membership) upgrade through the **purchase modal**. Players can complete the purchase entirely within the experience and immediately receive both Premium status and their initial stipend of Robux.
 
@@ -49,14 +47,14 @@ One strategy to increase engagement-based payouts is to encourage [Premium](http
 
 Remember that Premium membership should not be a "requirement" to enjoy an experience. When implementing incentives for Premium members, it's highly recommended that you follow these best practices:
 
-- Honestly and accurately describe the benefits of upgrading within the experience's [description](../../production/publishing/publishing-experiences-and-places.md#experience-description).
+- Honestly and accurately describe the benefits of upgrading within the experience's [description](../../production/publishing/publish-experiences-and-places.md#experience-description).
 - Do not promise Robux or other out-of-experience rewards that you don't control.
 - Do not show the modal as a "paywall" when non-Premium members enter the experience.
-- Consider offering exclusive [merch](../../resources/modules/merch-booth.md) to Premium members, but do not give them a tactical gameplay advantage over others, such as an array of ultra-powerful weapons that non-Premium members can't compete against.
+- Consider offering exclusive merch to Premium members, but do not give them a tactical gameplay advantage over others, such as an array of ultra-powerful weapons that non-Premium members can't compete against.
 
-### Checking Membership
+### Check membership
 
-Before scripting any logic related to Premium membership or [triggering the modal](#triggering-the-modal), check a user's `Class.Player.MembershipType|MembershipType` property to determine if they're already subscribed.
+Before scripting any logic related to Premium membership or [triggering the modal](#trigger-the-modal), check a user's `Class.Player.MembershipType|MembershipType` property to determine if they're already subscribed.
 
 ```lua
 local Players = game:GetService("Players")
@@ -68,7 +66,7 @@ if player.MembershipType == Enum.MembershipType.Premium then
 end
 ```
 
-### Triggering the Modal
+### Trigger the modal
 
 You can trigger the purchase modal with the `Class.MarketplaceService:PromptPremiumPurchase()|PromptPremiumPurchase()` method. For example, the following code prompts users to purchase Premium when their character touches the part that its containing `Class.Script` is attached to, such as a teleporter that allows access to an exclusive area.
 

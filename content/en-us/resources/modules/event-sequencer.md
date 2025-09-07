@@ -19,7 +19,7 @@ To see **EventSequencer** in action within an editable place, check out the [Con
 
 <img src="../../assets/developer-modules/event-sequencer/Edit-Concert-Template.png" width="540" />
 
-## Module Usage
+## Module usage
 
 ### Installation
 
@@ -35,31 +35,27 @@ To use the **EventSequencer** framework in an experience:
 
    <img src="../../assets/studio/toolbox/Creator-Store-Categories-See-All.png" width="360" />
 
-1. Locate and click the **Dev Modules** tile.
-
-   <img src="../../assets/studio/toolbox/Creator-Store-Categories-Dev-Modules.png" width="200" />
+1. Locate and click the **Packages** tile.
 
 1. Locate the **Event Sequencer** module and click it, or drag-and-drop it into the 3D view.
 
    <img src="../../assets/developer-modules/event-sequencer/Toolbox-Icon.png" width="143" />
 
-1. In the [Explorer](../../studio/explorer.md) window, move the entire **EventSequencer** model into **ServerScriptService**. Upon running the experience, the module will distribute itself to various services and begin running.
+1. In the [Explorer](../../studio/explorer.md) window, move the entire **EventSequencer** model into `Class.ServerScriptService`. Upon running the experience the module will begin running.
 
-   <img src="../../assets/developer-modules/event-sequencer/Move-Package.png" width="320" />
+### Framework modes
 
-### Framework Modes
+#### Replace mode
 
-#### Replace Mode
-
-The default framework mode is **replace mode** in which you design unique [scenes](#creating-scenes) by placing [3D objects](../../parts/index.md), [terrain](../../parts/terrain.md), [lighting properties](../../environment/lighting.md), [environmental effects](../../environment/index.md#environment), and [user interface](../../ui/index.md) objects into that scene's **Environment** folder. When a scene loads, those objects and properties get distributed into `Class.Workspace`, `Class.Terrain`, and `Class.Lighting`, **replacing** existing objects/properties to form a cloned space.
+The default framework mode is **replace mode** in which you design unique [scenes](#create-scenes) by placing [3D objects](../../parts/index.md), [terrain](../../parts/terrain.md), [lighting properties](../../environment/lighting.md), [environmental effects](../../environment/index.md#environment), and user interface objects into that scene's **Environment** folder. When a scene loads, those objects and properties get distributed into `Class.Workspace`, `Class.Terrain`, and `Class.Lighting`, **replacing** existing objects/properties to form a cloned space.
 
 <Alert severity="success">
 This mode is best for **new** event experiences consisting of multiple sequential scenes, such as a pre-show venue to the main concert to a post-show party.
 </Alert>
 
-#### Inline Mode
+#### Inline mode
 
-An alternate framework mode is **inline mode** in which you similarly design unique [scenes](#creating-scenes) with scripting logic for their flow/events, but the framework will **not** destroy existing [3D objects](../../parts/index.md), [terrain](../../parts/terrain.md), [lighting properties](../../environment/lighting.md), [environmental effects](../../environment/index.md#environment), and [user interface](../../ui/index.md) objects in order to clone assets/properties from a scene's **Environment** folder upon loading.
+An alternate framework mode is **inline mode** in which you similarly design unique [scenes](#create-scenes) with scripting logic for their flow/events, but the framework will **not** destroy existing [3D objects](../../parts/index.md), [terrain](../../parts/terrain.md), [lighting properties](../../environment/lighting.md), [environmental effects](../../environment/index.md#environment), and user interface objects in order to clone assets/properties from a scene's **Environment** folder upon loading.
 
 <Alert severity="success">
 This mode is best for existing experiences, as it preserves the design and layout of your place while letting you orchestrate events such as cutscenes.
@@ -75,9 +71,9 @@ To enable inline mode:
 
    <img src="../../assets/developer-modules/event-sequencer/Inline-BoolValue-Enabled.png" width="320" />
 
-### Creating Scenes
+### Create scenes
 
-A **scene** is essentially part of an overall event or a cutscene wrapped up in a series of folders. Each scene contains scripting logic that defines its flow/events, and a scene can store its own [3D objects](../../parts/index.md), [terrain](../../parts/terrain.md), [lighting properties](../../environment/lighting.md), [environmental effects](../../environment/index.md#environment), and [user interface](../../ui/index.md) objects.
+A **scene** is essentially part of an overall event or a cutscene wrapped up in a series of folders. Each scene contains scripting logic that defines its flow/events, and a scene can store its own [3D objects](../../parts/index.md), [terrain](../../parts/terrain.md), [lighting properties](../../environment/lighting.md), [environmental effects](../../environment/index.md#environment), and user interface objects.
 
 To get started quickly, you can find an empty scene inside the module's main folder:
 
@@ -93,7 +89,7 @@ To get started quickly, you can find an empty scene inside the module's main fol
    While developing an event, you can alternatively place scenes elsewhere in the [Explorer](../../studio/explorer.md) hierarchy and tag them with **SequencerScene** using the [Tags](../../studio/properties.md#instance-tags) section of their properties, or Studio's [Tag&nbsp;Editor](../../studio/view-tab.md#windows-and-tools) (**BlankScene** is already tagged as such). However, you'll need to move all event-ready scenes to **ReplicatedStorage** in order for them to work within the overall event flow.
    </Alert>
 
-#### Time Length
+#### Time length
 
 Each scene should have a **time length**, in seconds, defining its duration &mdash; just like a movie or concert has a set duration. Time length is defined as a numeric [attribute](../../studio/properties.md#instance-attributes) on the scene's folder named **TimeLength** which you can set directly in Studio or programmatically through `Class.Instance:SetAttribute()`.
 
@@ -108,7 +104,7 @@ Each scene should have a **time length**, in seconds, defining its duration &mda
 
 #### Environment
 
-A scene's **Environment** folder contains everything that users see and hear, including [3D objects](../../parts/index.md), [terrain](../../parts/terrain.md), [lighting properties](../../environment/lighting.md) and [environmental effects](../../environment/index.md#environment), and [user interface](../../ui/index.md) objects. When a scene loads, those objects and properties get distributed into `Class.Workspace`, `Class.Terrain`, and `Class.Lighting`, replacing existing objects/properties to form a cloned space.
+A scene's **Environment** folder contains everything that users see and hear, including [3D objects](../../parts/index.md), [terrain](../../parts/terrain.md), [lighting properties](../../environment/lighting.md) and [environmental effects](../../environment/index.md#environment), and user interface objects. When a scene loads, those objects and properties get distributed into `Class.Workspace`, `Class.Terrain`, and `Class.Lighting`, replacing existing objects/properties to form a cloned space.
 
 <Alert severity="warning">
 This folder is not intended for usage with [Inline Mode](#inline-mode), as that mode expects you to use existing assets and global property settings for the place, not load in scene-specific assets/properties.
@@ -126,7 +122,7 @@ The **Environment** folder contains the following containers:
 <tbody>
 	<tr>
 		<td>**Client**</td>
-		<td>Contains all assets to load when any user (client) joins the event, such as [user interface](../../ui/index.md) objects or an animation rig.</td>
+		<td>Contains all assets to load when any user (client) joins the event, such as user interface objects or an animation rig.</td>
 	</tr>
 	<tr>
 		<td>**PlayerSpawns**</td>
@@ -159,11 +155,11 @@ This script executes [schema](#scene-schemas) logic on the client.
 
 This script executes [schema](#scene-schemas) logic on the server.
 
-### Scene Schemas
+### Scene schemas
 
 A scene's **schema** defines what happens at what point in the scene's timeline. You should define a scene's schema in both its [Client](#client) and [Server](#server) modules and include **lifecycle hooks** to manage when **configurations** occur.
 
-#### Lifecycle Hooks
+#### Lifecycle hooks
 
 Schema [lifecycle hooks](#schema-lifecycle-hooks) let you manage when scene operations occur. A scene in production will typically run in the most simple flow:
 
@@ -185,7 +181,7 @@ Schema [configurations](#schema-configurations) define the core operations of a 
 You can use configurations in both the [Client](#client) and [Server](#server) module schemas, but it's recommended that you perform operations like [audio](#audio) and [animations](#animate) on the client side, just like in a typical experience.
 </Alert>
 
-### Seeking Scenes
+### Seek scenes
 
 A unique feature of **EventSequencer** is the ability to "seek" around scenes as you might seek through a video. In [Replace Mode](#replace-mode), you can also switch between scenes to preview an entire multi-scene event before deploying it to production.
 
@@ -196,7 +192,7 @@ A unique feature of **EventSequencer** is the ability to "seek" around scenes as
 1. Create a new `Class.Script` within `Class.ServerScriptService`.
 1. Paste the following code into the new script.
 
-   ```lua title='Script - Set Seeking Permissions'
+   ```lua title="Script - Set Seeking Permissions"
    local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
    local EventSequencer = require(ReplicatedStorage:WaitForChild("EventSequencer"))
@@ -229,9 +225,9 @@ A unique feature of **EventSequencer** is the ability to "seek" around scenes as
    </tbody>
    </table>
 
-## Scene Manager Plugin
+## Scene manager plugin
 
-The [Scene Manager](https://www.roblox.com/library/9995053698/Scene-Manager) plugin is a useful tool for loading and unloading scenes, [lighting](#saving-and-loading-lighting), and [terrain](#saving-and-loading-terrain). Unless you're using [Inline Mode](#inline-mode), it's highly recommended that you use this plugin instead of manually placing/editing scene objects and properties.
+The [Scene Manager](https://www.roblox.com/library/9995053698/Scene-Manager) plugin is a useful tool for loading and unloading scenes, [lighting](#save-and-load-lighting), and [terrain](#save-and-load-terrain). Unless you're using [Inline Mode](#inline-mode), it's highly recommended that you use this plugin instead of manually placing/editing scene objects and properties.
 
 <Alert severity="warning">
 This plugin is not intended for usage with [Inline Mode](#inline-mode), as that mode expects you to use existing assets and global property settings for the place, not load in scene-specific assets/properties from the scene's [Environment](#environment) folder.
@@ -244,19 +240,16 @@ To install the plugin:
    <img src="../../assets/studio/general/View-Tab-Toolbox.png" width="776" alt="Toolbox toggle button in Studio" />
 
 2. With the **Creator Store** tab selected, select **Plugins** from the dropdown menu.
-
-   <img src="../../assets/studio/toolbox/Creator-Store-Plugins.png" width="360" />
-
 3. In the search field, type **Scene Manager** and press <kbd>Enter</kbd> to locate the plugin.
 
    <img src="../../assets/studio/toolbox/Creator-Store-Scene-Manager-Plugin.png" width="360" />
 
 4. Click the plugin's icon to view its details and then click the **Install** button.
-5. Once the plugin is installed, it appears in Studio's [Plugins](../../studio/plugins-tab.md) tab.
+5. Once the plugin is installed, it appears in Studio's **Plugins** tab.
 
-### Loading and Unloading Scenes
+### Load and unload scenes
 
-As outlined in [Creating Scenes](#creating-scenes), a scene's **Environment** folder contains everything that users see and hear, including [3D objects](../../parts/index.md). The plugin helps you quickly load a scene's assets into or out of organized folders within the workspace.
+As outlined in [creating scenes](#create-scenes), a scene's **Environment** folder contains everything that users see and hear, including [3D objects](../../parts/index.md). The plugin helps you quickly load a scene's assets into or out of organized folders within the workspace.
 
 <Alert severity="error">
 Scenes must be tagged with **SequencerScene** for the plugin to recognize them (**BlankScene** is already tagged as such). A tool such as the **Tag&nbsp;Editor**, accessible from the [View](../../studio/view-tab.md) tab, may be helpful. If you've created a scene but it doesn't appear in the plugin, make sure that it's tagged, then save and reopen the place.
@@ -265,7 +258,7 @@ Scenes must be tagged with **SequencerScene** for the plugin to recognize them (
 <table>
 <thead>
 	<tr>
-		<th>Plugin Action</th>
+		<th>Plugin action</th>
 		<th>Description</th>
 	</tr>
 </thead>
@@ -293,7 +286,7 @@ Scenes must be tagged with **SequencerScene** for the plugin to recognize them (
 </tbody>
 </table>
 
-### Saving and Loading Lighting
+### Save and load lighting
 
 The top-level `Class.Lighting` service stores all of a place's lighting properties and visual effects. Since it's a top-level service, you cannot manually move it to a particular scene's **Environment**/**Server** or **Environment**/**Client** folder. Instead, you can utilize the plugin to copy its properties and children to the scene's **Environment**/**Lighting** folder.
 
@@ -326,7 +319,7 @@ The top-level `Class.Lighting` service stores all of a place's lighting properti
 <p>The framework also applies a **UseCurrentLighting** attribute to the top-level `Class.Lighting` service with a default of **false**. If set to **true**, the service's lighting overrides all scene-specific lighting during playtesting &mdash; however, scene lighting always takes precedence in a published event. As a real world analogy, this lets you stage a concert in full light before "turning down the lights" as the show begins.</p>
 </Alert>
 
-### Saving and Loading Terrain
+### Save and load terrain
 
 Since `Class.Terrain` is a top-level class within `Class.Workspace`, you cannot manually move generated or sculpted terrain to a particular scene's **Environment**/**Server** or **Environment**/**Client** folder. Instead, you can utilize the plugin to copy it to the scene's **Environment**/**Terrain** folder.
 
@@ -345,9 +338,9 @@ Since `Class.Terrain` is a top-level class within `Class.Workspace`, you cannot 
 If a scene contains absolutely no terrain, you should still click **Save Terrain** for it. This saves an "empty" terrain region for the scene and effectively clears all terrain from any scene shown before it.
 </Alert>
 
-## API Reference
+## API reference
 
-### Schema Lifecycle Hooks
+### Schema lifecycle hooks
 
 #### OnSetup
 
@@ -357,7 +350,7 @@ The **OnSetup** lifecycle hook is intended for initializing assets and variables
 It's recommended that you do **not** call `Global.RobloxGlobals.wait()` or `Library.task.wait()` within **OnSetup**, as it will delay the [OnRun](#onrun) start while the scene's timer continues to count up.
 </Alert>
 
-```lua title='Client Schema' highlight='11,21'
+```lua title="Client Schema" highlight="11,21"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local EventSequencer = require(ReplicatedStorage:WaitForChild("EventSequencer"))
@@ -381,7 +374,7 @@ Schema.OnSetup = function(timePositionObject)
 end
 ```
 
-```lua title='Server Schema' highlight='11,21'
+```lua title="Server Schema" highlight="11,21"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local EventSequencer = require(ReplicatedStorage:WaitForChild("EventSequencer"))
@@ -413,7 +406,7 @@ end
 It's recommended that you do **not** call `Global.RobloxGlobals.wait()` or `Library.task.wait()` within **OnRun**, as it will delay the scene's orchestration while the scene's timer continues to count up.
 </Alert>
 
-```lua title='Client Schema' highlight='1,14'
+```lua title="Client Schema" highlight="1,14"
 Schema.OnRun = function()
 	print("OnRun (Client)")
 
@@ -434,7 +427,7 @@ end
 
 The **OnEndScene** lifecycle hook is useful for cleaning up anything outstanding in the scene, such as disconnecting connections created in [OnSetup](#onsetup) or [OnRun](#onrun) that remain for the duration of the scene.
 
-```lua title='Server Schema' highlight='1,8'
+```lua title="Server Schema" highlight="1,8"
 Schema.OnEndScene = function()
 	print("OnEndScene (Server)")
 
@@ -449,7 +442,7 @@ end
 In cases like a post-show venue which may be considered "endless," omit the **OnEndScene** lifecycle event and make the [TimeLength](#time-length) value as long as needed to accommodate all of your schema [configurations](#configurations). Also, do not [inform](#inform) anything to the schema, as those things will be cleaned up when the scene reaches its time length.
 </Alert>
 
-### Schema Configurations
+### Schema configurations
 
 #### audio
 
@@ -486,7 +479,7 @@ Creates a `Class.Sound` object in the workspace which plays at a certain time. T
 </tbody>
 </table>
 
-```lua title='Client Schema' highlight='4,13'
+```lua title="Client Schema" highlight="4,13"
 Schema.OnRun = function()
 	print("OnRun (Client)")
 
@@ -566,7 +559,7 @@ Creates an `Class.Animation` which plays at a certain time.
 </tbody>
 </table>
 
-```lua title='Client Schema' highlight='9,25'
+```lua title="Client Schema" highlight="9,25"
 Schema.OnRun = function()
 	print("OnRun (Client)")
 
@@ -634,7 +627,7 @@ Creates a configurable `Class.Tween` which is preserved in seeking and in dynami
 </tbody>
 </table>
 
-```lua title='Client Schema' highlight='9,31'
+```lua title="Client Schema" highlight="9,31"
 Schema.OnRun = function()
 	print("OnRun (Client)")
 
@@ -712,7 +705,7 @@ Executes a custom callback function over a specified duration on a specified fre
 </tbody>
 </table>
 
-```lua title='Client Schema' highlight='9,19'
+```lua title="Client Schema" highlight="9,19"
 Schema.OnRun = function()
 	print("OnRun (Client)")
 
@@ -766,7 +759,7 @@ Similar to [interval](#interval) except that you can define multiple specific st
 </tbody>
 </table>
 
-```lua title='Client Schema' highlight='4,14'
+```lua title="Client Schema" highlight="4,14"
 Schema.OnRun = function()
 	print("OnRun (Client)")
 
@@ -786,11 +779,11 @@ end
 
 #### inform
 
-Informs the framework of any modules, UI objects, connections, etc. which are created in the [OnRun](#onrun) lifecycle hook, ensuring they are properly cleaned up when [seeking](#seeking-scenes). Use cases include:
+Informs the framework of any modules, UI objects, connections, etc. which are created in the [OnRun](#onrun) lifecycle hook, ensuring they are properly cleaned up when [seeking](#seek-scenes). Use cases include:
 
 - Informing the framework of a temporary ad-hoc connection such as `Class.RunService.Heartbeat` so that the connection is cleaned up when seeking to an earlier point in the scene's duration.
 
-  ```lua title='Server Schema' highlight='8-10,12'
+  ```lua title="Server Schema" highlight="8-10,12"
   Schema.OnRun = function()
   	print("OnRun (Server)")
 
@@ -810,7 +803,7 @@ Informs the framework of any modules, UI objects, connections, etc. which are cr
 
 - Calling a custom "cleanup" function in a `Class.ModuleScript` that initializes a connection or other reference during the [OnRun](#onrun) lifecycle hook.
 
-  ```lua title='Server Schema' highlight='4,17,19'
+  ```lua title="Server Schema" highlight="4,17,19"
   local ReplicatedStorage = game:GetService("ReplicatedStorage")
   local RunService = game:GetService("RunService")
 
@@ -835,7 +828,7 @@ Informs the framework of any modules, UI objects, connections, etc. which are cr
   end
   ```
 
-  ```lua title='ModuleScript - CustomModule' highlight='5,7-10,12,14-18'
+  ```lua title="ModuleScript - CustomModule" highlight="5,7-10,12,14-18"
   local RunService = game:GetService("RunService")
 
   local CustomModule = {}
@@ -859,7 +852,7 @@ Informs the framework of any modules, UI objects, connections, etc. which are cr
   ```
 
 <Alert severity="warning">
-While **inform** is critical for [seeking](#seeking-and-switching-scenes) support, you should only use it to inform the framework of any module, UI object, connection, etc. that is created/initialized during the [OnRun](#onrun) lifecycle hook. If you want to reference something throughout the entirety of the scene, simply initialize it in [OnSetup](#onsetup) and clean it up in [OnEndScene](#onendscene).
+While **inform** is critical for [seeking](#seek-and-switch-scenes) support, you should only use it to inform the framework of any module, UI object, connection, etc. that is created/initialized during the [OnRun](#onrun) lifecycle hook. If you want to reference something throughout the entirety of the scene, simply initialize it in [OnSetup](#onsetup) and clean it up in [OnEndScene](#onendscene).
 </Alert>
 
 ### Functions
@@ -872,7 +865,7 @@ loadScene(sceneName: `Library.string`, startTime: `number` ?)
 
 Programmatically loads a scene by `sceneName` and starts it at `startTime` from its beginning. There will be a 5 second "grace period" for the scene to load from the server before the seek occurs and the scene starts playing. This means that if you call `loadScene("[SceneName]", 20)` at exactly 4:15:00 PM, the framework will wait 5 seconds in addition to the requested 20, kicking off the scene at 4:15:25 PM.
 
-```lua title='Script' highlight='9,12,15'
+```lua title="Script" highlight="9,12,15"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local EventSequencer = require(ReplicatedStorage:WaitForChild("EventSequencer"))
@@ -904,7 +897,7 @@ createSchema(): `Library.table`
 
 Returns an instance of the scene [schema](#scene-schemas) to create logic for the scene.
 
-```lua title='Client Schema' highlight='5'
+```lua title="Client Schema" highlight="5"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local EventSequencer = require(ReplicatedStorage:WaitForChild("EventSequencer"))
@@ -924,7 +917,7 @@ seek(time: `number`)
 
 Seeks to the `time` value, in seconds, from the currently loaded scene's beginning.
 
-```lua title='Script' highlight='5'
+```lua title="Script" highlight="5"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local EventSequencer = require(ReplicatedStorage:WaitForChild("EventSequencer"))
@@ -944,7 +937,7 @@ setSceneWarningTime(endSceneTimeWindow: `number`)
 
 Sets the amount of time from the **end** of all scenes at which a warning is dispatched. You can detect the warning either client-side through [onSceneEndingWarningForClient](#onsceneendingwarningforclient) or server-side through [onSceneEndingWarningForServer](#onsceneendingwarningforserver).
 
-```lua title='Script' highlight='9'
+```lua title="Script" highlight="9"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local EventSequencer = require(ReplicatedStorage:WaitForChild("EventSequencer"))
@@ -967,7 +960,7 @@ end)
 setSeekingPermissions(permissions: `Library.table`)
 </figcaption>
 
-Grants seeking permission based on the event's `Class.DataModel.PlaceId|PlaceId` as well as specific `Class.Player.UserId|UserIds` and/or [groups](../../projects/groups.md) and roles within them. See [Seeking and Switching Scenes](#seeking-scenes) for more information.
+Grants seeking permission based on the event's `Class.DataModel.PlaceId|PlaceId` as well as specific `Class.Player.UserId|UserIds` and/or [groups](../../projects/groups.md) and roles within them. See [seek and switch scenes](#seek-scenes) for more information.
 
 #### getCurrentSceneEnvironment
 
@@ -981,7 +974,7 @@ Returns the current scene's client-side or server-side [Environment](#environmen
 Do not use this function with [Inline Mode](#inline-mode), as that mode expects you to use existing assets and global property settings for the place, not load in scene-specific assets/properties from the scene's [Environment](#environment) folder. This function will **infinitely yield** if the folder doesn't exist.
 </Alert>
 
-```lua title='Client Schema' highlight='7, 14'
+```lua title="Client Schema" highlight="7, 14"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local EventSequencer = require(ReplicatedStorage:WaitForChild("EventSequencer"))
@@ -1002,7 +995,7 @@ Schema.OnSetup = function(timePositionObject)
 end
 ```
 
-```lua title='Server Schema' highlight='7,14'
+```lua title="Server Schema" highlight="7,14"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local EventSequencer = require(ReplicatedStorage:WaitForChild("EventSequencer"))
@@ -1036,7 +1029,7 @@ Returns the current scene's **server-side** [Environment](#environment) folder. 
 Do not use this function with [Inline Mode](#inline-mode), as that mode expects you to use existing assets and global property settings for the place, not load in scene-specific assets/properties from the scene's [Environment](#environment) folder. This function will **infinitely yield** if the folder doesn't exist.
 </Alert>
 
-```lua title='Client Schema' highlight='8,15'
+```lua title="Client Schema" highlight="8,15"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local EventSequencer = require(ReplicatedStorage:WaitForChild("EventSequencer"))
@@ -1069,7 +1062,7 @@ Called from the server to know if a scene is currently loading.
 Do not use this function with [Inline Mode](#inline-mode), as that mode expects you to use existing assets and global property settings for the place, not load in scene-specific assets/properties from the scene's [Environment](#environment) folder.
 </Alert>
 
-```lua title='Script' highlight='5'
+```lua title="Script" highlight="5"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local EventSequencer = require(ReplicatedStorage:WaitForChild("EventSequencer"))
@@ -1088,7 +1081,7 @@ print("Scene loaded")
 
 Fires on the client before the scene is about to end. The default time is 3 seconds, but you can configure it through [setSceneWarningTime](#setscenewarningtime). This event can only be connected in a `Class.LocalScript`.
 
-```lua title='LocalScript' highlight='6,8'
+```lua title="LocalScript" highlight="6,8"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local EventSequencer = require(ReplicatedStorage:WaitForChild("EventSequencer"))
@@ -1103,7 +1096,7 @@ end)
 
 Fires on the server before the scene is about to end. The default time is 3 seconds, but you can configure it through [setSceneWarningTime](#setscenewarningtime). This event can only be connected in a `Class.Script`.
 
-```lua title='Script' highlight='6,8'
+```lua title="Script" highlight="6,8"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local EventSequencer = require(ReplicatedStorage:WaitForChild("EventSequencer"))
@@ -1122,7 +1115,7 @@ Fires on the client when the scene is starting. This event can only be connected
 Don't use this event for [Inline Mode](#inline-mode) because that mode expects you to use existing assets and global property settings for the place, not load in scene-specific assets/properties from the scene's [Environment](#environment) folder.
 </Alert>
 
-```lua title='LocalScript' highlight='6,8'
+```lua title="LocalScript" highlight="6,8"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local EventSequencer = require(ReplicatedStorage:WaitForChild("EventSequencer"))
@@ -1137,7 +1130,7 @@ end)
 
 Fires on the server when a scene has reached its [time length](#time-length) and has effectively ended. This event receives an `endedSceneName` string name argument for the scene that just finished and you can chain off this event to conditionally [load another scene](#loadscene). Can only be connected in a `Class.Script`.
 
-```lua title='Script' highlight='6,17'
+```lua title="Script" highlight="6,17"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local EventSequencer = require(ReplicatedStorage:WaitForChild("EventSequencer"))

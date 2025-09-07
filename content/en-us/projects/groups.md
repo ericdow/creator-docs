@@ -1,149 +1,293 @@
 ---
-title: Group Collaboration
-description: Explains Roblox groups and how to collaborate with multiple people creating the same experience.
+title: Groups (teams)
+description: Explains Roblox groups and how to collaborate with multiple creators on the same experience.
 ---
 
 A Roblox **group** allows multiple creators to work on the same experience, use the same assets, share profits, and give credit to all contributors.
 
-<Alert severity="warning">
-Group ownership of experiences help creators collaborate and operate as independent studios. If a conflict arises within your group, Roblox cannot help arbitrate or resolve disagreements.
+<Alert severity="error">
+Group ownership of experiences helps creators collaborate and operate as independent studios. If a conflict arises within a group, Roblox cannot help arbitrate or resolve disagreements.
 </Alert>
 
-## Creating a New Group
+## Group creation
 
-Creating a group costs 100 Robux. To create a group:
+Creating a group costs 100 Robux. New groups maintain certain capabilities on the legacy [Groups](https://www.roblox.com/groups) pages, but improved workflows and options for [configuring roles/permissions](#roles-and-permissions) and [inviting members](#invite-members) are only available on the [Creator Dashboard](https://create.roblox.com/dashboard/creations).
 
-1. Navigate to the [Create Group](https://www.roblox.com/groups/create) page and complete the form. The **Name** and **Emblem** are required.
-1. Click the green button to create the new group.
+<Alert severity="warning">
+Before creating a group, carefully read through the [rules and expectations](./group-guidelines.md) for group management.
+</Alert>
 
-## Roles and Permissions
+To create a new group:
 
-### Configuring Roles
+1. Navigate to the [Creator Dashboard](https://create.roblox.com/dashboard/creations), click the **View As** dropdown menu on the left, and select **Create Group**.
+2. On the setup page, upload an image for the group logo and enter the group name.
+3. When ready, click the **Purchase** button. Once the group is created, you'll be directed to the group profile page where you can modify the group's details, including adding up to three social links.
 
-Group owners can configure the **roles** for other members in the group. The default roles are **Owner**, **Admin**, **Member**, and **Guest**. You can change the names and descriptions for default roles, and you can create additional roles for 25 Robux each. Each role has a **Rank** value from 0 to 255 (lowest to highest).
+## Roles and permissions
 
-To configure roles:
+Group members can be assigned one or multiple **roles** within a group, and each role has **permissions** which specify the abilities of its members.
 
-1. Navigate to the [Groups](https://www.roblox.com/groups) page and select your group.
-1. Click the **&ctdot;** button in the upper-right corner and select **Configure&nbsp;Group**.
+<Alert severity="warning">
+Role configuration is only accessible if you're the group owner or you have permission to create, configure, and assign group roles.
+</Alert>
 
-   <img src="../assets/publishing/groups/Configure-Group.png" alt="A group's landing page with the ellipis button and Configure Group menu item highlighted." width="780" />
+<Alert severity="error">
+Roles created using the legacy [Groups](https://www.roblox.com/groups) pages will continue to operate on the legacy system and can only be managed through the legacy workflow. If permissions were granted to a legacy role, **the member will continue to have those permissions**, so it's recommended that you revoke permissions/roles in the legacy system and then migrate members to the new system.
+</Alert>
 
-1. In the left column, select the **Roles** tab.
+1. From the [Creator Dashboard](https://create.roblox.com/dashboard/creations), select the group from the **View As** dropdown menu and navigate to **Collaboration** &rang; **Roles**.
+2. For each role, carefully confirm the permissions under the **Permissions** tab.
 
-   <img src="../assets/publishing/groups/Group-Admin-Roles.png" alt="A close up view of the left column with the Roles navigation item highlighted." width="160" />
-
-1. To secure your group and its creations, inspect and adjust the permissions for each role. Commonly managed options include:
+   <img src="../assets/creator-dashboard/Group-Roles-Permissions-Tab.png" width="780" alt="Permissions tab indicated for a group role on the Creator Dashboard." />
 
    <table>
    <thead>
-	 <tr>
-     <th colspan="2">Members</th>
-   </tr>
+     <tr>
+       <th colspan="2">Group Permissions</th>
+     </tr>
    </thead>
    <tbody>
-   <tr>
-     <td>**Manage lower‑ranked member ranks**</td>
-     <td>Change the role of other members currently assigned to a lower‑ranked role.</td>
-   </tr>
-   <tr>
-     <td>**Accept join requests**</td>
-     <td>Accept or deny any pending requests to join the group, assuming the group is currently set to require manual approval.</td>
-   </tr>
-   <tr>
-     <td>**Kick lower‑ranked members**</td>
-     <td>Kick out members assigned to lower‑ranked roles.</td>
-   </tr>
+     <tr>
+       <td>**Add or remove group members**</td>
+       <td>Members with this role can [invite](#inviting-members) and [remove](#removing-members) other members.</td>
+     </tr>
+     <tr>
+       <td>**Add or remove [role] role members**</td>
+       <td>Members with this role can give or remove the role to/from other members in the group. This permission is useful for roles that should have some management permissions but not at the super‑admin level.</td>
+     </tr>
+     <tr>
+       <td>**Configure limited roles**</td>
+       <td>Members with this role can configure the roles they are assigned and assign permissions to those roles that they themselves have.</td>
+     </tr>
+     <tr>
+       <td>**Administrate all roles**</td>
+       <td>Members with this role can create, delete, and configure any role in the group. This is a super‑admin permission, as it provides nearly full access.</td>
+     </tr>
+     <tr>
+       <td>**Configure group profile**</td>
+       <td>Members with this role can update the group's name, description, and other metadata. Does not include transferring ownership, which only the owner can do.</td>
+     </tr>
+     <tr>
+       <td>**View group activity history**</td>
+       <td>Members with this role can view [group activity history](#group-activity-history).</td>
+     </tr>
    </tbody>
    <thead>
-	 <tr>
-     <th colspan="2">Assets</th>
-   </tr>
+     <tr>
+       <th colspan="2">Experience Permissions</th>
+     </tr>
    </thead>
    <tbody>
-   <tr>
-     <td>**Spend group funds**</td>
-     <td>Use the group's funds for certain group‑related actions.</td>
-   </tr>
-   <tr>
-     <td>**Create and edit group experiences**</td>
-     <td>Create and edit experiences and assets that are specifically owned by the group. See [here](../projects/collaboration.md#group-owned-experiences) for how this setting relates to collaborative sessions.</td>
-   </tr>
-   <tr>
-     <td>**View group experience analytics**</td>
-     <td>View analytics for group experiences. See [here](../production/analytics/analytics-dashboard.md#granting-group-permission) for details.</td>
-   </tr>
+     <tr>
+      <td>**Play all group experiences**</td>
+      <td>Members with this role can play all experiences owned by the group, whether they're private or public. Optionally available as a [per‑experience permission][per_experience_permission].</td>
+     </tr>
+     <tr>
+       <td>**Edit all group experiences**</td>
+       <td>Members with this role can edit all experiences and [assets](../projects/assets/index.md) owned by the group. Does not include editing an experience outside of a [collaborative](../projects/collaboration.md) session or saving a place from one experience into another experience. Optionally available as a [per‑experience permission][per_experience_permission].</td>
+     </tr>
+     <tr>
+       <td>**Edit & publish all group experiences**</td>
+       <td>Members with this role can both edit experiences, as above, and also publish experiences to Roblox. Optionally available as a [per‑experience permission][per_experience_permission].</td>
+     </tr>
+     <tr>
+       <td>**View all analytics for group experiences**</td>
+       <td>Members with this role can access the [analytics](../production/analytics/index.md) of all experiences owned by the group, even if they don't have edit access. Optionally available as a [per‑experience permission][per_experience_permission].</td>
+     </tr>
+     <tr>
+       <td>**Create and configure share links**</td>
+       <td>Members with this role can create/configure [share links](../production/promotion/share-links.md).</td>
+     </tr>
+     <tr>
+       <td>**View Data Stores Manager**</td>
+       <td>Members with this role can access the [Data Stores Manager](../cloud-services/data-stores/data-stores-manager.md).</td>
+     </tr>
+     <tr>
+       <td>**Configure bans for all group experiences**</td>
+       <td>Members with this role can ban and manage banned users for all experiences owned by the group.</td>
+     </tr>
+   </tbody>
+   <thead>
+     <tr>
+       <th colspan="2">Group Revenue</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tr>
+      <td>**Configure group revenue**</td>
+      <td>Members with this role can view all group revenue, as below, and also directly manage it. This includes setting up [recurring payouts](#recurring-payouts), as well as sending [one‑time payouts](#one-time-payouts) to collaborators.</td>
+     </tr>
+     <tr>
+       <td>**View group revenue**</td>
+       <td>Members with this role can view the group Robux balance, any configured recurring split payouts, and (in the future) new revenue logging features.</td>
+     </tr>
+     <tr>
+       <td>**Create Ad Campaigns for the group**</td>
+       <td>Members with this role can advertise the group.</td>
+     </tr>
+   </tbody>
+   <thead>
+     <tr>
+       <th colspan="2">Avatar Item Permissions</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tr>
+      <td>**Configure classic avatar items**</td>
+      <td>Members with this role can configure classic avatar items such as 2D clothing.</td>
+     </tr>
+     <tr>
+       <td>**Create classic avatar items**</td>
+       <td>Members with this role can create classic avatar items such as 2D clothing.</td>
+     </tr>
+   </tbody>
+   <thead>
+     <tr>
+       <th colspan="2">Open Cloud Permissions</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tr>
+      <td>**Manage all API keys**</td>
+      <td>Members with this role can upload their own [Open Cloud API keys](../cloud/auth/api-keys.md) to the group, as well as configure everyone else's.</td>
+     </tr>
+     <tr>
+       <td>**Manage own API keys**</td>
+       <td>Members with this role can configure and upload their own [Open Cloud API keys](../cloud/auth/api-keys.md) to the group (but not configure everyone else's as above).</td>
+     </tr>
+   </tbody>
+   <thead>
+     <tr>
+       <th colspan="2">Asset Permissions</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tr>
+      <td>**View development items**</td>
+      <td>Members with this role can view development items owned by the group, for example **Audio**.</td>
+     </tr>
+     <tr>
+      <td>**Create and configure development items**</td>
+      <td>Members with this role can upload and configure asset development items such as **Decals**.</td>
+     </tr>
+     <tr>
+      <td>**Manage development item permissions**</td>
+      <td>Members with this role can configure permissions of development items, for example audio sharing.</td>
+     </tr>
    </tbody>
    </table>
 
-   <Alert severity="warning">
-   By default, only the group owner has the **Create and edit group experiences** permission, a requirement for being a [collaborator](../projects/collaboration.md) in a team session. This permission should be granted with care because members who have it may threaten the [safety](#safety-in-group-experiences) of the group's experiences.
+3. <Chip label="IMPORTANT" size="small" variant="outlined" color="warning" /> Click the **Save Changes** button to apply the permission settings.
+4. <Chip label="OPTIONAL" size="small" variant="outlined" /> Click the **Settings** tab and choose a color for the role, then click **Save Changes**.
+
+   <img src="../assets/creator-dashboard/Group-Roles-Settings-Tab.png" width="780" alt="Settings tab indicated for a group role on the Creator Dashboard." />
+
+    <img src="../assets/creator-dashboard/Group-Roles-Role-Color.png" width="780" alt="Color options indicated for a group role on the Creator Dashboard." />
+
+   <Alert severity="info">
+   A role's **Settings** section is also where group owners and members with sufficient permissions can remove a role entirely through the **Delete Role** button.
    </Alert>
 
-### Assigning Roles
+## Manage members
 
-If you're the group owner or are assigned to a role with the correct permissions by the group owner, you can edit members in roles ranked lower than your own.
+Once [roles](#roles-and-permissions) have been configured for the group, members can be invited and assigned from the **Collaboration** &rang; **Members** page.
 
-To assign roles:
+<Alert severity="warning">
+Member configuration is only accessible if you're the group owner or you have permission to manage other members and their roles.
+</Alert>
 
-1. In the left column, select the **Members** tab.
-1. Using the drop-down menu below each group member, select a role.
+### Invite members
 
-   <img src="../assets/publishing/groups/Assign-Role.png" alt="A close up view of a member of a group. The dropdown menu is extended, and the Member role is highlighted." width="340" />
+You can invite new members through the **Invite** button in the upper‑right corner.
 
-## Managing Payouts
+<img src="../assets/creator-dashboard/Group-Members-Invite-Button.png" width="880" alt="Invite button indicated in the group's Members section on the Creator Dashboard." />
 
-You can use groups to share Robux revenue. Group owners can pay contributors by either transferring group funds as a one-time payout or by scheduling recurring payouts. Roblox monitors payouts to prevent fraud and abuse.
+From the popup, locate a creator by typing their username into the search field. Creators will be notified when invited to your group (a customizable setting within the creator notification system), or you can copy the **group link** and share it with invited creators through other means.
 
-To manage payouts:
+<img src="../assets/creator-dashboard/Group-Members-Invite-Popup.png" width="880" alt="Invite popup window indicated in the group's Members section on the Creator Dashboard." />
 
-1. Navigate to the [Groups](https://www.roblox.com/groups) page and select your group.
-1. Click the **&ctdot;** button in the upper-right corner and select **Configure&nbsp;Group**.
+### Assign roles
 
-   <img src="../assets/publishing/groups/Configure-Group.png" alt="A group's landing page with the ellipis button and Configure Group menu item highlighted." width="780" />
+To assign one or more roles to a member, hover over their name, click the **&#8942;** button, and then click the **&CirclePlus;** button for the desired role.
 
-1. In the left column, hover over **Revenue** and then click **Payouts**.
+<img src="../assets/creator-dashboard/Group-Members-Assign-Role.png" width="880" alt="Roles management popup window showing how to assign a role to a group member on the Creator Dashboard." />
 
-   <img src="../assets/publishing/groups/Group-Admin-Revenue-Payouts.png" alt="A close up view of the left column with the Revenue navigation item highlighted, as well as the Payouts submenu item." width="330" />
+To quickly un-assign a role from the members overview, hover over it and click the **&CircleTimes;** button.
 
-	 From the payouts screen, initiate a **recurring payout** or **one‑time payout**.
+<img src="../assets/creator-dashboard/Group-Members-Un-Assign-Role.png" width="880" alt="Hover-over showing how to un-assign a role from a group member on the Creator Dashboard." />
 
-	 <Tabs>
-	 <TabItem label="Recurring Payout">
-	 Group owners can configure recurring payouts to automatically share profits when the group earns them. There's a short delay from when the group earns the funds and when they distribute to members. When you change a member's recurring payout, Roblox sends a message notification to that member to inform them of the change.
+<Alert severity="error">
+Currently, roles configured through the legacy [Groups](https://www.roblox.com/groups) pages appear for each member, and new members are assigned the legacy **Member** role. If permissions were granted to a role through the legacy system, **the member will continue to have those permissions**, so it's recommended that you revoke permissions/roles in the legacy system and then migrate members to the new system.
+</Alert>
 
-   To configure recurring payouts:
+### Remove members
 
-   1. Select the **Recurring Payout** tab.
+To remove a member entirely, hover over their name and click the "trash" button. A dialog will appear for you to confirm their removal.
 
-      <img src="../assets/publishing/groups/Group-Admin-Payouts-Recurring.png" alt="A close up view of both the Recurring Payout and One-Time Payout tabs. The Recurring Payout tab is highlighted." width="800" />
+<img src="../assets/creator-dashboard/Group-Members-Remove-Member.png" width="880" alt="Hover-over showing how to remove a member from a group on the Creator Dashboard." />
 
-   2. Add one or more payout recipients by clicking the **Add Payout Recipient** button.
-   3. Next to each member, enter the percentage of the group's Robux that you would like them to receive every month. To remove them from the payout, click the "trash" button.
-   4. After everything looks correct, click **Save**.
+## Manage payouts
 
-   </TabItem>
-   <TabItem label="One-Time Payout">
-   Group owners can perform one-time payouts of Robux to a single group member or multiple members. This payout can be a lump sum or a percentage of the group's total funds, but you can only distribute Robux in whole numbers. If you choose to distribute by percentage, the amount rounds down to the nearest whole number of Robux, and the remainder remains in the group's funds.
+If you're the owner of a selected group, you'll find a **Payouts** page under **Finances**. Here, you can send one‑time payouts, as well as define percentage splits with other members.
 
-   To make a one-time payout:
+<Alert severity="info">
+Some groups may not have this page unlocked initially for various reasons, such as the age of the group or insufficient funds to payout.
+</Alert>
 
-   1. Select the **One-time Payout** tab.
+<Alert severity="warning">
+Group owners can't share payouts across group members for experiences that charge for [paid access in local currency](../production/monetization/paid-access-local-currency.md).
+</Alert>
 
-      <img src="../assets/publishing/groups/Group-Admin-Payouts-One-Time.png" alt="A close up view of both the Recurring Payout and One-Time Payout tabs. The One-time Payout tab is highlighted." width="800" />
+### One-time payouts
 
-   2. Use the drop-down menu to choose whether the payout is a set amount or a percentage of the group's total Robux balance.
-   3. Add one or more payout recipients by clicking the **Add Payout Recipient** button.
-   4. Next to each member, enter the amount or percentage you want to give to them. To remove them from the payout, click the "trash" button.
-   5. After everything looks correct, click **Distribute**.
+Group owners can make one-time payouts to members in a batch, selecting a set amount for each. Safety features include 2FA challenges, confirmation dialogues, and checks around the eligibility of members being paid.
 
-   </TabItem>
-   </Tabs>
+<img src="../assets/creator-dashboard/Group-Payouts-One-Time.png" width="880" alt="One-time payout button indicated in the Payouts section on the Creator Dashboard." />
 
-## Safety in Group Experiences
+### Recurring payouts
 
-Group members with the **Create and edit group experiences** permission can enable the **Place&nbsp;Copying** setting for a creation, potentially allowing the entire Roblox community to copy it and use assets within it. The following tips can help you improve the safety and intellectual property protections in group experiences.
+Group owners can also define recurring payouts across the entire group **and** per‑experience, assigning a percentage payout to each member before the remainder enters the group's overall balance.
 
-- Check that each group role has the correct [permissions](#roles-and-permissions). If you don't want members with a role to have the editing permissions, disable **Create and edit group experiences** for that role.
-- Confirm that each member is [assigned](#assigning-roles) the appropriate role.
-- Confirm that [Place Copying](../production/publishing/publishing-experiences-and-places.md#allowing-copying) is **disabled** before you add assets that you don't want others to copy.
+<img src="../assets/creator-dashboard/Group-Payouts-Split-Options.png" width="880" alt="Split payout buttons indicated in the Payouts section on the Creator Dashboard." />
+
+Consider the following scenario where a group experience **Laser Maze** is split 40%&ndash;30%&ndash;10% among three members, with a remainder of 20%.
+
+<br />
+<Grid container spacing={2}>
+	<Grid item XSmall={2} Medium={1} Large={1} XLarge={1}><img src="../assets/misc/Box-Label-A.png" width="40" style={{float:"right"}} /></Grid>
+	<Grid item XSmall={10} Medium={11} Large={11} XLarge={11} style={{marginTop:"4px"}}>
+	Assuming the experience earns 1000 Robux, the three members receive 400, 300, and 100 Robux respectively (40%&ndash;30%&ndash;10%).
+	</Grid>
+</Grid>
+<Grid container spacing={2}>
+	<Grid item XSmall={2} Medium={1} Large={1} XLarge={1}><img src="../assets/misc/Box-Label-B.png" width="40" style={{float:"right"}} /></Grid>
+	<Grid item XSmall={10} Medium={11} Large={11} XLarge={11} style={{marginTop:"4px"}}>
+	The remaining 200 Robux (20% of the experience split) passes onward to the **group split** percentages, defined at 20%&ndash;20%&ndash;10% among the same three members; they receive an additional 40, 40, and 20 Robux respectively.
+	</Grid>
+</Grid>
+<Grid container spacing={2}>
+	<Grid item XSmall={2} Medium={1} Large={1} XLarge={1}><img src="../assets/misc/Box-Label-C.png" width="40" style={{float:"right"}} /></Grid>
+	<Grid item XSmall={10} Medium={11} Large={11} XLarge={11} style={{marginTop:"4px"}}>
+	The remaining 100 Robux (50% of the group split) is placed in the group's overall balance.
+	</Grid>
+</Grid>
+
+<img src="../assets/creator-dashboard/Group-Payouts-Splits-Example.png" width="840" alt="Example flowchart of how experience splits are distributed to group members first, with remainder going factored into group splits for final distribution among the group." />
+
+<Alert severity="warning">
+Note that revenue from [private server](../production/monetization/private-servers.md) subscriptions does not change if you adjust split percentages at a later time, meaning that if a player buys a private server subscription, the split percentages at time of purchase will apply to that particular subscription forever (until it is canceled). This policy may be changed in the future.
+</Alert>
+
+## Group activity history
+
+Group members with the **View group activity history** permission can view detailed activity such as role changes and publishing actions from the **Activity&nbsp;History** section under **Collaboration** on the Creator Dashboard. This is also a useful way for group owners to moderate activity that may violate [group guidelines](./group-guidelines.md).
+
+## Intellectual property protection
+
+Group members with permission to edit all group experiences can enable the [Place Copying](../production/publishing/publish-experiences-and-places.md#allow-copying) setting for a creation, potentially allowing the entire Roblox community to copy it and use assets within it. To help protect intellectual property in a group, the owner or members with sufficient permissions should:
+
+- Confirm that each member is [assigned the appropriate role](#assign-roles).
+- Check that each group role has the correct [permissions](#roles-and-permissions).
+- Confirm that the [Place Copying](../production/publishing/publish-experiences-and-places.md#allow-copying) setting is disabled before private assets are added.
+
+[per_experience_permission]: ../production/publishing/publish-experiences-and-places.md#configure-experiences

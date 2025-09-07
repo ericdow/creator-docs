@@ -1,15 +1,15 @@
 ---
 title: Conditionals
-description: A tutorial series on how to use if statements in Lua within Roblox Studio.
+description: A tutorial series on how to use if statements in Luau within Roblox Studio.
 next: /tutorials/fundamentals/coding-3/intro-to-if-statements
 prev: /tutorials/fundamentals/coding-2/multiple-parameters-and-arguments
 ---
 
-### Series Description
+### Series description
 
 Many experiences have actions that only take place if a list of requirements are met. You may have seen rooms only specific teams could enter or inventory items only some players could purchase. This series will cover how to set up code that says, "If this happens, then do that."
 
-### Objectives and Prerequisites
+### Objectives and prerequisites
 
 <table>
 <tbody>
@@ -30,7 +30,7 @@ Many experiences have actions that only take place if a list of requirements are
 </tbody>
 </table>
 
-### Series Contents
+### Series contents
 
 <table>
 <thead>
@@ -42,7 +42,7 @@ Many experiences have actions that only take place if a list of requirements are
 <tbody>
    <tr>
     <td>[Intro to If Statements](../coding-3/intro-to-if-statements.md)</td>
-    <td>Learn how if statements work and how to code them within Roblox Lua.</td>
+    <td>Learn how if statements work and how to code them in Luau.</td>
    </tr>
    <tr>
     <td>[If Statement Practice: Trap Parts](../coding-3/traps-with-if-statements.md)</td>
@@ -57,7 +57,7 @@ Many experiences have actions that only take place if a list of requirements are
     <td>Design code that accounts for multiple scenarios with `else` and `elseif`.</td>
    </tr>
    <tr>
-   <td>[Multiple Conditions Practice: Awarding Points](../coding-3/giving-points.md)</td>
+   <td>[Multiple Conditions Practice: Awarding Points](../coding-3/give-points.md)</td>
     <td>Use everything learned about conditionals to create a part that can award points to players.</td>
    </tr>
 </tbody>

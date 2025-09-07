@@ -1,5 +1,5 @@
 ---
-title: Change the Script
+title: Change the script
 description: Part of the Create and Destroy series. Learn how to open and change a script in Roblox Studio.
 next: /education/build-it-play-it-create-and-destroy/icons-and-thumbnails
 prev: /education/build-it-play-it-create-and-destroy/challenge-2
@@ -11,7 +11,7 @@ With the map complete, you'll move onto polishing the experience. These next art
 - Upload a custom game image.
 - Share the experience with friends.
 
-## Open the Script
+## Open the script
 
 Besides just the map, other aspects of Create and Destroy can be customized through a **script**, a container for code used to run an experience. In this case, you'll change the points awarded by destroying buildings.
 
@@ -21,7 +21,7 @@ Besides just the map, other aspects of Create and Destroy can be customized thro
 2. Double-click **GameSettings** to open the script editor.
    <img src="../../assets/education/build-it-play-it-create-and-destroy/GameSettingsFoundpsd.png" width="75%" />
 
-## GameSettings Script Contents
+## GameSettings script contents
 
 In the script, you'll see a section with the three different point values given to players for large buildings (HighPoints), medium buildings (MediumPoints), and for props (LowPoints).
 
@@ -33,14 +33,14 @@ GameSettings.minimumPlayers = 1
 GameSettings.transitionStart = 3
 GameSettings.transitionEnd = 3
 GameSettings.pointValues = {
-	 -- Value types must match folder names to award points correctly
+	-- Value types must match folder names to award points correctly
 	LowPoints = 0,
 	MediumPoints = 10,
 	HighPoints = 15,
 }
 ```
 
-## Change the Points Value
+## Change the points value
 
 Giving players more points can make smashing buildings feel even more rewarding.
 
@@ -48,10 +48,10 @@ Giving players more points can make smashing buildings feel even more rewarding.
 
    ```lua
    GameSettings.pointValues = {
-     -- Value types must match folder names to award points correctly
-     LowPoints = 0,
-     MediumPoints = 10,
-     HighPoints = 150,
+   	-- Value types must match folder names to award points correctly
+   	LowPoints = 0,
+   	MediumPoints = 10,
+   	HighPoints = 150,
    }
    ```
 

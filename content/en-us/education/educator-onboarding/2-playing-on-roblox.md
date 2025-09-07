@@ -1,5 +1,5 @@
 ---
-title: Playing on Roblox
+title: Play on Roblox
 description: For educators, learn how to play Roblox. This covers creating an account, learning controls, and common terms found on Roblox.
 next: /education/educator-onboarding/3-setting-up-a-roblox-classroom
 prev: /education/educator-onboarding/1-intro-to-roblox
@@ -13,52 +13,52 @@ By the end of this article, you will:
 - Understand the layout of the Roblox platform and how to launch experiences.
 - Learn basic skills in Roblox Client, such as avatar controls and camera manipulation.
 
-## Creating Your Account
+## Create your account
 
 To play and create on Roblox, you need a **free** account.
 
-### Account Creation
+### Account creation
 
 1. Create an account by signing up on the <a href="https://www.roblox.com" target="_blank" rel="noopener">Roblox Home Page</a>. Follow the prompts to create your account.
 
-   <img src="../../assets/education/legacy/module3-signinScreen.jpg" width="100%" />
+   <img src="../../assets/education/legacy/module3-signinScreen.jpg" width="80%" />
 
 2. To create an account, you may be asked to complete a **CAPTCHA**. These are timed challenges used to discourage people creating fake accounts. Challenges vary, but often ask you to find a specific object in an image.
 
   <Grid container>
-    <Grid item xs={4}>
+    <Grid item XSmall={4}>
       <figure>
       <img
       src="../../assets/education/legacy/module2-verify.png"
       width="100%" />
-      <figcaption>Captcha Prompt</figcaption>
+      <figcaption>Captcha prompt</figcaption>
       </figure>
     </Grid>
-    <Grid item xs={4}>
+    <Grid item XSmall={4}>
       <figure>
       <img
       src="../../assets/education/legacy/module2-capture.jpg"
       width="100%" />
-      <figcaption>Captcha Challenge</figcaption>
+      <figcaption>Captcha calculateshallenge</figcaption>
       </figure>
     </Grid>
   </Grid>
 
     <Alert severity="info">
-    <AlertTitle>CAPTCHAs and Students</AlertTitle>
+    <AlertTitle>CAPTCHAs and students</AlertTitle>
     Note that your students may have to accomplish CAPTCHA challenges when logging
     into accounts. Because of this, we encourage setting aside time for account
     log-ins at the start of class.
     </Alert>
 
-## The Roblox Home Page
+## The Roblox home page
 
 Once you've logged in, you'll see the Roblox home page. This includes recommended games and navigation options. Additionally, you'll see your username and a headshot of your **avatar**, your virtual representation in Roblox.
 
-<img src="../../assets/education/legacy/module2-homepage.jpg" />
+<img src="../../assets/education/legacy/module2-homepage.jpg" width="80%" />
 
 <Alert severity="info">
-  <AlertTitle>Customizing Avatars</AlertTitle>
+  <AlertTitle>Customize avatars</AlertTitle>
 Many users enjoy customizing their avatar, changing it to be a realistic
 representation of themselves, or even becoming a fantasy character. Avatars are
 customized using avatar items in the <a
@@ -68,16 +68,14 @@ target="_blank" rel="noopener">Marketplace</a>.
 
 Before moving onto the training experience, it's recommended you add an email to your account. This adds extra security to your account and ensures you don't get locked out if a password is forgotten.
 
-1. On the Roblox home page, in the top right, click the <img
-   src="../../assets/education/legacy/roblox-web-SettingsButton.png"
-   width="22" /> and select **Settings**.
+1. On the Roblox home page, in the top right, click the gear icon and select **Settings**.
 
-   <img src="../../assets/education/legacy/module2-settings.png" />
+      <img src="../../assets/education/legacy/module2-settings.png" />
 
 2. On your account screen, click **Add Email**. Type in your school or
    organization email. Follow prompts as needed to verify the email.
 
-   <img src="../../assets/education/legacy/module2-addEmail.png" />
+   <img src="../../assets/education/legacy/module2-addEmail.png" width="80%" />
 
    <Alert severity="info">
    While Roblox does its best to ensure accounts are safe, you're one of the best defenses against bad actors. Learn additional tips in <a
@@ -85,7 +83,7 @@ Before moving onto the training experience, it's recommended you add an email to
    target="_blank" rel="noopener">Account Security</a>.
    </Alert>
 
-## Learn Roblox Client
+## Learn Roblox client
 
 With an account created, you'll now launch your first Roblox experience. The **What is Roblox? - Training Experience** is designed by the Roblox team to introduce educators how to play Roblox and feel comfortable on the platform.
 
@@ -97,35 +95,30 @@ All Roblox experiences have their own page. This page includes a description and
 
 A sample page is below.
 
-<img src="../../assets/education/legacy/module2-gamePage.png" />
+<img src="../../assets/education/legacy/module2-gamePage.png" width="80%" />
 
-### Launch the Experience
+### Launch the experience
 
-1. To start, go to the [What is Roblox? Training Experience](https://www.roblox.com/games/7086173721).
+1. To start, go to the [Learn to Play Roblox](https://www.roblox.com/games/16279707695/Learn-to-Play-Roblox-Tutorial) experience.
 
 2. On that page, click the **Play** button. If you already have Roblox installed, it'll open the experience. If not, permit Roblox to be installed onto your device.
 
-   <img src="../../assets/education/legacy/module2-clickPlay.jpg" />
+   <img src="../../assets/education/legacy/module2-clickPlay.jpg" width="80%" />
 
-3. With Roblox Client open, go through the experience as instructed. This should take about 5 - 10 minutes. Come back to your web browser when you see a sign reading "You Finished the Training!"
+3. With Roblox Client open, go through the experience as instructed. This should take about 5 - 10 minutes. Come back to your web browser when you see a sign reading "Find new games!"
 
-   <Grid container>
-   <Grid item xs={4}>
-   <figure>
-   <img src="../../assets/education/legacy/module2-trainingExample.jpg" width="100%" />
-   <figcaption>Example In-Experience</figcaption>
-   </figure>
-   </Grid>
+   <GridContainer numColumns="2">
+     <figure>
+       <img width="100%" img src="../../assets/education/legacy/module2-trainingExample.jpg" alt="" />
+       <figcaption>Example in-experience</figcaption>
+     </figure>
+     <figure>
+       <img width="71%" img src="../../assets/education/legacy/module2-finishedTraining.jpg" alt="" />
+       <figcaption>Finish screen</figcaption>
+     </figure>
+   </GridContainer>
 
-   <Grid item xs={4}>
-   <figure>
-   <img src="../../assets/education/legacy/module2-finishedTraining.jpg" width="100%" />
-   <figcaption>Finish Screen</figcaption>
-   </figure>
-   </Grid>
-   </Grid>
-
-### Desktop Controls
+### Desktop controls
 
 While all controls are introduced in the experience, here's a quick reference.
 
@@ -136,7 +129,7 @@ While all controls are introduced in the experience, here's a quick reference.
 <p><strong>Move Forward</strong></p>
 </td>
 <td>
-<p><kbd>W</kbd> or Up Arrow</p>
+<p><kbd>W</kbd> or <kbd>↑</kbd></p>
 </td>
 </tr>
 <tr>
@@ -144,7 +137,7 @@ While all controls are introduced in the experience, here's a quick reference.
 <p><strong>Move Backward</strong></p>
 </td>
 <td>
-<p><kbd>S</kbd>  or Down Arrow</p>
+<p><kbd>S</kbd> or <kbd>↓</kbd></p>
 </td>
 </tr>
 <tr>
@@ -152,7 +145,7 @@ While all controls are introduced in the experience, here's a quick reference.
 <p><strong>Move Left</strong></p>
 </td>
 <td>
-<p><kbd>A</kbd> or Left Arrow</p>
+<p><kbd>A</kbd></p>
 </td>
 </tr>
 <tr>
@@ -160,7 +153,7 @@ While all controls are introduced in the experience, here's a quick reference.
 <p><strong>Move Right</strong></p>
 </td>
 <td>
-<p><kbd>D</kbd> or Right Arrow</p>
+<p><kbd>D</kbd></p>
 </td>
 </tr>
 <tr>
@@ -174,7 +167,7 @@ While all controls are introduced in the experience, here's a quick reference.
 </tbody>
 </table>
 
-### Mobile Controls
+### Mobile controls
 
 Roblox works easily on any mobile device. Whenever playing Roblox, we recommend holding the phone with thumbs on the screen like below.
 

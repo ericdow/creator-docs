@@ -1,18 +1,18 @@
 ---
-title: Studio Shortcuts
+title: Studio shortcuts
 description: Explains Studio default shortcuts and key commands that make development quicker and easier.
 ---
 
 Studio has many default shortcuts and key commands that make development quicker and easier. You can customize every shortcut and bind many actions without defaults to any key through **File**&nbsp;&rarr; **Advanced**&nbsp;&rarr; **Customize&nbsp;Shortcuts**.
 
-## Files and Publishing
+## Files and publishing
 
 <table size="small">
   <thead>
     <tr>
       <th>Action</th>
 			<th>Windows</th>
-			<th>Mac</th>
+			<th>macOS</th>
       <th>Description</th>
     </tr>
    </thead>
@@ -31,8 +31,8 @@ Studio has many default shortcuts and key commands that make development quicker
     </tr>
     <tr>
       <td>**Open from Roblox...**</td>
-			<td><kbd>Shift</kbd><kbd>Ctrl</kbd><kbd>O</kbd></td>
-			<td><kbd>Shift</kbd><kbd>⌘</kbd><kbd>O</kbd></td>
+			<td><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>O</kbd></td>
+			<td><kbd>⌘</kbd><kbd>Shift</kbd><kbd>O</kbd></td>
       <td>Open a recent experience from Roblox.</td>
     </tr>
     <tr>
@@ -43,38 +43,38 @@ Studio has many default shortcuts and key commands that make development quicker
     </tr>
     <tr>
       <td>**Save to File As...**</td>
-			<td><kbd>Shift</kbd><kbd>Ctrl</kbd><kbd>S</kbd></td>
-			<td><kbd>Shift</kbd><kbd>⌘</kbd><kbd>S</kbd></td>
+			<td><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>S</kbd></td>
+			<td><kbd>⌘</kbd><kbd>Shift</kbd><kbd>S</kbd></td>
       <td>Save the active local file with a new name.</td>
     </tr>
-	<tr>
+		<tr>
       <td>**Publish to Roblox**</td>
 			<td><kbd>Alt</kbd><kbd>P</kbd></td>
 			<td><kbd>⌥</kbd><kbd>P</kbd></td>
       <td>Publish the active place to Roblox.</td>
     </tr>
-	<tr>
+		<tr>
       <td>**Publish to Roblox As...**</td>
 			<td><kbd>Alt</kbd><kbd>Shift</kbd><kbd>P</kbd></td>
 			<td><kbd>⌥</kbd><kbd>Shift</kbd><kbd>P</kbd></td>
-      <td>Publish the active place to Roblox as new version.</td>
+      <td>Publish the active place to Roblox as a new version.</td>
     </tr>
-	<tr>
+		<tr>
       <td>**Close Place**</td>
 			<td><kbd>Ctrl</kbd><kbd>F4</kbd></td>
 			<td><kbd>⌘</kbd><kbd>F4</kbd></td>
       <td>Close the open place.</td>
     </tr>
-	<tr>
+		<tr>
       <td>**Close Tab**</td>
 			<td><kbd>Ctrl</kbd><kbd>W</kbd></td>
 			<td><kbd>⌘</kbd><kbd>W</kbd></td>
       <td>Close the active tab.</td>
     </tr>
-	<tr>
+		<tr>
       <td>**Open Previous Tab**</td>
-			<td><kbd>Shift</kbd><kbd>Ctrl</kbd><kbd>T</kbd></td>
-			<td><kbd>Shift</kbd><kbd>⌘</kbd><kbd>T</kbd></td>
+			<td><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>T</kbd></td>
+			<td><kbd>⌘</kbd><kbd>Shift</kbd><kbd>T</kbd></td>
       <td>Open the previous tab.</td>
     </tr>
     <tr>
@@ -86,14 +86,14 @@ Studio has many default shortcuts and key commands that make development quicker
   </tbody>
 </table>
 
-## Camera Controls
+## Camera controls
 
 <table size="small">
   <thead>
     <tr>
       <th>Action</th>
 			<th>Windows</th>
-			<th>Mac</th>
+			<th>macOS</th>
       <th>Description</th>
     </tr>
   </thead>
@@ -111,7 +111,7 @@ Studio has many default shortcuts and key commands that make development quicker
       <td>Zoom the camera in.</td>
     </tr>
     <tr>
-      <td>**Zoom Out**</td>
+      <td>**Zoom&nbsp;Out**</td>
 			<td><p><kbd>Ctrl</kbd><kbd>-</kbd></p><kbd>O</kbd></td>
 			<td><p><kbd>⌘</kbd><kbd>-</kbd></p><kbd>O</kbd></td>
       <td>Zoom the camera out.</td>
@@ -120,30 +120,30 @@ Studio has many default shortcuts and key commands that make development quicker
       <td>**Pan Left**</td>
 			<td><kbd>,</kbd></td>
 			<td><kbd>,</kbd></td>
-      <td>Rotate the camera left. If a part/model is in focus, rotate counterclockwise around it.</td>
+      <td>Rotate the camera left. If a part/model is in focus via the <kbd>F</kbd> shortcut, rotate the camera counterclockwise around the focal object.</td>
     </tr>
     <tr>
       <td>**Pan Right**</td>
 			<td><kbd>.</kbd></td>
 			<td><kbd>.</kbd></td>
-      <td>Rotate the camera right. If a part/model is in focus, rotate clockwise around it.</td>
+      <td>Rotate the camera right. If a part/model is in focus via the <kbd>F</kbd> shortcut, rotate the camera clockwise around the focal object.</td>
     </tr>
     <tr>
       <td>**Tilt Down**</td>
 			<td><kbd>PageUp</kbd></td>
 			<td><kbd>PageUp</kbd></td>
-      <td>Tilt the camera down. If a part/model is in focus, tilt camera down about it.</td>
+      <td>Tilt the camera down. If a part/model is in focus via the <kbd>F</kbd> shortcut, tilt the camera down about the focal object.</td>
     </tr>
     <tr>
       <td>**Tilt Up**</td>
 			<td><kbd>PageDown</kbd></td>
 			<td><kbd>PageDown</kbd></td>
-      <td>Tilt the camera up. If a part/model is in focus, tilt camera up about it.</td>
+      <td>Tilt the camera up. If a part/model is in focus via the <kbd>F</kbd> shortcut, tilt the camera up about the focal object.</td>
     </tr>
   </tbody>
 </table>
 
-## Selecting and Editing
+## Select and edit
 
 <Tabs>
 <TabItem label="General">
@@ -152,7 +152,7 @@ Studio has many default shortcuts and key commands that make development quicker
     <tr>
       <th>Action</th>
 			<th>Windows</th>
-			<th>Mac</th>
+			<th>macOS</th>
       <th>Description</th>
     </tr>
   </thead>
@@ -175,37 +175,37 @@ Studio has many default shortcuts and key commands that make development quicker
 			<td><p><kbd>⌘</kbd><kbd>V</kbd></p><kbd>⌃</kbd><kbd>Y</kbd></td>
       <td>Insert the clipboard contents.</td>
     </tr>
-	<tr>
+		<tr>
       <td>**Paste Into**</td>
-			<td><kbd>Shift</kbd><kbd>Ctrl</kbd><kbd>V</kbd></td>
-			<td><kbd>Shift</kbd><kbd>⌘</kbd><kbd>V</kbd></td>
+			<td><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>V</kbd></td>
+			<td><kbd>⌘</kbd><kbd>Shift</kbd><kbd>V</kbd></td>
       <td>Paste the objects currently on the clipboard as children of the selected object.</td>
     </tr>
-	<tr>
+		<tr>
       <td>**Cut**</td>
 			<td><p><kbd>Ctrl</kbd><kbd>X</kbd></p><kbd>⌃</kbd><kbd>K</kbd></td>
 			<td><p><kbd>⌘</kbd><kbd>X</kbd></p><kbd>⌃</kbd><kbd>K</kbd></td>
       <td>Cut the current selections and put on the clipboard.</td>
     </tr>
-	<tr>
+		<tr>
       <td>**Delete**</td>
 			<td><p><kbd>Delete</kbd></p><p><kbd>Backspace</kbd></p><kbd>⌃</kbd><kbd>D</kbd></td>
 			<td><p><kbd>Delete</kbd></p><p><kbd>Backspace</kbd></p><kbd>⌃</kbd><kbd>D</kbd></td>
       <td>Delete the selections.</td>
     </tr>
-	<tr>
+		<tr>
       <td>**Select All**</td>
 			<td><kbd>Ctrl</kbd><kbd>A</kbd></td>
 			<td><kbd>⌘</kbd><kbd>A</kbd></td>
       <td>Select all objects in the workspace or all lines in a script.</td>
     </tr>
-	<tr>
+		<tr>
       <td>**Clear Selection**</td>
 			<td><kbd>Esc</kbd></td>
 			<td><kbd>Esc</kbd></td>
       <td>Clear the current selection.</td>
     </tr>
-	<tr>
+		<tr>
       <td>**Group**</td>
 			<td><kbd>Ctrl</kbd><kbd>G</kbd></td>
 			<td><kbd>⌘</kbd><kbd>G</kbd></td>
@@ -225,8 +225,8 @@ Studio has many default shortcuts and key commands that make development quicker
     </tr>
     <tr>
       <td>**Redo**</td>
-			<td><kbd>Shift</kbd><kbd>Ctrl</kbd><kbd>Z</kbd></td>
-			<td><kbd>Shift</kbd><kbd>⌘</kbd><kbd>Z</kbd></td>
+			<td><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>Z</kbd></td>
+			<td><kbd>⌘</kbd><kbd>Shift</kbd><kbd>Z</kbd></td>
       <td>Redo the previously undone action.</td>
     </tr>
   </tbody>
@@ -238,40 +238,46 @@ Studio has many default shortcuts and key commands that make development quicker
     <tr>
       <th>Action</th>
 			<th>Windows</th>
-			<th>Mac</th>
+			<th>macOS</th>
       <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>**Select**</td>
-			<td><kbd>Ctrl</kbd><kbd>1</kbd></td>
-			<td><kbd>⌘</kbd><kbd>1</kbd></td>
+			<td><kbd>1</kbd></td>
+			<td><kbd>1</kbd></td>
       <td>Activate the **Select** tool to select parts/models.</td>
     </tr>
     <tr>
       <td>**Move**</td>
-			<td><kbd>Ctrl</kbd><kbd>2</kbd></td>
-			<td><kbd>⌘</kbd><kbd>2</kbd></td>
+			<td><kbd>2</kbd></td>
+			<td><kbd>2</kbd></td>
       <td>Activate the **Move** tool to move parts/models along an axis.</td>
     </tr>
     <tr>
       <td>**Scale**</td>
-			<td><kbd>Ctrl</kbd><kbd>3</kbd></td>
-			<td><kbd>⌘</kbd><kbd>3</kbd></td>
+			<td><kbd>3</kbd></td>
+			<td><kbd>3</kbd></td>
       <td>Activate the **Scale** tool to resize parts/models.</td>
     </tr>
     <tr>
       <td>**Rotate**</td>
-			<td><kbd>Ctrl</kbd><kbd>4</kbd></td>
-			<td><kbd>⌘</kbd><kbd>4</kbd></td>
+			<td><kbd>4</kbd></td>
+			<td><kbd>4</kbd></td>
       <td>Activate the **Rotate** tool to rotate parts/models.</td>
     </tr>
-	<tr>
+		<tr>
       <td>**Transform**</td>
-			<td><kbd>Ctrl</kbd><kbd>5</kbd></td>
-			<td><kbd>⌘</kbd><kbd>5</kbd></td>
+			<td><kbd>5</kbd></td>
+			<td><kbd>5</kbd></td>
       <td>Activate the **Transform** tool to precisely manipulate a part/model.</td>
+    </tr>
+		<tr>
+      <td>**Toggle Snapping**</td>
+			<td><kbd>Shift</kbd></td>
+			<td><kbd>Shift</kbd></td>
+      <td>While transforming, hold to temporarily toggle transform **snapping** either on or off.</td>
     </tr>
     <tr>
       <td>**Anchor**</td>
@@ -279,19 +285,7 @@ Studio has many default shortcuts and key commands that make development quicker
 			<td><kbd>⌥</kbd><kbd>A</kbd></td>
       <td>Anchor or un-anchor the selected parts/models.</td>
     </tr>
-	<tr>
-      <td>**Jump to Move Increment**</td>
-			<td><kbd>Shift</kbd><kbd>2</kbd></td>
-			<td><kbd>Shift</kbd><kbd>2</kbd></td>
-      <td>Jump to the **Move** increment input field in the [Model](../studio/model-tab.md) tab.</td>
-    </tr>
-    <tr>
-      <td>**Jump to Rotate Increment**</td>
-			<td><p><kbd>Shift</kbd><kbd>4</kbd></p><kbd>Alt</kbd><kbd>R</kbd></td>
-			<td><p><kbd>Shift</kbd><kbd>4</kbd></p><kbd>⌥</kbd><kbd>R</kbd></td>
-      <td>Jump to the **Rotate** increment input field in the [Model](../studio/model-tab.md) tab.</td>
-    </tr>
-	<tr>
+		<tr>
       <td>**Toggle Local Space**</td>
 			<td><kbd>Ctrl</kbd><kbd>L</kbd></td>
 			<td><kbd>⌘</kbd><kbd>L</kbd></td>
@@ -309,6 +303,18 @@ Studio has many default shortcuts and key commands that make development quicker
 			<td><kbd>⌘</kbd><kbd>R</kbd></td>
       <td>Rotate selections 90&deg; about their **Y** axis.</td>
     </tr>
+		<tr>
+      <td>**Jump to Move Increment**</td>
+			<td><kbd>Shift</kbd><kbd>2</kbd></td>
+			<td><kbd>Shift</kbd><kbd>2</kbd></td>
+      <td>Jump to the **Move** increment input field in the [Model](../studio/model-tab.md) tab.</td>
+    </tr>
+    <tr>
+      <td>**Jump to Rotate Increment**</td>
+			<td><kbd>Alt</kbd><kbd>R</kbd></td>
+			<td><kbd>⌥</kbd><kbd>R</kbd></td>
+      <td>Jump to the **Rotate** increment input field in the [Model](../studio/model-tab.md) tab.</td>
+    </tr>
     <tr>
       <td>**Lock Tool**</td>
 			<td><kbd>Alt</kbd><kbd>L</kbd></td>
@@ -317,26 +323,26 @@ Studio has many default shortcuts and key commands that make development quicker
     </tr>
     <tr>
       <td>**Union**</td>
-			<td><kbd>Shift</kbd><kbd>Ctrl</kbd><kbd>G</kbd></td>
-			<td><kbd>Shift</kbd><kbd>⌘</kbd><kbd>G</kbd></td>
+			<td><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>G</kbd></td>
+			<td><kbd>⌘</kbd><kbd>Shift</kbd><kbd>G</kbd></td>
       <td>Join two or more parts together to form a single solid union; see [Solid Modeling](../parts/solid-modeling.md) for details.</td>
     </tr>
-	<tr>
+		<tr>
       <td>**Intersect**</td>
-			<td><kbd>Shift</kbd><kbd>Ctrl</kbd><kbd>I</kbd></td>
-			<td><kbd>Shift</kbd><kbd>⌘</kbd><kbd>I</kbd></td>
+			<td><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>I</kbd></td>
+			<td><kbd>⌘</kbd><kbd>Shift</kbd><kbd>I</kbd></td>
       <td>Intersect overlapping parts into a single solid intersection; see [Solid Modeling](../parts/solid-modeling.md) for details.</td>
     </tr>
     <tr>
       <td>**Negate**</td>
-			<td><kbd>Shift</kbd><kbd>Ctrl</kbd><kbd>N</kbd></td>
-			<td><kbd>Shift</kbd><kbd>⌘</kbd><kbd>N</kbd></td>
+			<td><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>N</kbd></td>
+			<td><kbd>⌘</kbd><kbd>Shift</kbd><kbd>N</kbd></td>
       <td>Negate parts, useful for making holes and indentations; see [Solid Modeling](../parts/solid-modeling.md) for details.</td>
     </tr>
     <tr>
       <td>**Separate**</td>
-			<td><kbd>Shift</kbd><kbd>Ctrl</kbd><kbd>U</kbd></td>
-			<td><kbd>Shift</kbd><kbd>⌘</kbd><kbd>U</kbd></td>
+			<td><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>U</kbd></td>
+			<td><kbd>⌘</kbd><kbd>Shift</kbd><kbd>U</kbd></td>
       <td>Separate the union or intersection back into its individual parts; see [Solid Modeling](../parts/solid-modeling.md) for details.</td>
     </tr>
   </tbody>
@@ -348,7 +354,7 @@ Studio has many default shortcuts and key commands that make development quicker
     <tr>
       <th>Action</th>
 			<th>Windows</th>
-			<th>Mac</th>
+			<th>macOS</th>
       <th>Description</th>
     </tr>
   </thead>
@@ -370,14 +376,14 @@ Studio has many default shortcuts and key commands that make development quicker
 </TabItem>
 </Tabs>
 
-## Interface Controls
+## Interface controls
 
 <table size="small">
 	<thead>
     <tr>
       <th>Action</th>
 			<th>Windows</th>
-			<th>Mac</th>
+			<th>macOS</th>
       <th>Description</th>
     </tr>
   </thead>
@@ -396,14 +402,14 @@ Studio has many default shortcuts and key commands that make development quicker
     </tr>
     <tr>
       <td>**Explorer Filter**</td>
-			<td><kbd>Shift</kbd><kbd>Ctrl</kbd><kbd>X</kbd></td>
-			<td><kbd>Shift</kbd><kbd>⌘</kbd><kbd>X</kbd></td>
+			<td><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>X</kbd></td>
+			<td><kbd>⌘</kbd><kbd>Shift</kbd><kbd>X</kbd></td>
       <td>Jump to the [Explorer](../studio/explorer.md) window filter input field.</td>
     </tr>
     <tr>
       <td>**Properties Filter**</td>
-			<td><kbd>Shift</kbd><kbd>Ctrl</kbd><kbd>P</kbd></td>
-			<td><kbd>Shift</kbd><kbd>⌘</kbd><kbd>P</kbd></td>
+			<td><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>P</kbd></td>
+			<td><kbd>⌘</kbd><kbd>Shift</kbd><kbd>P</kbd></td>
       <td>Jump to the [Properties](../studio/properties.md) window filter input field.</td>
     </tr>
     <tr>
@@ -451,14 +457,14 @@ Studio has many default shortcuts and key commands that make development quicker
 	</tbody>
 </table>
 
-## Testing and Diagnostics
+## Testing and diagnostics
 
 <table size="small">
 	<thead>
     <tr>
       <th>Action</th>
 			<th>Windows</th>
-			<th>Mac</th>
+			<th>macOS</th>
       <th>Description</th>
     </tr>
   </thead>
@@ -469,17 +475,11 @@ Studio has many default shortcuts and key commands that make development quicker
 			<td><kbd>F5</kbd></td>
       <td>Start simulating the experience in Studio. Press again to pause a running simulation or resume a paused simulation.</td>
     </tr>
-    <tr>
-      <td>**Stop**</td>
-			<td><kbd>Shift</kbd><kbd>F5</kbd></td>
-			<td><kbd>Shift</kbd><kbd>F5</kbd></td>
-      <td>Stop the current simulation.</td>
-    </tr>
-	<tr>
+		<tr>
       <td>**Run**</td>
 			<td><kbd>F8</kbd></td>
 			<td><kbd>F8</kbd></td>
-      <td>Start simulating the experience without your avatar from the current camera position.</td>
+      <td>Simulate the experience without your avatar from the current camera position.</td>
     </tr>
     <tr>
       <td>**Start**</td>
@@ -487,40 +487,64 @@ Studio has many default shortcuts and key commands that make development quicker
 			<td><kbd>F7</kbd></td>
       <td>Simulate the Roblox environment by starting multiple new sessions of Studio.</td>
     </tr>
-	<tr>
+    <tr>
+      <td>**Stop**</td>
+			<td><kbd>Shift</kbd><kbd>F5</kbd></td>
+			<td><kbd>Shift</kbd><kbd>F5</kbd></td>
+      <td>Stop the current simulation.</td>
+    </tr>
+    <tr>
+      <td>**Free Camera Mode**</td>
+			<td><kbd>Shift</kbd><kbd>P</kbd></td>
+			<td><kbd>Shift</kbd><kbd>P</kbd></td>
+      <td>While playtesting, enter **Free Camera Mode**. This is useful to take screenshots and recordings.</td>
+    </tr>
+		<tr>
       <td>**Save and Reload Plugins in Debugger**</td>
-			<td><kbd>Shift</kbd><kbd>Ctrl</kbd><kbd>L</kbd></td>
-			<td><kbd>Shift</kbd><kbd>⌘</kbd><kbd>L</kbd></td>
+			<td><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>L</kbd></td>
+			<td><kbd>⌘</kbd><kbd>Shift</kbd><kbd>L</kbd></td>
       <td>Save all plugins in debugger back to disk, stop execution of those plugins, and reload them from disk.</td>
+    </tr>
+		<tr>
+      <td>**Hide CoreGui**</td>
+			<td><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>G</kbd></td>
+			<td><kbd>⌘</kbd><kbd>Shift</kbd><kbd>G</kbd></td>
+      <td>While playtesting, hide `Class.CoreGui` objects</td>
+    </tr>
+		<tr>
+      <td>**Hide Custom Gui**</td>
+			<td><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>C</kbd></td>
+			<td><kbd>⌘</kbd><kbd>Shift</kbd><kbd>C</kbd></td>
+      <td>While playtesting, hide custom UI objects</td>
     </tr>
     <tr>
       <td>**Stats**</td>
-			<td><kbd>Shift</kbd><kbd>Ctrl</kbd><kbd>F1</kbd></td>
-			<td><kbd>Shift</kbd><kbd>⌘</kbd><kbd>F1</kbd></td>
+			<td><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>F1</kbd></td>
+			<td><kbd>⌘</kbd><kbd>Shift</kbd><kbd>F1</kbd></td>
       <td>Show detailed experience stats.</td>
     </tr>
     <tr>
       <td>**Render**</td>
-			<td><kbd>Shift</kbd><kbd>Ctrl</kbd><kbd>F2</kbd></td>
-			<td><kbd>Shift</kbd><kbd>⌘</kbd><kbd>F2</kbd></td>
+			<td><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>F2</kbd></td>
+			<td><kbd>⌘</kbd><kbd>Shift</kbd><kbd>F2</kbd></td>
       <td>Show detailed graphics and performance data.</td>
     </tr>
     <tr>
       <td>**Network**</td>
-			<td><kbd>Shift</kbd><kbd>Ctrl</kbd><kbd>F3</kbd></td>
-			<td><kbd>Shift</kbd><kbd>⌘</kbd><kbd>F3</kbd></td>
+			<td><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>F3</kbd></td>
+			<td><kbd>⌘</kbd><kbd>Shift</kbd><kbd>F3</kbd></td>
       <td>Show detailed network stats. Once open, pressing <kbd>Shift</kbd><kbd>1</kbd> cycles through additional panels of data.</td>
     </tr>
     <tr>
       <td>**Physics**</td>
-			<td><kbd>Shift</kbd><kbd>Ctrl</kbd><kbd>F4</kbd></td>
-			<td><kbd>Shift</kbd><kbd>⌘</kbd><kbd>F4</kbd></td>
+			<td><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>F4</kbd></td>
+			<td><kbd>⌘</kbd><kbd>Shift</kbd><kbd>F4</kbd></td>
       <td>Show detailed physics data.</td>
     </tr>
     <tr>
       <td>**Summary**</td>
-			<td><kbd>Shift</kbd><kbd>Ctrl</kbd><kbd>F5</kbd></td>
-			<td><kbd>Shift</kbd><kbd>⌘</kbd><kbd>F5</kbd></td>
+			<td><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>F5</kbd></td>
+			<td><kbd>⌘</kbd><kbd>Shift</kbd><kbd>F5</kbd></td>
       <td>Show a summary of stats data.</td>
     </tr>
   </tbody>
@@ -535,7 +559,7 @@ Studio has many default shortcuts and key commands that make development quicker
     <tr>
       <th>Command</th>
       <th>Windows</th>
-      <th>Mac</th>
+      <th>macOS</th>
     </tr>
   </thead>
   <tbody>
@@ -583,7 +607,7 @@ Studio has many default shortcuts and key commands that make development quicker
     <tr>
       <th>Command</th>
       <th>Windows</th>
-      <th>Mac</th>
+      <th>macOS</th>
     </tr>
   </thead>
   <tbody>
@@ -610,7 +634,7 @@ Studio has many default shortcuts and key commands that make development quicker
     <tr>
       <td>**Redo**</td>
       <td><kbd>Ctrl</kbd><kbd>Y</kbd></td>
-      <td><kbd>Shift</kbd><kbd>⌘</kbd><kbd>Z</kbd></td>
+      <td><kbd>⌘</kbd><kbd>Shift</kbd><kbd>Z</kbd></td>
     </tr>
     <tr>
       <td>**Select All**</td>
@@ -685,7 +709,7 @@ Studio has many default shortcuts and key commands that make development quicker
     <tr>
       <th>Command</th>
       <th>Windows</th>
-      <th>Mac</th>
+      <th>macOS</th>
     </tr>
   </thead>
   <tbody>

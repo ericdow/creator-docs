@@ -1,5 +1,5 @@
 ---
-title: Next Steps
+title: Next steps
 prev: /education/build-it-play-it-mansion-of-wonder/challenge-checkpoint-3
 description: For newer developers, choose what to learn next in the Roblox Build It Play It Mansion of Wonder.
 ---
@@ -10,14 +10,14 @@ description: For newer developers, choose what to learn next in the Roblox Build
 
 Now, **keep going!**
 
-## Supercharge Your Experience
+## Supercharge your experience
 
 Learn techniques to customize your particles even further or take a chance to show off your work.
 
 <table>
   <tr>
     <td>
-      <img src="../../assets/education/build-it-play-it-mansion-of-wonder/next-steps/extension-cards-sparkler.jpeg" width="100%" />
+      <img src="../../assets/education/build-it-play-it-mansion-of-wonder/next-steps/extension-cards-sparkler.jpeg" width="60%" />
 
       **Create a Sparkler**
 
@@ -27,17 +27,5 @@ Learn techniques to customize your particles even further or take a chance to sh
       <Button variant="contained">View</Button>
       </a>
     </td>
-    <td>
-      <img src="../../assets/education/build-it-play-it-mansion-of-wonder/next-steps/terrain.jpeg" width="100%" />
-
-      **Terrain**
-
-      Create mountains, rivers, or paint snow and grass.
-
-      <a href="../../studio/terrain-editor.md">
-      <Button variant="contained">View</Button>
-      </a>
-    </td>
-
   </tr>
 </table>

@@ -1,13 +1,13 @@
 ---
-title: Creating a GUI
+title: Create a GUI
 description: Create a battle royale experience in Roblox Studio. Create and code a GUI that displays a game status during a match.
 next: /education/battle-royale-series/ending-matches
 prev: /education/battle-royale-series/timers-and-events
 ---
 
-Right now, much of the game information is currently in the Output Window, invisible to players. So players can be informed of what's happening in the game, you'll create a graphical user interface (GUI) and code it.
+Right now, much of the game information is currently in the Output window, invisible to players. So players can be informed of what's happening in the game, you'll create a graphical user interface (GUI) and code it.
 
-## Displaying Information with a GUI
+## Display information with a GUI
 
 For this game a text label will display the current game status as well as the remaining player count and time.
 
@@ -22,7 +22,7 @@ For this game a text label will display the current game status as well as the r
   </figure>
 </GridContainer>
 
-### Setting up the GUI
+### Set up the GUI
 
 First, create a **Screen GUI** object to hold the different text elements. When the player moves the camera, the screen GUI stays in the same place on their screen.
 
@@ -36,7 +36,7 @@ To ensure all players see the same display, place the GUI in the **StarterGUI** 
 
    <video controls src="../../assets/education/battle-royale-series/arena_5_showMovingScaleGUI.mp4" width="100%"></video>
 
-## Scripting the GUI
+## Script the GUI
 
 To reflect changes in the game, scripts will need to update the GUI elements. For instance, the game status, whether it's an intermission or active round, will be stored in a StringValue and updated using local scripts.
 
@@ -44,7 +44,7 @@ To reflect changes in the game, scripts will need to update the GUI elements. Fo
 Compared to scripts and module scripts which run Roblox servers, local scripts run on a player's device. They're often used for coding GUI elements like the timer or player input, like mouse or keyboard actions.
 </Alert>
 
-### Setting up the Script
+### Set up the script
 
 The StatusDisplay script will be used to update the player's GUI whenever the game state changes.
 
@@ -75,7 +75,7 @@ The StatusDisplay script will be used to update the player's GUI whenever the ga
      local textLabel = script.Parent
      ```
 
-### Changing the Text Label
+### Change the text label
 
 To change the text in the label, use a Changed event so whenever the Status string is changed by another script, the text label will be updated.
 
@@ -85,7 +85,7 @@ To change the text in the label, use a Changed event so whenever the Status stri
    local textLabel = script.Parent
 
    local function updateText()
-      textLabel.Text = status.Value
+   	textLabel.Text = status.Value
    end
    ```
 
@@ -93,7 +93,7 @@ To change the text in the label, use a Changed event so whenever the Status stri
 
    ```lua
    local function updateText()
-      textLabel.Text = status.Value
+   	textLabel.Text = status.Value
    end
 
    status.Changed:Connect(updateText)
@@ -103,7 +103,7 @@ To change the text in the label, use a Changed event so whenever the Status stri
 
    ```lua
    local function updateText()
-      textLabel.Text = status.Value
+   	textLabel.Text = status.Value
    end
 
    status.Changed:Connect(updateText)
@@ -114,11 +114,11 @@ To change the text in the label, use a Changed event so whenever the Status stri
 
    <img src="../../assets/education/battle-royale-series/arena_5_showGUITest.png" />
 
-## Creating the Display Manager
+## Create the display manager
 
 During a game, the text label will need to get information from GameManager, MatchManager, and possibly other scripts. So these different scripts can update the text label when needed, create a module script named DisplayManager.
 
-### Setting up the Script
+### Set up the script
 
 Because DisplayManager needs to communicate with other scripts, it'll be a module script.
 
@@ -150,11 +150,11 @@ Because DisplayManager needs to communicate with other scripts, it'll be a modul
 
    -- Module Functions
    function DisplayManager.updateStatus(newStatus)
-      status.Value = newStatus
+   	status.Value = newStatus
    end
    ```
 
-### Updating the Text Status
+### Update the text status
 
 With the Display Manager set up, it can be used in other scripts to update the GUI text label. As the first message in the GUI, show the start and end of the intermission through the GameManager script.
 
@@ -181,18 +181,17 @@ With the Display Manager set up, it can be used in other scripts to update the G
    local matchEnd = events:WaitForChild("MatchEnd")
 
    while true do
-      displayManager.updateStatus("Waiting for Players")
+   	displayManager.updateStatus("Waiting for Players")
 
-      repeat
-         print("Starting intermission")
-         task.wait(gameSettings.intermissionDuration)
-      until #Players:GetPlayers() >= gameSettings.minimumPlayers
+   	repeat
+   		print("Starting intermission")
+   		task.wait(gameSettings.intermissionDuration)
+   	until #Players:GetPlayers() >= gameSettings.minimumPlayers
 
-      task.wait(gameSettings.transitionTime)
+   	task.wait(gameSettings.transitionTime)
 
-      matchManager.prepareGame()
-      matchEnd.Event:Wait()
-
+   	matchManager.prepareGame()
+   	matchEnd.Event:Wait()
    end
    ```
 
@@ -200,18 +199,17 @@ With the Display Manager set up, it can be used in other scripts to update the G
 
    ```lua
    while true do
-      displayManager.updateStatus("Waiting for Players")
+   	displayManager.updateStatus("Waiting for Players")
 
-      repeat
-         task.wait(gameSettings.intermissionDuration)
-      until #Players:GetPlayers() >= gameSettings.minimumPlayers
+   	repeat
+   		task.wait(gameSettings.intermissionDuration)
+   	until #Players:GetPlayers() >= gameSettings.minimumPlayers
 
-      displayManager.updateStatus("Get ready!")
-      task.wait(gameSettings.transitionTime)
+   	displayManager.updateStatus("Get ready!")
+   	task.wait(gameSettings.transitionTime)
 
-      matchManager.prepareGame()
-      matchEnd.Event:Wait()
-
+   	matchManager.prepareGame()
+   	matchEnd.Event:Wait()
    end
    ```
 
@@ -220,18 +218,18 @@ With the Display Manager set up, it can be used in other scripts to update the G
    - Without the minimum players: `"Waiting for Players"`.
    - With the minimum players: `"Get ready"`.
 
-### Troubleshooting Tips
+### Troubleshooting tips
 
 At this point, if the text label doesn't display the first message, or still displays "Label", try one of the following below.
 
 - Make sure in the StatusDisplay local script that `updateText()` is called at the bottom of the script. This ensures that the player gets the most up to date message.
 - Check that the Status StringValue is in ReplicatedStorage. Due to the unique nature of client-server relations, if it's in ServerStorage, a local script won't be able to find it.
 
-## Displaying Match Status
+## Display match status
 
 During a match, the GUI will display two numbers: remaining player count and time. As these numbers change, the text label will change as well.
 
-## Setting up Values and Functions
+## Set up values and functions
 
 IntValues will be used to store the player count and time left.
 
@@ -264,7 +262,7 @@ IntValues will be used to store the player count and time left.
 
    -- Local Functions
    local function updateRoundStatus()
-      status.Value = "Players Left: " .. playersLeft.Value .. " / Time Left: " .. timeLeft.Value
+   	status.Value = "Players Left: " .. playersLeft.Value .. " / Time Left: " .. timeLeft.Value
    end
    ```
 
@@ -273,7 +271,7 @@ IntValues will be used to store the player count and time left.
    ```lua
    -- Module Functions
    function DisplayManager.updateStatus(newStatus)
-      status.Value = newStatus
+   	status.Value = newStatus
    end
 
    playersLeft.Changed:Connect(updateRoundStatus)
@@ -286,7 +284,7 @@ IntValues will be used to store the player count and time left.
    Don't test yet. Nothing has updated the PlayersLeft or TimeLeft values, so the status won't be changed once a round starts.
    </Alert>
 
-### Displaying Players
+### Display players
 
 Next, add the code for displaying the number of players at the start of a game. Later lessons will update the PlayersLeft value as players are eliminated from the game.
 
@@ -308,7 +306,6 @@ Next, add the code for displaying the number of players at the start of a game. 
    -- Values
    local displayValues = ReplicatedStorage:WaitForChild("DisplayValues")
    local playersLeft = displayValues:WaitForChild("PlayersLeft")
-
    ```
 
 2. Show the starting player count by setting the value of `playersLeft` to the size of the active players array.
@@ -317,21 +314,20 @@ Next, add the code for displaying the number of players at the start of a game. 
 
    ```lua
    function PlayerManager.sendPlayersToMatch()
-      local availableSpawnPoints = spawnLocations:GetChildren()
+   	local availableSpawnPoints = spawnLocations:GetChildren()
 
-      for playerKey, whichPlayer in Players:GetPlayers() do
-         table.insert(activePlayers,whichPlayer)
+   	for playerKey, whichPlayer in Players:GetPlayers() do
+   		table.insert(activePlayers, whichPlayer)
 
-         local spawnLocation = availableSpawnPoints[1]
-         table.remove(availableSpawnPoints, 1)
-         preparePlayer(whichPlayer, spawnLocation)
-      end
+   		local spawnLocation = table.remove(availableSpawnPoints, 1)
+   		preparePlayer(whichPlayer, spawnLocation)
+   	end
 
-      playersLeft.Value = #activePlayers
+   	playersLeft.Value = #activePlayers
    end
    ```
 
-### Displaying the Timer
+### Display the timer
 
 Remember that module scripts are used to centralize similar code. Since the timer is tracked in MatchManager, update the TimeLeft value using functions from the Timer script. The display manager will listen for changes to the TimeLeft, and update to match the new value.
 
@@ -365,27 +361,27 @@ Remember that module scripts are used to centralize similar code. Since the time
 
    ```lua
    while myTimer:isRunning() do
-         -- Adding +1 makes sure the timer display ends at 1 instead of 0.
-         timeLeft.Value = (math.floor(myTimer:getTimeLeft() + 1))
-         -- By not setting the time for wait, it offers more accurate looping
-         task.wait()
-      end
+   	-- Adding +1 makes sure the timer display ends at 1 instead of 0.
+   	timeLeft.Value = (myTimer:getTimeLeft() + 1) // 1
+   	-- By not setting the time for wait, it offers more accurate looping
+   	task.wait()
+   end
    ```
 
    When added in, the code should look like the sample below.
 
    ```lua
    local function startTimer()
-      print("Timer started")
-      myTimer:start(gameSettings.matchDuration)
-      myTimer.finished:Connect(timeUp)
+   	print("Timer started")
+   	myTimer:start(gameSettings.matchDuration)
+   	myTimer.finished:Connect(timeUp)
 
-      while myTimer:isRunning() do
-         -- Adding +1 makes sure the timer display ends at 1 instead of 0.
-         timeLeft.Value = (math.floor(myTimer:getTimeLeft() + 1))
-         -- By not setting the time for wait, it offers more accurate looping
-         task.wait()
-      end
+   	while myTimer:isRunning() do
+   		-- Adding +1 makes sure the timer display ends at 1 instead of 0.
+   		timeLeft.Value = (myTimer:getTimeLeft() + 1) // 1
+   		-- By not setting the time for wait, it offers more accurate looping
+   		task.wait()
+   	end
    end
    ```
 
@@ -396,11 +392,11 @@ Remember that module scripts are used to centralize similar code. Since the time
 
    <video controls src="../../assets/education/battle-royale-series/arena_5_showFinalizedGameLoop.mp4" width="100%"></video>
 
-## Completed Scripts
+## Completed scripts
 
 Below are completed scripts to double check your work.
 
-### GameManager Script
+### GameManager script
 
 ```lua
 -- Services
@@ -423,7 +419,7 @@ while true do
 	repeat
 		task.wait(gameSettings.intermissionDuration)
 	until #Players:GetPlayers() >= gameSettings.minimumPlayers
-  
+
 	displayManager.updateStatus("Get ready!")
 	task.wait(gameSettings.transitionTime)
 
@@ -432,7 +428,7 @@ while true do
 end
 ```
 
-### DisplayManager Script
+### DisplayManager script
 
 ```lua
 local DisplayManager = {}
@@ -462,7 +458,7 @@ timeLeft.Changed:Connect(updateRoundStatus)
 return DisplayManager
 ```
 
-### MatchManager Script
+### MatchManager script
 
 ```lua
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -496,11 +492,10 @@ local function startTimer()
 
 	while myTimer:isRunning() do
 		-- Adding +1 makes sure the timer display ends at 1 instead of 0.
-		timeLeft.Value = (math.floor(myTimer:getTimeLeft() + 1))
+		timeLeft.Value = (myTimer:getTimeLeft() + 1) // 1
 		-- By not setting the time for wait, it offers more accurate looping
 		task.wait()
 	end
-
 end
 
 -- Module Functions
@@ -514,7 +509,7 @@ matchStart.Event:Connect(startTimer)
 return MatchManager
 ```
 
-### StatusDisplay Script
+### StatusDisplay script
 
 ```lua
 local ReplicatedStorage = game:GetService("ReplicatedStorage")

@@ -1,127 +1,83 @@
 ---
-title: Assistant
-description: How to use the Assistant to help you build, grow, and monetize your creations.
+title: Assistant for Studio
+description: How to use Assistant to help build, grow, and monetize your creations in Studio.
 ---
 
-The **Assistant** is an AI helper that can answer questions about building, growing, and monetizing Roblox creations. It is trained on the official Roblox documentation and is designed to answer these categories of questions:
+import BetaAlert from '../includes/beta-features/beta-alert.md'
 
-- **Building** — Answers questions about [creating an experience](../creation.md) in Studio.
-- **Scripting** — Generate simple [scripts](../scripting/index.md) and/or ask for an explanation of Lua code.
-- **Growing** — Answers questions about improving an existing experience by leveraging its [analytics](../production/analytics/index.md).
-- **Monetizing** — Answers questions about how to [monetize](../production/monetization/index.md) your experience.
+**Assistant** is an AI helper that accelerates content creation by helping you get started, supplementing your skills, and assisting with ongoing development. It can do the following and much more:
 
-## Using Assistant
+- Answer how to do things on Roblox
+- Add and edit objects and scripts directly in your place's data model
+- Insert objects from the Creator Store
+- "Explain this code" by selecting parts of a script in the Script Editor
+- Create materials to restyle your objects
+- Generate 3D objects to populate your scene
 
-Assistant is accessible from both the official [Documentation](../) site and within [Studio](../studio/index.md).
-
-### From Documentation
-
-To access Assistant from the official [Documentation](../) site:
-
-1. In the upper navigation bar, click the **Assistant** button.
-
-   <img src="../assets/assistant/Documentation-Button.png" width="790" />
-
-1. Select a premade question or type your own. See [Prompting Tips](#prompting-tips) for guidance on generating improved responses.
-
-   <img src="../assets/assistant/Documentation-Prompts.png" width="790" />
-
-1. Based on the result, you can then:
-
-   - Click thumbs up or thumbs down to rate the result and improve future results.
-   - Click the redo icon to process a new result.
-
-   <img src="../assets/assistant/Documentation-Options.png" width="790" />
-
-### In Studio
-
-<Alert severity="success">
-The Studio tooling is in beta. To use it, open **Beta Features** from the **File** menu and enable **Assistant Preview**.
+<Alert severity="info" style={{marginBottom: '36px'}}>
+   Assistant is built with [Meta Llama 3](https://llama.meta.com/llama3/license/).
 </Alert>
 
-To access Assistant from Studio:
+## Studio features
 
-1. Click the **Assistant** button in the top-right corner of Studio.
+In Studio, Assistant consists of a large language model (LLM) that generates code and a run-command module (similar to the existing [command bar](../studio/ui-overview.md#command-bar)) that runs code. As a result, Assistant can act directly on your data model, such as inserting and modifying objects, writing and inserting scripts, and automating repetitive tasks like modifying properties in bulk.
 
-   <img src="../assets/studio/general/Toolbar-Assistant.png" width="754" alt="Assistant button indicated in top-right area of toolbar" />
+For a more in-depth look at what Assistant can do and how to use it, see the [Prompt guide and examples](prompt-engineering.md) and the following Roblox Staff livestream for tips, tricks, and inspiration.
 
-1. Type a request into the field near the bottom of the window, using guidance from [Prompting Tips](#prompting-tips) to generate improved responses. Based on the result, you can then:
+<iframe width="640" height="360" style={{marginTop: '36px'}} src="https://www.youtube-nocookie.com/embed/vMaOGgeuR4Y?si=fuX-80mMMzhQB6sn&amp;start=240" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-   - Click thumbs up or thumbs down to rate the result and improve future results.
-   - Click the redo icon to process a new result.
+### Insert and modify scripts
 
-   <img src="../assets/assistant/Studio-General-UI.png" width="360" alt="General user interface for Assistant in Studio" />
+Assistant can insert new scripts, modify existing ones, and perform these actions across multiple objects as necessary. For example, if you ask it to create a remote event, it can create a local script, a server script, and the event all at once.
 
-#### Quick Style
+If you enter a script generation request like "Make the player's character jump when they touch this part," Assistant shows the script's contents and adds the new script instance to the currently selected object in the data model. If nothing is selected, Assistant decides where to place it based on your prompts.
+
+<img src="../assets/assistant/Studio-Script-Insert.png" width="360" alt="Requested script inserted into selected part." />
+
+The generated script might not function flawlessly. In these cases, you can either make further edits in the [Script Editor](../studio/script-editor.md) or ask Assistant to edit the script it just created. It can even act on existing scripts that it didn't create if you need help with code that you've written yourself.
+
+### Insert and modify objects
+
+Assistant can create, edit, delete and iterate on instances in your data model, including inserting items from the Creator Store.
+
+<img src="../assets/assistant/Studio-Object-Insert.png" width="532" alt="Assistant adding objects through the Studio prompt." />
+
+If you examine the code, you can see that Assistant calls `Class.InsertService:GetFreeModels()` to query the Creator Store for a wheelbarrow model and uses `Class.Model:PivotTo()` to place it near a tree.
+
+### Provide answers and suggestions
+
+If you need general knowledge or help while creating an experience, you can ask Assistant questions like how to make a team system, how to design a game loop, how to use specific Studio tools, and much more. It can even explain code that it generated or that you wrote yourself.
+
+<img src="../assets/assistant/Studio-Explain-Code.png" width="360" alt="Code explanation provided by Assistant in Studio." />
+
+### Generate materials
 
 When given a request to generate a material, Assistant in Studio can quickly style existing parts through a lightweight implementation of the [Material Generator](../studio/material-generator.md).
 
-<img src="../assets/assistant/Studio-Quick-Styling-Material.png" width="360" alt="Material variations shown in Assistant for quick styling" />
+<img src="../assets/assistant/Studio-Quick-Styling-Material.png" width="360" alt="Material variations shown in Assistant for quick styling." />
 
-#### Insert Script
+### Generate 3D models
 
-If you enter a script generation request like _"Make the player's character jump when they touch this part,"_ Assistant will show the script's contents and add the new script instance to the currently selected object in the data model. If nothing is selected, Assistant will make the placement decision based on your prompts.
+<BetaAlert betaName="Assistant Mesh Generation" leadIn="This feature is currently in beta. Enable it through " leadOut="." components={props.components} />
 
-<img src="../assets/assistant/Studio-Script-Insert.png" width="360" alt="Requested script inserted into selected part" />
+The `/generate` command enables [mesh generation](https://corp.roblox.com/newsroom/2025/03/introducing-roblox-cube), powered by Roblox's Cube 3D model.
 
-<Alert severity="info">
-At times, the generated script may not function flawlessly. In such cases, you can either make further edits in the [Script Editor](../studio/script-editor.md), or select the script snippet and ask Assistant to modify it.
-</Alert>
+1. In the Assistant chat window, type a command such as `/generate a red buggy with knobby tires`.
+1. Assistant generates the corresponding object and adds it directly to your workspace for further customization.
 
-#### Explain Code
+<img src="../assets/assistant/Studio-Generated-Green-Dragon.jpg" width="360" alt="A generated green dragon provided by Assistant in Studio." />
 
-If you enter a request to explain code and you have a code snippet selected in the [Script Editor](../studio/script-editor.md), Assistant explains what that selected snippet does.
+## Access Assistant from Studio
 
-<img src="../assets/assistant/Studio-Explain-Code.png" width="360" alt="Code explanation provided by Assistant in Studio" />
+To access Assistant from Studio:
 
-## Prompting Tips
+1. Click **Assistant** on the right side of the mezzanine bar.
 
-The following prompting tips enable Assistant to provide a more detailed and helpful response.
+   <img src="../assets/studio/general/Toolbar-Assistant.png" width="754" alt="Assistant button indicated in top-right area of toolbar." />
 
-### Context and Details
+2. Type a request into the field near the bottom of the window, using guidance from the [prompt guide](prompt-engineering.md) to generate improved responses.
 
-The more context and examples you can provide in your prompts, the better. Instead of asking _"How can I design a core loop?"_ provide specific contextual examples, such as:
+   - Click thumbs up or thumbs down to rate the result and improve future results.
+   - Click the redo icon to process a new result.
 
-<blockquote>
-
-_Help me design a fun core loop for my game. I want to build a game where players can hunt treasure as pirates. They can also buy and upgrade pirate ships and battle each other._
-
-</blockquote>
-
-### Multi-Step Prompts
-
-Consider using a multi-step prompt to encourage Assistant to think. Instead of simply asking _"Can you explain this script to me?"_ and pasting in the script, ask it to explain step-by-step by separating the question from the script with `###`. Doing so enables Assistant to deconstruct and organize the information clearly to provide better answers.
-
-<Tabs>
-<TabItem label="Prompt">
-<blockquote>
-
-_Can you explain what this script is doing step by step?_
-
-**\###**
-
-_local part = workspace.Part_
-
-_local function onTouched(otherPart)_<br />
-&nbsp;&nbsp;&nbsp;&nbsp;_print(part.Name .. " collided with " .. otherPart.Name)_<br />
-_end_
-
-_part.Touched:Connect(onTouched)_
-
-**\###**
-
-</blockquote>
-</TabItem>
-<TabItem label="Assistant Response">
-<blockquote>
-
-_Certainly! This script is an example of how to handle collisions between two parts in Roblox. Let's break it down step by step:_
-
-1. `local part = workspace.Part`: _This line of code creates a local variable named `part` and assigns it the value of the `Part` object located in the workspace. You can replace `Part` with the name of the specific part you want to detect collisions with._
-2. `local function onTouched(otherPart)`: _This line of code defines a function named `onTouched` that takes in a parameter `otherPart`. This function will be called whenever the part collides with another part._
-3. `print(part.Name .. " collided with " .. otherPart.Name)`: _This line of code prints a message to the output console, indicating that the `part` has collided with `otherPart`. The `part.Name` and `otherPart.Name` are concatenated using the `..` operator to form the message._
-4. `part.Touched:Connect(onTouched)`: _This line of code connects the `onTouched` function to the `Touched` event of `part`. Whenever the part collides with another part, the `onTouched` function will be called._
-
-</blockquote>
-</TabItem>
-</Tabs>
+     <img src="../assets/assistant/Studio-General-UI.png" width="360" alt="General user interface for Assistant in Studio." />

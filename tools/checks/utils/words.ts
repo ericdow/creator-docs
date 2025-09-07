@@ -1,6 +1,6 @@
 import pluralize from 'pluralize';
-import cSpellDictionary from '../../../.vscode/settings.json' assert { type: 'json' };
-import badWordsListJson from 'bad-words/lib/lang.json' assert { type: 'json' };
+import cSpellDictionary from '../../../.vscode/settings.json' with { type: 'json' };
+import badWordsListJson from 'bad-words/lib/lang.json' with { type: 'json' };
 import { deduplicate } from './utils.js';
 import { cuss } from 'cuss';
 
@@ -57,6 +57,7 @@ export const ALLOWED_PROFANE_WORDS_LIST = [
   'flange',
   'poop',
   'sex',
+  'sexy',
 ];
 const ALLOWED_PROFANE_WORDS_SET = new Set(ALLOWED_PROFANE_WORDS_LIST);
 

@@ -1,15 +1,15 @@
 ---
-title: Debounce Patterns
+title: Debounce patterns
 description: Debounce patterns are coding techniques that prevent a function from running too many times.
 ---
 
 A **debounce** pattern is a coding technique that prevents a function from running too many times or an input from triggering multiple times. The following scripting scenarios illustrate debounce as a best practice.
 
-## Detecting Collisions
+## Detect collisions
 
 Suppose you want to create a hazardous trap part that inflicts 10 damage when touched. An initial implementation might use a basic `Class.BasePart.Touched` connection and a `damagePlayer` function like this:
 
-```lua title='Script - Damage Player'
+```lua title="Script - Damage Player"
 local part = script.Parent
 
 local function damagePlayer(otherPart)
@@ -30,7 +30,7 @@ While logical at first glance, testing will show that the `Class.BasePart.Touche
 
 To avoid causing excessive damage on initial contact, you can add a debounce system which enforces a cooldown period on damage through an [instance attribute](../studio/properties.md#instance-attributes).
 
-```lua title='Script - Damage Player Using Debounce' highlight='10, 11, 13, 14'
+```lua title="Script - Damage Player Using Debounce" highlight="10, 11, 13, 14"
 local part = script.Parent
 
 local RESET_TIME = 1
@@ -52,13 +52,13 @@ end
 part.Touched:Connect(damagePlayer)
 ```
 
-## Triggering Sounds
+## Trigger sounds
 
 Debounce is also useful when working with sound effects, such as playing a sound when two parts collide (`Class.BasePart.Touched|Touched`), or playing a sound on the `Class.GuiButton.Activated|Activated` event when a user interacts with an on-screen button. In both cases, calling `Class.Sound:Play()` starts playback from the beginning of its track and&nbsp;&mdash; without a debounce system&nbsp;&mdash; the sound may play multiple times in quick succession.
 
 To prevent sound overlap, you can debounce using the `Class.Sound.IsPlaying|IsPlaying` property of the `Class.Sound` object:
 
-```lua title='Script - Play Collision Sound Using Debounce' highlight='5, 7-9'
+```lua title="Script - Play Collision Sound Using Debounce" highlight="5, 7-9"
 local projectile = script.Parent
 
 local function playSound()
@@ -73,7 +73,7 @@ end
 projectile.Touched:Connect(playSound)
 ```
 
-```lua title='Script - Play Button Click Using Debounce' highlight='5, 7-9'
+```lua title="Script - Play Button Click Using Debounce" highlight="5, 7-9"
 local button = script.Parent
 
 local function onButtonActivated()
@@ -88,13 +88,13 @@ end
 button.Activated:Connect(onButtonActivated)
 ```
 
-## Pickup Effects
+## Pickup effects
 
 Experiences often include collectible pickups in the 3D world such as medkits, ammo packs, and more. If you design these pickups to remain in the world for players to grab again and again, a "cooldown" time should be added before the pickup refreshes and reactivates.
 
-Similar to [detecting collisions](#detecting-collisions), you can manage the debounce state with an [instance attribute](../studio/properties.md#instance-attributes), and visualize the cooldown period by changing the part's `Class.BasePart.Transparency|Transparency`.
+Similar to [detecting collisions](#detect-collisions), you can manage the debounce state with an [instance attribute](../studio/properties.md#instance-attributes), and visualize the cooldown period by changing the part's `Class.BasePart.Transparency|Transparency`.
 
-```lua title='Script - Health Pickup Using Debounce' highlight='10, 11, 13, 15-17'
+```lua title="Script - Health Pickup Using Debounce" highlight="10, 11, 13, 15-17"
 local part = script.Parent
 part.Anchored = true
 part.CanCollide = false

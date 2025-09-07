@@ -5,9 +5,9 @@ description: A sequence of characters, such as letters, numbers, and symbols.
 
 The **string** data type is a sequence of characters, such as letters, numbers, and symbols. It's the data type for storing most text-based information.
 
-## Declaring Strings
+## Declare strings
 
-To declare a string variable, put quotes around the characters. It's more common to use double quotes (`"`), but single quotes (`'`) also work. If you want to include a single or double quote in your string, wrap your string around the other type of quote, or use an [escaped quote](#escaping-strings).
+To declare a string variable, put quotes around the characters. It's more common to use double quotes (`"`), but single quotes (`'`) also work. If you want to include a single or double quote in your string, wrap your string around the other type of quote, or use an [escaped quote](#escape-strings).
 
 ```lua
 local string1 = "Hello world!"
@@ -44,7 +44,7 @@ print(string1)
 --> [[world!]]
 ```
 
-## Combining Strings
+## Combine strings
 
 To combine strings, **concatenate** them with two dots (`..`). Concatenating strings doesn't insert a space between them, so you'll need to include space(s) at the end/beginning of a preceding/subsequent string, or concatenate a space between the two strings.
 
@@ -74,7 +74,7 @@ print(hello, world .. exclamationMark)  --> Hello world!
 print(hello, world, exclamationMark)  --> Hello world !
 ```
 
-## Converting Strings
+## Convert strings
 
 To convert a string to a number, use the `Global.LuaGlobals.tonumber()` function. If the string doesn't have a number representation, `Global.LuaGlobals.tonumber()` returns `nil`.
 
@@ -86,7 +86,7 @@ local alphanumericString = "Hello123"
 print(tonumber(alphanumericString))  --> nil
 ```
 
-## Escaping Strings
+## Escape strings
 
 To escape a double- or single-quote string declaration and embed almost any character, put a backslash (`\`) before the character. For example:
 
@@ -116,7 +116,7 @@ local string2 = "Hello\tworld!"
 print(string2)  --> Hello	world!
 ```
 
-## String Interpolation
+## String interpolation
 
 Luau supports **string interpolation**, a feature that lets you insert expressions into strings. Use backticks (`` ` ``) to declare an interpolated string, then add expressions inside of curly brackets:
 
@@ -150,7 +150,7 @@ local string1 = `Hello \`\{world\}\`!`
 print(string1)  --> Hello `{world}`!
 ```
 
-## Math Conversion
+## Math conversion
 
 If you perform math operations on a string, Luau automatically converts the string to a number. If the string doesn't have a number representation, it throws an error.
 
@@ -163,13 +163,24 @@ print("55" % 10)  --> 5
 print("Hello" + 10)	 --> print("Hello" + 10):1: attempt to perform arithmetic (add) on string and number
 ```
 
-## String Pattern Reference
+## Comparisons
+
+Strings can be compared using the `<`, `<=`, `>` and `>=` operators which compare using lexicographical order based on the ASCII codes of each character in a string.
+This will result in numbers in strings not being compared correctly, for example, `"100"` will be less than `"20"`, since the bytes `"0"` and `"1"` have lower ASCII codes than byte `"2"`.
+
+```lua
+print("Apple" < "apple") --> true
+print("Banana" < "apple") --> true (B is before a in ASCII)
+print("number100" < "number20") --> true
+```
+
+## String pattern reference
 
 A **string pattern** is a combination of characters that you can use with
 `Library.string.match()`, `Library.string.gmatch()`, and other functions to
 find a piece, or substring, of a longer string.
 
-### Direct Matches
+### Direct matches
 
 You can use direct matches in a Luau function like `Library.string.match()`,
 except for [magic characters](#magic-characters). For example, these commands
@@ -182,7 +193,7 @@ print(match1)  --> Roblox
 print(match2)  --> nil
 ```
 
-### Character Classes
+### Character classes
 
 Character classes are essential for more advanced string searches. You can use
 them to search for something that isn't necessarily character-specific but
@@ -262,7 +273,7 @@ uppercase letter represents the "opposite" of the class. For instance, `%p`
 represents a punctuation character while `%P` represents all characters except
 punctuation.
 
-### Magic Characters
+### Magic characters
 
 There are 12 "magic characters" which are reserved for special purposes in
 patterns:
@@ -336,7 +347,7 @@ local match3 = string.match("I play Roblox", "Roblox")  -- Matches because "Robl
 print(match3)  --> Roblox
 ```
 
-### Class Modifiers
+### Class modifiers
 
 By itself, a character class only matches **one** character in a string. For
 instance, the following pattern (`"%d"`) starts reading the string from left
@@ -393,7 +404,7 @@ local match2 = string.match("The Cloud Kingdom has 25 power gems", "%d+")
 print(match2)  --> 25
 ```
 
-### Class Sets
+### Class sets
 
 **Sets** should be used when a single character class can't do the whole job.
 For instance, you might want to match both lowercase letters (`%l`) **and**
@@ -429,7 +440,7 @@ between a starting and ending character. This is an advanced feature which is
 outlined in more detail on the
 [Lua 5.1 Manual](https://www.lua.org/manual/5.1/manual.html#5.4.1).
 
-### String Captures
+### String captures
 
 String **captures** are sub-patterns within a pattern. These are enclosed in
 parentheses `()` and are used to get (capture) matching substrings and save
@@ -449,12 +460,25 @@ local key3, val3 = string.match("OneMillion=1000000", pattern)
 print(key3, val3)  --> OneMillion 1000000
 ```
 
-In the previous pattern, the `?` quantifier that follows both of the `%s`
-classes is a safe addition because it makes the space on either side of the
-`=` sign optional. That means the match succeeds if one (or both) spaces are
-missing around the equal sign.
+The `?` quantifier that follows both of the `%s` classes is a safe addition
+because it makes the space on either side of the `=` sign optional. That means
+the match succeeds if one (or both) spaces are missing around the equal sign.
 
-String captures can also be **nested** as the following example:
+In the `Library.string.gsub()` function, you can include capture groups in the
+replacement string using `%1`, `%2`, `%3`, etc., up to `%9`. Even though Luau
+supports up to 32 capture groups before throwing an error, you can only
+reference the first nine with this syntax:
+
+```lua
+local str = "love2play Roblox"
+local pattern = "(%w+)(%d+)(%w+)%s+(%w+)"
+local replacement = "I %1 %2 %3 %4!"
+
+local result = string.gsub(str, pattern, replacement)
+print(result) --> I love 2 play Roblox!
+```
+
+You can also nest string captures:
 
 ```lua
 local places = "The Cloud Kingdom is heavenly, The Forest Kingdom is peaceful"
@@ -538,3 +562,41 @@ the following:
 		</tr>
 	</tbody>
 </table>
+
+In addition to all of the above, there is a special case with an **empty capture** (`()`). If a capture is empty, then the position in the string will be captured:
+
+```lua
+local match1 = "Where does the capture happen? Who knows!"
+local match2 = "This string is longer than the first one. Where does the capture happen? Who knows?!"
+
+local pattern = "()Where does the capture happen%? Who knows!()"
+
+local start1, finish1 = string.match(match1, pattern)
+print(start1, finish1)  --> 1 42
+
+local start2, finish2 = string.match(match2, pattern)
+print(start2, finish2)  --> 43 84
+```
+
+These special captures may be nested like normal ones:
+
+```lua
+local places = "The Cloud Kingdom is heavenly, The Forest Kingdom is peaceful."
+local pattern = "The (%a+()) Kingdom is %a+"
+
+for kingdom, position in string.gmatch(places, pattern) do
+	print(kingdom, position)
+end
+--> Cloud 10
+--> Forest 42
+```
+
+The returned values are unusual in that they are **numbers** rather than strings:
+
+```lua
+local match = "This is an example"
+local pattern = "This is an ()example"
+
+local position = string.match(match, pattern)
+print(typeof(position))  --> number
+```

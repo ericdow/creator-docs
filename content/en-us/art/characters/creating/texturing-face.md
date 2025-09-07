@@ -1,5 +1,5 @@
 ---
-title: Texturing Face
+title: Texturing face
 description: Use Blender to apply a custom surface appearance on your character's face.
 next: /art/characters/creating/texturing-pbr
 prev: /art/characters/creating/texturing-eyes
@@ -17,7 +17,7 @@ To texture the face:
    1. In Brush Settings, start with the following Brush recommendations:
 
       1. **Radius** to **5px**. You can change this radius as you paint.
-      2. **Strength** to .**30**. Modify this value when applicable.
+      2. **Strength** to **0.300**. Modify this value when applicable.
       3. In Symmetry, enable **X Axis Mirroring**.
 
          <img src="../../../assets/art/avatar/basic-creation/Texture-Symmetry-Tool-Setting.png" />

@@ -1,5 +1,5 @@
 ---
-title: Character Name/Health Display
+title: Character name/health display
 description: You can customize character UI, like name and health displays, using Class.Humanoid.
 ---
 
@@ -10,7 +10,7 @@ The `Class.Humanoid` instance is used to create character models, both for user 
 Through various `Class.Humanoid` properties, you can modify the following:
 
 - The [distance](#display-distance-type) from which users can see the name/health of other humanoids in relation to their own character's humanoid.
-- The [display name](#overriding-display-names) which shows over a humanoid.
+- The [display name](#override-display-names) which shows over a humanoid.
 - Whether a humanoid's [health bar](#health-display-type) always appears, never appears, or only appears when the humanoid is damaged.
 - Whether names and health bars are [occluded](#occlusion) (hidden) when line-of-sight between the camera and another humanoid is blocked.
 
@@ -18,9 +18,9 @@ Through various `Class.Humanoid` properties, you can modify the following:
 As noted in the introduction, character name/health display requires that the `Class.Humanoid` instance is inside a `Class.Model` and that the model contains a `Class.BasePart` named **Head**. Both objects must also be at the same level in the model's hierarchy.
 </Alert>
 
-## Display Properties
+## Display properties
 
-### Display Distance Type
+### Display distance type
 
 The `Class.Humanoid.DisplayDistanceType` property sets how users see the name/health of other characters in relation to their own character.
 
@@ -46,7 +46,7 @@ When a humanoid's `Class.Humanoid.DisplayDistanceType|DisplayDistanceType` is se
 
 <img src="../assets/avatar/name-health-display/DisplayDistanceType-None.jpg" width="90%" />
 
-### Health Display Type
+### Health display type
 
 The `Class.Humanoid.HealthDisplayType` property provides further control over the character's health bar visibility. The bar reflects the humanoid's `Class.Humanoid.Health|Health` as a factor of its `Class.Humanoid.MaxHealth|MaxHealth` and it changes color from green to yellow to red as the humanoid's health decreases.
 
@@ -100,18 +100,18 @@ In the following scenario, both **Watchman** and **Octavia** are sufficiently hi
 
 <img src="../assets/avatar/name-health-display/NameOcclusion-EnemyOcclusion.jpg" width="90%" />
 
-## Modifying Character Displays
+## Modify character displays
 
-### User Avatars
+### User avatars
 
 To modify the name or health display for every incoming avatar in an experience, connect the `Class.Players.PlayerAdded` and `Class.Player.CharacterAdded` events in a `Class.Script` and set [display properties](#display-properties) on the character's `Class.Humanoid`.
 
-```lua title='Script - Global Customization' highlight='3,4,8,10,12,14,19'
+```lua title="Script - Global Customization" highlight="3,4,8,10,12,14,19"
 local Players = game:GetService("Players")
 
 local function onPlayerAdded(player)
 	player.CharacterAdded:Connect(function(character)
-		local humanoid = character:FindFirstChildOfClass("Humanoid")
+		local humanoid = character:FindFirstChildWhichIsA("Humanoid")
 		if humanoid then
 			-- Give each humanoid full control over its name/health display distance
 			humanoid.DisplayDistanceType = Enum.HumanoidDisplayDistanceType.Subject
@@ -132,12 +132,12 @@ You can also customize properties based on a player's `Class.Team`, such as sett
 
 <span id="team-customization-script"></span>
 
-```lua title='Script - Team Customization' highlight='9,12'
+```lua title="Script - Team Customization" highlight="9,12"
 local Players = game:GetService("Players")
 
 local function onPlayerAdded(player)
 	player.CharacterAdded:Connect(function(character)
-		local humanoid = character:FindFirstChildOfClass("Humanoid")
+		local humanoid = character:FindFirstChildWhichIsA("Humanoid")
 		if humanoid then
 			-- Set the name of all guards to generic "Guard"
 			if player.Team.Name == "Guards" then
@@ -157,7 +157,7 @@ Players.PlayerAdded:Connect(onPlayerAdded)
 When a player is assigned to a `Class.Team`, their character's name appears in the same color as the team's `Class.Team.TeamColor|TeamColor`. This helps identify teammates and opposing players in team-based experiences.
 </Alert>
 
-### NPC Characters
+### NPC characters
 
 For NPC characters already placed in the 3D world, you can edit name/health directly on the `Class.Humanoid` object in the [Properties](../studio/properties.md) window.
 
@@ -166,30 +166,30 @@ For NPC characters already placed in the 3D world, you can edit name/health dire
   <img src="../assets/avatar/name-health-display/Humanoid-Properties.png" />
 </GridContainer>
 
-## Overriding Display Names
+## Override display names
 
 By default, a humanoid's display name matches the user's Roblox account **Display Name** which is unique and separate from their account **Username**. To show a fully custom name that's unrelated to the user's account, you can override the `Class.Humanoid.DisplayName` property.
 
-### Setting Directly
+### Set directly
 
 You can set the `Class.Humanoid.DisplayName|DisplayName` property of any `Class.Humanoid` instance which you gain reference to through a `Class.Script`, such as the [team&nbsp;customization](#team-customization-script) example, or directly on an [NPC](#npc-characters) character's **Humanoid** object.
 
-### Setting Through User Input
+### Set through user input
 
-In some genres like roleplaying or fighting, you may want to provide a method for users to input their own character name, pet character name, etc. which is specific to the experience and isn't tied to their account display name.
+In some genres like roleplaying or fighting, you may want to provide a method for users to input their own character name, pet character name, etc. that's specific to the experience and isn't tied to their account display name. You can gather this input on the client side through a `Class.TextBox` name entry.
 
-<img src="../assets/ui/button-text-input/TextBox-Example.jpg" width="80%" />
+<img src="../assets/ui/ui-objects/TextBox-Example.jpg" width="840" />
 
-You can gather this input on the client side through a `Class.TextBox` name entry or whatever suits the experience's interface, then pass it to the server with a [remote event](../scripting/events/remote.md). On the server side, you can listen for the remote event and assign the [filtered](../ui/text-filtering.md) name to the user character's `Class.Humanoid`.
+Once the input is submitted, you can pass it to the server through a [remote event](../scripting/events/remote.md) and then, on the server side, listen for the remote event and assign the [filtered](../ui/text-filtering.md) name to the user character's `Class.Humanoid`.
 
-```lua title='LocalScript - Fire Remote Event' highlight='3,4'
+```lua title="LocalScript - Fire Remote Event" highlight="3,4"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local changeNameEvent = ReplicatedStorage:WaitForChild("ChangeNameEvent")
 changeNameEvent:FireServer("Amory")
 ```
 
-```lua title='Script - Assign Filtered Name' highlight='15,20,23,28'
+```lua title="Script - Assign Filtered Name" highlight="15,20,23,28"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TextService = game:GetService("TextService")
 
@@ -200,7 +200,7 @@ changeNameEvent.Parent = ReplicatedStorage
 
 local function onRequestNameChange(player, newName)
 	local character = player.Character
-	local humanoid = character:FindFirstChild("Humanoid")
+	local humanoid = character:FindFirstChildWhichIsA("Humanoid")
 
 	local filterResult
 	local success, errorMessage = pcall(function()

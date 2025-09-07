@@ -1,15 +1,15 @@
 ---
-title: UI Animations
+title: UI animation/tweens
 description: Explains how to animate GuiObjects using the process of tweening.
 ---
 
-In animation, **tweening** is the process of generating intermediate frames between two key points in a sequence. When designing a [user interface](../ui/index.md), you can use tweening to transition a `Class.GuiObject` smoothly from one state to another, such as:
+In animation, **tweening** is the process of generating intermediate frames between two key points in a sequence. When designing a user interface, you can use tweening to transition a `Class.GuiObject` smoothly from one state to another, such as:
 
 - Smoothly increasing the size of a button when a user selects it.
 - Sliding UI menus in and out from the screen edges.
 - Gradually animating a health bar between two widths when a user receives a health boost.
 
-## Single-Property Tweens
+## Single-property tweens
 
 ### Position
 
@@ -22,7 +22,7 @@ To tween the **position** of a `Class.GuiObject`:
 
 The following code snippet moves an `Class.ImageLabel` within a `Class.ScreenGui` to the exact center of the screen:
 
-```lua title='UI Tween - Position' highlight='8,10,12,13,15'
+```lua title="UI Tween - Position" highlight="8,10,12,13,15"
 local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 
@@ -51,7 +51,7 @@ To tween the **size** of a `Class.GuiObject`:
 
 The following code snippet scales an `Class.ImageLabel` within a `Class.ScreenGui` to 40% of the screen width or height (whichever is smaller) from the object's center anchor point:
 
-```lua title='UI Tween - Size' highlight='8,10,11,13,16,18'
+```lua title="UI Tween - Size" highlight="8,10,11,13,16,18"
 local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 
@@ -81,7 +81,7 @@ To tween the **rotation** of a `Class.GuiObject`:
 1. Pass a `Datatype.TweenInfo` and the target rotation to `Class.TweenService:Create()`.
 1. Play the tween with `Class.Tween:Play()`.
 
-```lua title='UI Tween - Size' highlight='8,10,13,15'
+```lua title="UI Tween - Size" highlight="8,10,13,15"
 local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 
@@ -138,7 +138,7 @@ Multiple properties control UI transparency, depending on the object type. You c
 As a modern alternative to `Class.TextLabel.TextStrokeTransparency` and `Class.TextButton.TextStrokeTransparency`, you can tween stroke transparency on a `Class.UIStroke` object as outlined in [Stroke](#stroke).
 </Alert>
 
-```lua title='UI Tween - Image Transparency' highlight='8,11,13'
+```lua title="UI Tween - Image Transparency" highlight="8,11,13"
 local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 
@@ -154,7 +154,7 @@ local tween = TweenService:Create(object, tweenInfo, {ImageTransparency = target
 tween:Play()
 ```
 
-```lua title='UI Tween - Canvas Group Transparency' highlight='8,11,13'
+```lua title="UI Tween - Canvas Group Transparency" highlight="8,11,13"
 local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 
@@ -209,7 +209,7 @@ Multiple properties control UI color, depending on the object type. You can twee
 As a modern alternative to `Class.GuiObject.BorderColor3`, `Class.TextLabel.TextStrokeColor3`, and `Class.TextButton.TextStrokeColor3`, you can tween stroke color on a `Class.UIStroke` object as outlined in [Stroke](#stroke).
 </Alert>
 
-```lua title='UI Tween - Image Color' highlight='8,11,13'
+```lua title="UI Tween - Image Color" highlight="8,11,13"
 local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 
@@ -225,7 +225,7 @@ local tween = TweenService:Create(object, tweenInfo, {ImageColor3 = targetColor}
 tween:Play()
 ```
 
-```lua title='UI Tween - Canvas Group Color' highlight='8,11,13'
+```lua title="UI Tween - Canvas Group Color" highlight="8,11,13"
 local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 
@@ -248,7 +248,7 @@ Multiple properties control UI borders, depending on the object type.
 <table>
     <thead>
         <tr>
-            <th>UI Object</th>
+            <th>UI object</th>
             <th>Properties</th>
         </tr>
     </thead>
@@ -276,7 +276,7 @@ Multiple properties control UI borders, depending on the object type.
     </tbody>
 </table>
 
-Alternatively, you can apply a [UIStroke](../ui/layout-and-appearance.md#uistroke) child and tween its thickness, color, and/or transparency.
+Alternatively, you can apply a `Class.UIStroke` child and tween its thickness, color, and/or transparency.
 
 <table>
     <thead>
@@ -293,7 +293,7 @@ Alternatively, you can apply a [UIStroke](../ui/layout-and-appearance.md#uistrok
 	</tbody>
 </table>
 
-```lua title='UI Tween - UIStroke Color & Thickness' highlight='8-11,13,14,17,19'
+```lua title="UI Tween - UIStroke Color & Thickness" highlight="8-11,13,14,17,19"
 local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 
@@ -315,11 +315,11 @@ local tween = TweenService:Create(stroke, tweenInfo, {Color = targetColor, Thick
 tween:Play()
 ```
 
-## Multi-Property Tweens
+## Multi-property tweens
 
 You can combine any of the [single-property tweens](#single-property-tweens) into more complex tweens by passing multiple target properties to `Class.TweenService:Create()`, for example **position&nbsp;+&nbsp;rotation** or **size&nbsp;+&nbsp;transparency**.
 
-```lua title='UI Tween - Position & Rotation' highlight='8,10,11,14,16'
+```lua title="UI Tween - Position & Rotation" highlight="8,10,11,14,16"
 local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 
@@ -338,7 +338,7 @@ local tween = TweenService:Create(object, tweenInfo, {Position = targetPosition,
 tween:Play()
 ```
 
-```lua title='UI Tween - Size & Transparency' highlight='13,14,17,19'
+```lua title="UI Tween - Size & Transparency" highlight="13,14,17,19"
 local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 
@@ -360,11 +360,11 @@ local tween = TweenService:Create(object, tweenInfo, {Size = targetSize, ImageTr
 tween:Play()
 ```
 
-## Tween Sequences
+## Tween sequences
 
 You can chain UI animations to occur one after another by playing subsequent tweens upon the previous tween's `Class.TweenBase.Completed|Completed` event. For example, the following script moves an object to the center of the screen, then rotates it by 45&deg;.
 
-```lua title='UI Tween Sequence' highlight='10,11,14,15,18,21-23'
+```lua title="UI Tween Sequence" highlight="10,11,14,15,18,21-23"
 local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 
@@ -390,7 +390,7 @@ positionTween.Completed:Connect(function()
 end)
 ```
 
-## Easing Options
+## Easing options
 
 Using the easing options of `Datatype.TweenInfo`, you can control the easing **style** and **direction** of UI animations.
 
@@ -407,47 +407,47 @@ Using the easing options of `Datatype.TweenInfo`, you can control the easing **s
 </thead>
 <tbody>
   <tr>
-    <td><b>Linear</b></td>
+    <td>**Linear**</td>
     <td>Moves at a constant speed.</td>
   </tr>
   <tr>
-    <td><b>Sine</b></td>
-    <td>Speed is determined by a sine wave.</td>
+    <td>**Sine**</td>
+    <td>Speed is determined by a sine wave for a gentle easing motion.</td>
   </tr>
   <tr>
-    <td><b>Quad</b></td>
-    <td>Speed is determined by quadratic interpolation.</td>
+    <td>**Quad**</td>
+    <td>Similar to **Sine** but with a slightly sharper curve based on quadratic interpolation.</td>
   </tr>
   <tr>
-    <td><b>Cubic</b></td>
-    <td>Similar to **Quad**, but starts at a lower speed.</td>
+    <td>**Cubic**</td>
+    <td>Similar to **Quad** but with a slightly sharper curve based on cubic interpolation.</td>
   </tr>
   <tr>
-    <td><b>Quart</b></td>
-    <td>Similar to **Quad**, but starts at a higher speed.</td>
+    <td>**Quart**</td>
+    <td>Similar to **Cubic** but with an even sharper curve based on quartic interpolation.</td>
   </tr>
   <tr>
-    <td><b>Quint</b></td>
-    <td>Similar to **Quart**, but starts at a higher speed.</td>
+    <td>**Quint**</td>
+    <td>Similar to **Quart** but with an even sharper curve based on quintic interpolation.</td>
   </tr>
   <tr>
-    <td><b>Exponential</b></td>
-    <td>Speed reduces very quickly as tween approaches the target.</td>
+    <td>**Exponential**</td>
+    <td>The sharpest curve based on exponential interpolation.</td>
   </tr>
   <tr>
-    <td><b>Circular</b></td>
-    <td>Follows a circular arc, slowing down as tween approaches the target.</td>
+    <td>**Circular**</td>
+    <td>Follows a circular arc, such that acceleration is more sudden and deceleration more gradual versus **Quint** or **Exponential**.</td>
   </tr>
   <tr>
-    <td><b>Back</b></td>
+    <td>**Back**</td>
     <td>Slightly overshoots the target, then backs into place.</td>
   </tr>
   <tr>
-    <td><b>Bounce</b></td>
+    <td>**Bounce**</td>
     <td>Bounces backwards multiple times after reaching the target, before eventually settling.</td>
   </tr>
   <tr>
-    <td><b>Elastic</b></td>
+    <td>**Elastic**</td>
     <td>Moves as if attached to a rubber band, overshooting the target several times.</td>
   </tr>
 </tbody>
@@ -465,7 +465,7 @@ Using the easing options of `Datatype.TweenInfo`, you can control the easing **s
 </TabItem>
 </Tabs>
 
-```lua title='Easing Style - Cubic' highlight='1'
+```lua title="Easing Style - Cubic" highlight="1"
 local tweenInfo = TweenInfo.new(2, Enum.EasingStyle.Cubic)
 local tween = TweenService:Create(object, tweenInfo, {Rotation = 45})
 ```
@@ -483,30 +483,30 @@ local tween = TweenService:Create(object, tweenInfo, {Rotation = 45})
 </thead>
 <tbody>
   <tr>
-    <td><b>In</b></td>
+    <td>**In**</td>
     <td>The easing style applies in a forward direction.</td>
   </tr>
   <tr>
-    <td><b>Out</b></td>
+    <td>**Out**</td>
     <td>The easing style applies in a reverse direction.</td>
   </tr>
   <tr>
-    <td><b>InOut</b></td>
+    <td>**InOut**</td>
     <td>The easing style applies forward for the first half and in reverse for the second half.</td>
   </tr>
 </tbody>
 </table>
 
-```lua title='Easing Direction - InOut' highlight='1'
+```lua title="Easing direction - InOut" highlight="1"
 local tweenInfo = TweenInfo.new(2, Enum.EasingStyle.Cubic, Enum.EasingDirection.InOut)
 local tween = TweenService:Create(object, tweenInfo, {Rotation = 45})
 ```
 
-## Animating Text
+## Animate text
 
 You can easily enhance text-based UI, such as cutscene banners, player instructions, and prompts, with animated effects.
 
-### Typewriter Effect
+### Typewriter effect
 
 The "typewriter" effect is ideal for `Class.TextLabel|TextLabels` that tell a story, output NPC conversations, etc.
 
@@ -519,7 +519,7 @@ The "typewriter" effect is ideal for `Class.TextLabel|TextLabels` that tell a st
 
 1. Paste the following code into the script:
 
-   ```lua title='ModuleScript - AnimateUI'
+   ```lua title="ModuleScript - AnimateUI"
    local LocalizationService = game:GetService("LocalizationService")
    local Players = game:GetService("Players")
 
@@ -575,7 +575,7 @@ The "typewriter" effect is ideal for `Class.TextLabel|TextLabels` that tell a st
 1. Create a `Class.TextLabel` in a suitable location, such as within a `Class.ScreenGui` parented to `Class.StarterGui`.
 1. Insert a new `Class.LocalScript` as a direct child of the label and paste in the following code. Note that each message is output by calling `AnimateUI.typeWrite()` with parameters for the parent object, the string to output, and the delay between characters.
 
-   ```lua title='LocalScript' highlight='3,5,10,11,15,16'
+   ```lua title="LocalScript" highlight="3,5,10,11,15,16"
    local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
    local AnimateUI = require(ReplicatedStorage:WaitForChild("AnimateUI"))

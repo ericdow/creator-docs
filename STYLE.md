@@ -27,7 +27,7 @@ We follow the [Microsoft Style Guide](https://learn.microsoft.com/en-us/style-gu
   - **WORSE**: The list of players is returned.
   - **BETTER**: The server returns the list of players.
 
-- The terms "we" and "our" implies Roblox and is usually reserved for recommendations.
+- The terms "we" and "our" imply Roblox and are usually reserved for recommendations.
 
   - **BAD**: Now that we're happy with the terrain, we can start placing our models.
   - **BETTER**: When you're satisfied with the terrain, begin placing your models.
@@ -62,7 +62,7 @@ We follow the [Microsoft Style Guide](https://learn.microsoft.com/en-us/style-gu
   - **BAD**: Click and drag to grab the signpost. Then select the **Color** button.
   - **BETTER**: Select the signpost and click the **Color** button.
 
-- Spell out one (1) through nine (9). Start using numerals at 10. If a number needs a unit (GB, pounds, millimeters, kg, celsius, etc.), always use numerals, even if the number if smaller than 10.
+- Spell out one (1) through nine (9). Start using numerals at 10. If a number needs a unit (GB, pounds, millimeters, kg, celsius, etc.), always use numerals, even if the number is smaller than 10.
 
   - **BAD**: 3 people looked for thirteen files on a six GB hard drive.
   - **BETTER**: Three people looked for 13 files on a 6 GB hard drive.
@@ -73,7 +73,7 @@ We follow the [Microsoft Style Guide](https://learn.microsoft.com/en-us/style-gu
 
 For external links to other websites outside of [https://create.roblox.com](https://create.roblox.com), use standard Markdown instead of JSX or HTML:
 
-- `[Creator Dashboard](https://create.roblox.com/creations)`
+- `[Creator Dashboard](https://create.roblox.com/dashboard/creations)`
 - `[Blender](https://www.blender.org/)`
 
 ### Documentation Site Links
@@ -85,7 +85,7 @@ When linking to another page on the Roblox Documentation site, use **relative** 
 
 ### Engine API Reference Page Links
 
-When referencing a Roblox Engine API member, such as a class, method, enum, data type, global function, or library, use our special [API link syntax](#link-syntax) instead.`.
+When referencing a Roblox Engine API member, such as a class, method, enum, data type, global function, or library, use our special [API link syntax](#link-syntax) instead.
 
 #### Usage Guidelines
 
@@ -137,7 +137,7 @@ To link to a page in the Roblox Engine API, use the following syntax patterns. T
 
   - `` `Enum.Name` ``
 
-- **Lua/Roblox Globals**
+- **Luau and Roblox Globals**
 
   - `` `Global.LuaGlobals.Function()` ``
   - `` `Global.RobloxGlobals.Function()` ``
@@ -241,8 +241,8 @@ The reference documentation files come in five types:
 - Classes — core classes such as `BasePart`, `Model`, `Humanoid`, `DataStoreService`, etc.
 - Data types — data types such as `Color3`, `CFrame`, `UDim2`, `Vector3`, etc.
 - Enums — Enums such as `CameraType`, `FontSize`, `ScreenInsets`, etc.
-- Globals — Lua and Roblox globals.
-- Libraries — Lua libraries such as `math`, `string`, and `table`.
+- Globals — Luau and Roblox globals.
+- Libraries — Luau libraries such as `math`, `string`, and `table`.
 
 Internal tooling generates the structure of most files. Don't add new constructors, properties, methods, or events—just fill in the details. In most situations, you should only edit `summary`, `description`, and `deprecation_message`.
 

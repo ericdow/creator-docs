@@ -1,14 +1,20 @@
 ---
-title: Export Settings
+title: Export settings
 description: Use the appropriate export settings in Maya and Blender to generate Studio-ready .fbx files.
 ---
 
-Export your mesh or model as a `.fbx` to take advantage of all of Studio's 3D import features. When rigging or skinning a model, a `.fbx` export contains both the rig and influence data you need to later [import](../../parts/meshes.md#importing-meshes) into Studio.
+Export your mesh or model as a `.fbx` to take advantage of all of Studio's 3D import features. When rigging or skinning a model, a `.fbx` export contains both the rig and influence data you need to later [import](../../parts/meshes.md#import-meshes) into Studio.
 
 Check that your model meets Roblox's [modeling specifications](../../art/modeling/specifications.md) before exporting to ensure Studio compatibility. Specific types of assets, like characters and accessories, have additional specifications:
 
-- If you are creating an avatar character model, ensure that your model follows [Character Specifications](../../art/characters/specifications.md).
-- If you are creating an accessory model, ensure that your model follows [Accessory Specifications](../../art/accessories/specifications.md).
+<Alert severity = 'warning'>
+<AlertTitle>If creating other types of 3D models:</AlertTitle>
+<ul>
+<li>For rigid accessories, see [accessory specifications](../../art/accessories/specifications.md) and [accessory export settings](../accessories/export-settings.md).</li> <br />
+<li>For layered accessories, see [layered accessory specifications](../accessories/clothing-specifications.md) and [layered export settings](../accessories/clothing-export-settings.md).</li> <br />
+<li>For avatar characters, see [avatar specifications](../../art/characters/specifications.md) and [avatar export settings](../characters/export-settings.md).</li>
+</ul>
+</Alert>
 
 <Tabs>
   <TabItem label="Blender">
@@ -46,14 +52,15 @@ To export a mesh in Maya as a `.fbx` file:
 3. Near the bottom of the window, click the **Files of type** dropdown, then select **FBX export**.
 4. On the right-hand side of the window, navigate to the **Options...** section.
 5. In the **Geometry** section, enable **Smooth Mesh** and **Referenced Asset Content**.
-6. In the **Animation** section, disable **Animation**, unless you need to import an animation to Studio.
+6. In the **Animation** section, disable **Animation**, unless you need to import an animation to Studio. Some avatar assets require animation.
+   1. If you are exporting animation, enable **Bake Animation**.
 7. If you need to import textures as a `.png`, in the **Embed Media** section, enable **Embed Media**.
 8. In the **Advanced Options** section,
    - Navigate to **Units**, then enable **Automatic**.
    - Navigate to **Axis Conversion**, then set the **Up Axis** property to **Y**.
-   - Navigate to **FBX File Format**, then set the **Type** property to **Binary**, and the **Version** property to **FBX 2020**.
 9. Click the **Export All** button.
-   <img src="../../assets/accessories/lc-requirements-maya-settings.png" alt="Blender export sidebar showing Bake Animation as unchecked"  />
+
+   <img src="../../assets/accessories/lc-requirements-maya-settings.png" alt="Maya export sidebar showing Bake Animation as unchecked"  />
 
 </TabItem>
 </Tabs>

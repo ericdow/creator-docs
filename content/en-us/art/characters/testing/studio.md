@@ -1,15 +1,16 @@
 ---
-title: Testing in Studio
+title: Test in Studio
 comments:
 description: Verify the important aspects of your character model in a custom Studio test experience.
-prev: /art/avatar/testing/blender
 ---
 
-Test your character model in Studio to understand how it looks and feels within a Roblox experience.
+Test your character model in Studio to understand how it looks and feels within a Roblox experience. To test your custom character in Studio, first [import the character model](../../characters/import.md) into your Studio project.
 
-Roblox provides an [Avatar Test experience](https://www.roblox.com/games/13176231501/Avatar-Test-Place) that you can open in Studio and import your character model in. This experience provides a wide variety of environmental and clothing tests to ensure that your character model and related components work as expected.
+You can test in Studio using the [Avatar Setup tool](../../../avatar-setup/) to preview and test various components of your avatar character.
 
-## Setting up Test Experience
+You can also playtest your character in the [Avatar Test experience](https://www.roblox.com/games/13176231501/Avatar-Test-Place). This experience provides a wide variety of environmental and clothing tests to ensure that your character model and related components work as expected.
+
+## Set up test experience
 
 The following is the general testing process setting up the Avatar Test experience:
 
@@ -18,7 +19,7 @@ The following is the general testing process setting up the Avatar Test experien
 3. Set your model as the starter character.
 4. Launch a playtest of the experience.
 
-### Opening in Studio
+### Open in Studio
 
 In order to use the [Avatar Test experience](https://www.roblox.com/games/13176231501/Avatar-Test-Place), you must first download it from Roblox. You can save the experience locally and make any changes that may help your testing workflow. Roblox may update this experience periodically to add or improve features.
 
@@ -30,11 +31,11 @@ To download the Avatar Test experience:
    <img src="../../../assets/art/avatar/basic-creation/Testing-Avatar-Test-Place.png" />
    <img src="../../../assets/art/avatar/basic-creation/Testing-Studio.png" />
 
-### Importing
+### Import
 
 After you open the test experience in Studio, import your custom character model.
 
-1. In the menu bar, navigate to **Avatar** > **Import 3D**. A file browser displays.
+1. Navigate to toolbar's **Avatar** tab and select **Import 3D**. A file browser displays.
 
    <img src="../../../assets/art/avatar/basic-creation/Testing-3d-Importer.png" />
 
@@ -56,10 +57,10 @@ After you open the test experience in Studio, import your custom character model
 4. Click **Import**. The character's model populates into the workspace.
 
   <Alert severity = 'warning'>
-  If an error or warning message displays in the Output window, see [Troubleshooting](../../../art/characters/facial-animation/using-heads-in-studio.md#troubleshooting) for guidance on how to handle your specific error or warning message.
+  If an error or warning message displays in the Output window, see [Troubleshooting](../../../art/characters/facial-animation/use-heads-in-studio.md#troubleshooting) for guidance on how to handle your specific error or warning message.
   </Alert>
 
-### Adding SurfaceAppearance
+### Add SurfaceAppearance
 
 If you exported your textures separately, or if the 3D Importer fails to pick up your PBR textures, you can add them manually.
 
@@ -83,7 +84,7 @@ To add individual image texture files:
 
    <img src="../../../assets/art/avatar/basic-creation/Testing-Surface-Appearance-Applied.png" />
 
-### Setting Model as StarterPlayer
+### Set model as StarterPlayer
 
 In order to play as the character during a playtest, rename and move the model instance:
 
@@ -95,7 +96,7 @@ In order to play as the character during a playtest, rename and move the model i
 
 After you rename and add your model, navigate to the **Test** > **Play** button to start a test session of the experience as the custom model.
 
-## Using Test Experience
+## Use test experience
 
 The Avatar Test experience includes several features in the interface and environment to quickly perform comprehensive tests of your avatar characters. You can use the [test checklist](#checklist) to ensure you are reviewing all the important aspects of your avatar character.
 
@@ -146,7 +147,7 @@ When playtesting the experience, use the following UI buttons on the right side 
 
 Use the following checklists to ensure that you are comprehensively testing each component of your avatar. Use the Avatar menu to switch between your custom avatar and a control avatar to verify expected behavior.
 
-#### Movement and Animation
+#### Movement and animation
 
 <GridContainer numColumns="3">
   <figure><img src="../../../assets/art/avatar/basic-creation/Testing-Emotes.png" /> <figcaption>Testing guitar animation emote</figcaption></figure>
@@ -204,7 +205,7 @@ Check the following for any anomalies:
 
 If you see unexpected behavior with your character's movement, there may be some issues with the rigging or skinning of your character. It may require revisiting the rigging and armature components of your avatar model in your modeling application.
 
-#### Lighting and Color
+#### Lighting and color
 
 <GridContainer numColumns="2">
   <figure><img src="../../../assets/art/avatar/basic-creation/Testing-Skin-Tone.png" /> <figcaption>Testing skin tones</figcaption></figure>
@@ -235,7 +236,7 @@ Check the following for any anomalies:
 
 If you see unexpected behavior with your character's appearance in various lighting and color selections, there may be some issues with the texturing of your character. It may require re-adjusting the texturing components of your avatar model in your modeling application.
 
-#### Clothing and Accessories
+#### Clothing and accessories
 
 <GridContainer numColumns="2">
   <figure><img src="../../../assets/art/avatar/basic-creation/Testing-Clothing.png" /> <figcaption>Test a mix of clothing and accessories</figcaption></figure>

@@ -7,13 +7,13 @@ It can be challenging to locate friends in-experience. The **FriendsLocator** [d
 
 <video src="../../assets/developer-modules/friends-locator/Showcase.mp4" controls width="100%"></video>
 
-## Module Usage
+## Module usage
 
 ### Installation
 
 To use the **FriendsLocator** module in an experience:
 
-1. From the [View](../../studio/view-tab.md) tab, open the [Toolbox](../../projects/assets/toolbox.md) and select the **Creator Store** tab.
+1. From the **View** tab, open the **Toolbox** and select the **Creator Store** tab.
 
    <img src="../../assets/studio/general/View-Tab-Toolbox.png" width="776" alt="Toolbox toggle button in Studio" />
 
@@ -23,19 +23,15 @@ To use the **FriendsLocator** module in an experience:
 
    <img src="../../assets/studio/toolbox/Creator-Store-Categories-See-All.png" width="360" />
 
-1. Locate and click the **Dev Modules** tile.
-
-   <img src="../../assets/studio/toolbox/Creator-Store-Categories-Dev-Modules.png" width="200" />
+1. Locate and click the **Packages** tile.
 
 1. Locate the **Friends Locator** module and click it, or drag-and-drop it into the 3D view.
 
    <img src="../../assets/developer-modules/friends-locator/Toolbox-Icon.png" width="143" />
 
-1. In the [Explorer](../../studio/explorer.md) window, move the entire **FriendsLocator** model into **ServerScriptService**. Upon running the experience, the module will distribute itself to various services and begin running.
+1. In the [Explorer](../../studio/explorer.md) window, move the entire **FriendsLocator** model into `Class.ReplicatedStorage`. Upon running the experience the module will begin running.
 
-   <img src="../../assets/developer-modules/friends-locator/Move-Package.png" width="320" />
-
-### Testing in Studio
+### Test in Studio
 
 To test the module in Studio, the **FriendsLocator** module must be run in a multi-client simulation, since no friends will be present in a solo playtest.
 
@@ -45,18 +41,18 @@ To test the module in Studio, the **FriendsLocator** module must be run in a mul
 
 1. Paste the following code into the new **ConfigureFriendsLocator** script. The `showAllPlayers` setting within the [configure](#configure) function ensures that locators are shown for all users while testing in Studio, but not in a published place.
 
-   ```lua title='LocalScript - ConfigureFriendsLocator'
+   ```lua title="LocalScript - ConfigureFriendsLocator"
    local RunService = game:GetService("RunService")
    local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-   local FriendsLocator = require(ReplicatedStorage:WaitForChild("FriendsLocator"))
+   local FriendsLocator = require(ReplicatedStorage.FriendsLocator)
 
    FriendsLocator.configure({
-   	showAllPlayers = RunService:IsStudio(),  -- Allows for debugging in Studio
+   	showAllPlayers = RunService:IsStudio(), -- Allows for debugging in Studio
    })
    ```
 
-1. From the [Test](../../studio/test-tab.md) tab, select the following combination for **Clients&nbsp;and&nbsp;Servers**, then click the **Start** button. Three new instances of Studio will open; one simulated server and two simulated clients.
+1. From the toolbar's **Test** tab, select the following combination for **Clients&nbsp;and&nbsp;Servers**, then click the **Start** button. Three new instances of Studio will open; one simulated server and two simulated clients.
 
    <img src="../../assets/developer-modules/friends-locator/Clients-Servers-Start.png" width="800" />
 
@@ -69,25 +65,25 @@ To test the module in Studio, the **FriendsLocator** module must be run in a mul
    </Alert>
 
    <Alert severity="warning">
-   By default, clicking/tapping a friend's icon will teleport your character to that character's location. If you keep this default behavior and you find that streaming pause is occurring under the [instance streaming](../../workspace/streaming.md) architecture, you may want to [request area streaming](../../workspace/streaming.md#requesting-area-streaming) around the teleport location as shown in the [clicked](#clicked) event code sample.
+   By default, clicking/tapping a friends's icon will teleport your character to that character's location. If you keep this default behavior and you find that streaming pause is occurring under the [instance streaming](../../workspace/streaming.md) architecture, you may want to [request area streaming](../../workspace/streaming.md#request-area-streaming) around the teleport location as shown in the [clicked](#clicked) event code sample.
    </Alert>
 
-### Connecting to Events
+### Connect to events
 
 The **FriendsLocator** module exposes [events](#events) so that you can introduce custom behaviors when users interact with a locator icon.
 
-1. Make sure that you've created the **ConfigureFriendsLocator** script outlined in [Testing&nbsp;in&nbsp;Studio](#testing-in-studio).
+1. Make sure that you've created the **ConfigureFriendsLocator** script outlined in [testing&nbsp;in&nbsp;Studio](#test-in-studio).
 2. Add lines 8 and 11-13 to the script:
 
-   ```lua title='LocalScript - ConfigureFriendsLocator' highlight='8,11-13'
+   ```lua title="LocalScript - ConfigureFriendsLocator" highlight="8,11-13"
    local RunService = game:GetService("RunService")
    local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-   local FriendsLocator = require(ReplicatedStorage:WaitForChild("FriendsLocator"))
+   local FriendsLocator = require(ReplicatedStorage.FriendsLocator)
 
    FriendsLocator.configure({
-   	showAllPlayers = RunService:IsStudio(),  -- Allows for debugging in Studio
-   	teleportToFriend = false,  -- Prevent teleport on icon click/tap
+   	showAllPlayers = RunService:IsStudio(), -- Allows for debugging in Studio
+   	teleportToFriend = false, -- Prevent teleport on icon click/tap
    })
 
    FriendsLocator.clicked:Connect(function(player, playerCFrame)
@@ -95,9 +91,9 @@ The **FriendsLocator** module exposes [events](#events) so that you can introduc
    end)
    ```
 
-3. Conduct a [multi-client test](#testing-in-studio) and click on another character's locator icon. Notice that your character does not teleport to that location, and the event triggers to allow for custom handling of icon clicks.
+3. Conduct a [multi-client test](#test-in-studio) and click on another character's locator icon. Notice that your character does not teleport to that location, and the event triggers to allow for custom handling of icon clicks.
 
-### Custom Locator UI
+### Custom locator UI
 
 If the default style does not fit your experience, you can replace the default avatar portrait UI with your own UI.
 
@@ -126,7 +122,7 @@ To replace the default UI:
 
    The module will look for these items and display the friend's avatar portrait and/or display name respectively.
 
-## API Reference
+## API reference
 
 ### Functions
 
@@ -175,10 +171,10 @@ Overrides default configuration options through the following keys/values in the
 </tbody>
 </table>
 
-```lua title='LocalScript - ConfigureFriendsLocator' highlight='5-11'
+```lua title="LocalScript - ConfigureFriendsLocator" highlight="5-11"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local FriendsLocator = require(ReplicatedStorage:WaitForChild("FriendsLocator"))
+local FriendsLocator = require(ReplicatedStorage.FriendsLocator)
 
 FriendsLocator.configure({
 	alwaysOnTop = true,
@@ -213,17 +209,18 @@ Fires when a locator icon is clicked/activated by the local player. This event c
 </tbody>
 </table>
 
-```lua title='LocalScript'
+```lua title="LocalScript"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
 
-local FriendsLocator = require(ReplicatedStorage:WaitForChild("FriendsLocator"))
+local FriendsLocator = require(ReplicatedStorage.FriendsLocator)
 
 local localPlayer = Players.LocalPlayer
 
 FriendsLocator.clicked:Connect(function(player, playerCFrame)
 	-- Request streaming around target location
-	if workspace.StreamingEnabled then
+	if Workspace.StreamingEnabled then
 		local success, errorMessage = pcall(function()
 			localPlayer:RequestStreamAroundAsync(playerCFrame.Position)
 		end)
@@ -262,10 +259,10 @@ Fires when a locator icon is shown/hidden on the local player's screen. This eve
 </tbody>
 </table>
 
-```lua title='LocalScript' highlight='5-7'
+```lua title="LocalScript" highlight="5-7"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local FriendsLocator = require(ReplicatedStorage:WaitForChild("FriendsLocator"))
+local FriendsLocator = require(ReplicatedStorage.FriendsLocator)
 
 FriendsLocator.visibilityChanged:Connect(function(player, playerCFrame, isVisible)
 	print("Visibility of locator icon for", player.DisplayName, ":", isVisible)

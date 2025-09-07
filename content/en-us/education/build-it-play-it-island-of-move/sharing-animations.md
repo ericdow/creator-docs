@@ -1,19 +1,19 @@
 ---
-title: Sharing Animations
-description: Part of the Roblox Build It, Play It Challenge - Island of Move. Share animations with other developers.
+title: Export and Import Animations
+description: Part of the Roblox Build It, Play It Challenge - Island of Move. Export animations to share with other developers.
 prev: /education/build-it-play-it-island-of-move/go-beyond-the-challenge
 ---
 
 <img src="../../assets/education/build-it-play-it-island-of-move/sharing-animations/hero-banner.png" width="100%" />
 
-Share animations with friends and fellow developers by exporting and importing them through Studio.
+Share animations with connections and fellow developers by exporting and importing them through Studio.
 
 <Alert severity="info">
-<AlertTitle>Rules in Sharing Animations</AlertTitle>
-When sharing animations, keep in mind that an Asset ID can only used between the group or individual that owns the animation.
+<AlertTitle>Animation Permission Changes</AlertTitle>
+You can now share animations with connections, groups, and experiences without re-uploading them. For more information, see [Asset privacy](../../projects/assets/privacy.md).
 </Alert>
 
-**Exporting Animations**
+## Export animations
 
 Make sure to save your animation before exporting it.
 
@@ -27,7 +27,7 @@ Make sure to save your animation before exporting it.
 
 3. Right-click the animation name and select **Save to File**. This saves the animation as an `.RBXM` file on your computer, which can be shared. You can export more than one animation at a time.
 
-## Importing Animations
+## Import animations
 
 Animations saved in an `.RBXM` file can be imported into different rigs by yourself or by friends in any Roblox file.
 
@@ -46,11 +46,11 @@ Animations saved in an `.RBXM` file can be imported into different rigs by yours
 
    Next, in the drop-down menu, go to **Load** and select the name of the `.RBXM` file just imported.
 
-### Troubleshooting Tips
+### Troubleshooting tips
 
 **Issue**: Animation Not Loading
-In the original `.RBXM` file, make sure there is a saved `Class.KeyFrameSequence` object.
+In the original `.RBXM` file, make sure there is a saved `Class.KeyframeSequence` object.
 
 <img src="../../assets/education/build-it-play-it-island-of-move/sharing-animations/animation-keyframe.png" width="50%" />
 
-If only a `Class.Keyframe` object was imported, try re-exporting the original animation and importing again. Make sure to export the named `Class.KeyFrameSequence` and not just a keyframe object.
+If only a `Class.Keyframe` object was imported, try re-exporting the original animation and importing again. Make sure to export the named `Class.KeyframeSequence` and not just a keyframe object.

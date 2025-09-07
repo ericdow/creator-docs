@@ -4,7 +4,7 @@ next: /education/build-it-play-it-galactic-speedway/get-off-the-ground
 description: Learn how to build your own custom spaceship models in Roblox Studio as part of the Build It Play It Galactic Speedway challenge.
 ---
 
-Enter the space race of the millenia! No ship, no problem. All racers will be asked to design custom driftspeeders using what can be found on the abandoned galactic spaceyard of Junker's Canyon. Using Roblox Studio, learn how to combine parts to make spaceships that can survive racing in this beautiful alien ~~deathtrap~~, _ahem_ landscape.
+Enter the space race of the millennia! No ship, no problem. All racers will be asked to design custom driftspeeders using what can be found on the abandoned galactic spaceyard of Junker's Canyon. Using Roblox Studio, learn how to combine parts to make spaceships that can survive racing in this beautiful alien ~~deathtrap~~, _ahem_ landscape.
 
 <video controls
 src="../../assets/education/build-it-play-it-galactic-speedway/main-page/overview-video.mp4"
@@ -33,7 +33,7 @@ With your new account, remember these safety tips:
 For more tips, please see <a href = "https://en.help.roblox.com/hc/en-us/articles/203313380-Account-Security-Theft-Keeping-your-Account-Safe-" >Keeping Your Account Safe</a>.
 </Alert>
 
-## Three Lessons, Three Prizes
+## Three lessons, three prizes
 
 To build the driftspeeder and add it to the race, follow along with each of the three step-by-step tutorials.
 <GridContainer numColumns="3">

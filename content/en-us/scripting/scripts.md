@@ -21,13 +21,13 @@ Scripts need to reside in **script containers** in the data model. Based on the 
 You can also use `Class.LocalScript` objects for client-side scripts, but we recommend using regular scripts with the run context setting to specify whether the script runs on the client or server.
 </Alert>
 
-## Module Scripts
+## Module scripts
 
 `Class.ModuleScript` objects are reusable modules that script objects
-load by calling the `Global.RobloxGlobals.require()` function. Module scripts must return exactly one
+load by calling the `Global.LuaGlobals.require()` function. Module scripts must return exactly one
 value and run once and only once
-per Lua environment. As a result, subsequent calls to `Global.RobloxGlobals.require()` return a
-cached value.
+per Luau environment. As a result, subsequent calls to `Global.LuaGlobals.require()` return a
+cached value. You can execute arbitrary code in a `Class.ModuleScript`, but you only need to return what you need in other scripts.
 
 Multiple scripts can require
 the same module script, and one module script can be required by both
@@ -44,8 +44,6 @@ return module
 
 - `local module = {}` creates an empty [table](../luau/tables.md).
 - `return module` returns the table and its members to any script that imports the `Class.ModuleScript`.
-
-`Class.ModuleScript` objects return one value that can be any [data type](/reference/engine/datatypes) except for `nil`. You can execute arbitrary code in a `Class.ModuleScript`, but you only need to return what you need in other scripts.
 
 The following example module script returns a `getPickupBonus` function in the `PickupManager` table:
 
@@ -86,14 +84,14 @@ print(bonus)  --> 125
 
 ### Requiring
 
-A `Class.ModuleScript` runs only when another script imports it using the `Global.RobloxGlobals.require()` function. If a `Class.ModuleScript` requires another `Class.ModuleScript`, a `Class.Script` or `Class.LocalScript` must require the first `Class.ModuleScript` in the chain for any of them to run.
+A `Class.ModuleScript` runs only when another script imports it using the `Global.LuaGlobals.require()` function. If a `Class.ModuleScript` requires another `Class.ModuleScript`, a `Class.Script` or `Class.LocalScript` must require the first `Class.ModuleScript` in the chain for any of them to run.
 
 <Alert severity="warning">
 Don't require `Class.ModuleScript|ModuleScripts` in a recursive or circular manner,
-otherwise Studio throws an error: <InlineCode>Requested module was required recursively</InlineCode>.
+otherwise Studio throws an error: `Requested module was required recursively`.
 </Alert>
 
-To access a `Class.ModuleScript` from another script using the `Global.RobloxGlobals.require()`
+To access a `Class.ModuleScript` from another script using the `Global.LuaGlobals.require()`
 function:
 
 ```lua
@@ -105,15 +103,15 @@ local PickupManager = require(ReplicatedStorage:WaitForChild("PickupManager"))
 
 ```
 
-When you call `Global.RobloxGlobals.require()` on a `Class.ModuleScript`, it runs **once** and returns a single item as a **reference**. Calling `Global.RobloxGlobals.require()` again returns the exact same reference, meaning that if you modify a returned [table](../luau/tables.md) or `Class.Instance`, subsequent `Global.RobloxGlobals.require()` calls return that modified reference. The module itself doesn't run multiple times.
+When you call `Global.LuaGlobals.require()` on a `Class.ModuleScript`, it runs **once** and returns a single item as a **reference**. Calling `Global.LuaGlobals.require()` again returns the exact same reference, meaning that if you modify a returned [table](../luau/tables.md) or `Class.Instance`, subsequent `Global.LuaGlobals.require()` calls return that modified reference. The module itself doesn't run multiple times.
 
-If you `Global.RobloxGlobals.require()` a `Class.ModuleScript` from both sides of the client-server boundary, then the `Class.ModuleScript` returns a unique reference for each side.
+If you `Global.LuaGlobals.require()` a `Class.ModuleScript` from both sides of the client-server boundary, then the `Class.ModuleScript` returns a unique reference for each side.
 
 ### Patterns
 
 Module scripts have some common patterns that you can use to simplify your code and provide more flexibility over the features Roblox Studio provides. By incorporating these patterns into your development, you can avoid common pitfalls as your Roblox experience grows in size and complexity.
 
-#### Data Sharing
+#### Data sharing
 
 To associate data with individual objects, you can assign attributes to them or create `Class.Configuration` folders with value objects such as `Class.StringValue` or `Class.IntValue`. However, both approaches are troublesome if you want to add or modify dozens of objects or data values. They also don't store tables or functions.
 
@@ -139,7 +137,7 @@ GunConfig.Damage = {
 return GunConfig
 ```
 
-#### Custom Events
+#### Custom events
 
 Custom events enable scripts to communicate with each other, but having to keep track of references to individual `Class.BindableEvent` objects may clutter your code.
 
@@ -176,7 +174,7 @@ local Switch = require(ReplicatedStorage:WaitForChild("Switch"))
 
 Switch.Changed:Connect(function(newState)
 	print("Switch state is now", newState)
-end
+end)
 
 -- Test the flipping a few times
 task.wait(1)
@@ -187,7 +185,7 @@ Switch.flip()
 
 #### Encapsulation
 
-Encapsulation is the practice of creating a layer of abstraction around objects or scripting logic to hide complexity. You can use `Class.ModuleScript|ModuleScripts` to encapsulate Roblox objects with custom Lua functions to simplify code.
+Encapsulation is the practice of creating a layer of abstraction around objects or scripting logic to hide complexity. You can use `Class.ModuleScript|ModuleScripts` to encapsulate Roblox objects with custom Luau functions to simplify code.
 
 For example, you can use encapsulation to:
 
@@ -229,8 +227,8 @@ function NetworkManagerServer.GetServerEventSignal(id)
 	local bindableEvent = Instance.new("BindableEvent")
 	-- Linking the new BindableEvent to the id
 	table.insert(networkSignalList, {
-		id = id;
-		bindableEvent = bindableEvent;
+		id = id,
+		bindableEvent = bindableEvent,
 	})
 	return bindableEvent.Event
 end
@@ -240,8 +238,8 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local remoteEvent = ReplicatedStorage:WaitForChild("RemoteEvent")
 remoteEvent.OnServerEvent:Connect(function(player, id, ...)
-	-- Finding every bindable event that matches the id of the received remote event
-	for _, signal in next, networkSignalList do
+	-- Finding every bindable event that matches the ID of the received remote event
+	for _, signal in networkSignalList do
 		if signal.id == id then
 			signal.bindableEvent:Fire(player, ...)
 		end
@@ -251,7 +249,7 @@ end)
 return NetworkManagerServer
 ```
 
-The following `Class.LocalScript` sends a message with the id "RequestA" with an optional "Hello" argument.
+The following `Class.LocalScript` sends a message with the ID "RequestA" with an optional "Hello" argument.
 
 ```lua
 -- LocalScript in ReplicatedFirst
@@ -261,7 +259,7 @@ local NetworkManagerClient = require(ReplicatedFirst:WaitForChild("NetworkManage
 NetworkManagerClient.FireServer("RequestA", "Hello")
 ```
 
-The following `Class.Script` connects to the network message id "RequestA" and prints out a statement with any additional parameters when it receives the request.
+The following `Class.Script` connects to the network message ID "RequestA" and prints out a statement with any additional parameters when it receives the request.
 
 ```lua
 -- Script in ServerScriptService
@@ -273,17 +271,15 @@ NetworkManagerServer.GetServerEventSignal("RequestA"):Connect(function(player, .
 end)
 ```
 
-## Creating Scripts
+## Create scripts
 
 To create script objects in the Studio **Explorer** window:
 
 1. Hover over the parent container into which you want to insert a script.
 2. Click the **&CirclePlus;** button that appears to the right of the
-   container to open the **Insert Object** menu.
-3. Select the type of script you want to insert.
-4. Rename the script.
+   container and select the type of script you want to insert.
+3. Rename the script.
 
 <Alert severity="info">
-See our [code samples](../samples/index.md) and [tutorials](../tutorials/index.md) for scripting
-examples.
+See [code samples](../samples/index.md) and [tutorials](../tutorials/index.md) for scripting examples.
 </Alert>

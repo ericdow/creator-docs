@@ -1,5 +1,5 @@
 ---
-title: Rigid Accessory Specifications
+title: Rigid accessory specifications
 description: Rigid accessory specifications lists the specific technical requirements for basic avatar accessories.
 ---
 
@@ -7,20 +7,20 @@ When creating rigid accessories for Roblox, it's important to meet specific tech
 
 Although rigid accessories and layerable clothing accessories share many technical requirements, layerable accessories must include [additional components](../../art/accessories/clothing-specifications.md) to ensure the accessories deform and stretch appropriately on different body scales.
 
-If you are intending to publish and sell these assets on the Marketplace, there are additional [Marketplace Policy](../../art/marketplace/marketplace-policy.md) standards that you must follow for any accessory or clothing item.
+If you are intending to publish and sell these assets on the Marketplace, there are additional [Marketplace policy](../../marketplace/marketplace-policy.md) standards that you must follow for any accessory or clothing item.
 
-When ready to export, see [Export Requirements](../../art/accessories/export-settings.md) for mesh export settings for Blender and Maya.
+When ready to export, see [Export requirements](../../art/accessories/export-settings.md) for mesh export settings for Blender and Maya.
 
 <Alert severity = 'warning'>
 <AlertTitle>If creating other types of 3D models:</AlertTitle>
 <ul>
-<li>When creating a generic mesh, your model must meet [General Mesh Specifications](../modeling/specifications.md).</li> <br />
-<li>When creating a clothing accessory model, see [Clothing Specifications](../../art/accessories/clothing-specifications.md).</li> <br />
-<li>when creating avatar characters, see [Avatar Specifications](../../art/characters/specifications.md).</li>
+<li>For generic meshes, see [general mesh specifications](../modeling/specifications.md) and [general export settings](../modeling/export-requirements.md).</li> <br />
+<li>For layered accessories, see [layered accessory specifications](../accessories/clothing-specifications.md) and [layered export settings](../accessories/clothing-export-settings.md).</li> <br />
+<li>For avatar characters, see [avatar specifications](../characters/specifications.md) and [avatar export settings](../characters/export-settings.md).</li>
 </ul>
 </Alert>
 
-## Geometry and Budgets
+## Geometry and budgets
 
 - **Single Mesh** - Accessories must be a single mesh.
 - **Budgets** - Accessories can't exceed **4k** triangles.
@@ -28,14 +28,14 @@ When ready to export, see [Export Requirements](../../art/accessories/export-set
 - Use **quads** whenever possible. Avoid faces with 5 or more sides.
 - **Mesh Size** - Depending on the type of accessory asset, meshes must follow a standard size (in studs, centered on attachment point) depending on the [body scale](#body-scale) it is designed for.
 
-### Body Scale
+### Body scale
 
 Roblox supports 3 types of body scales: `Classic`, `Normal`, and `Slender`. When designing your accessory, the size of your accessory cannot exceed the following sizes based on body scale and accessory asset type.
 
-See [Body Scale](../accessories/body-scale.md) for more information on the different types of body proportions Roblox supports.
+See [Body scale](../accessories/body-scale.md) for more information on the different types of body proportions Roblox supports.
 
 <Alert severity = 'info'>
-You can use tools like the [Accessory Fitting Tool](../../art/accessories/accessory-fitting-tool.md) to help visualize and adjust the scale of your mesh on a mannequin within a visualized boundary before uploading and publishing the asset.
+You can use tools like the [Accessory fitting tool](../../art/accessories/accessory-fitting-tool.md) to help visualize and adjust the scale of your mesh on a mannequin within a visualized boundary before uploading and publishing the asset.
 </Alert>
 
 #### Classic
@@ -275,22 +275,26 @@ You can use tools like the [Accessory Fitting Tool](../../art/accessories/access
 </tbody>
 </table>
 
-### Attachment Points
+## Textures
 
-Attachments are points on the accessory model that connect to another attachment of the same name on a character model.
+Textures created for accessories must meet Roblox's [texture specifications](../../art/modeling/texture-specifications.md).
 
-The [Accessory Fitting Tool](../../art/accessories/accessory-fitting-tool.md) automatically applies the following specifications for attachments on clothing assets:
+- Non-albedo maps (RGH, MTL, NOR) for rigid accessories cannot exceed 256x256.
+
+## Attachment points
+
+`Class.Attachment` objects indicate where an accessory model attaches to a point on a character body. Whether you are creating rigid or [layered](./layered-clothing.md) accessories, Studio's [Accessory Fitting Tool](../../art/accessories/accessory-fitting-tool.md) automatically adds and configures the appropriate `Class.Attachment` with the following specifications:
 
 - **One attachment** - Each accessory, including layered clothing, require at least one attachment point to its associated body part.
 - **Naming Convention** - The `Class.Attachment` name must follow a specific naming convention depending on the `Class.Accessory.AccessoryType`. The Accessory Fitting Tool generates an appropriate `Class.Attachment` name automatically.
 
-If setting attachment names manually, use the following `Class.Attachment` name for each accessory type:
+If setting or configuring attachments manually in Studio, use the following names for your `Class.Attachment` object depending on the accessory type:
 
   <table>
   <thead>
     <tr>
-      <th>Accessory Type</th>
-      <th>Attachment Name</th>
+      <th>Accessory type</th>
+      <th>Attachment name</th>
     </tr>
   </thead>
   <tbody>
@@ -329,19 +333,23 @@ If setting attachment names manually, use the following `Class.Attachment` name 
   </tbody>
   </table>
 
+  <Alert severity = 'warning'>
+  Importing attachment objects from a third-party tool is not supported for rigid accessories, but is supported for [character bodies](../characters/specifications.md#attachments).
+  </Alert>
+
 - **Shoulders and Collars** - Even though they are in similar locations, Shoulder and Collar attachment points interact with character rigs differently for rigid accessories.
   - Items using `RightShoulderAttachment` or `LeftShoulderAttachment` move with the character's arm.
   - Items using `RightCollarAttachment` or `LeftCollarAttachment` do not move with the character's arm.
 
-## Layered Properties
+## Layered properties
 
-Accessories, such as clothing items, which stretch and fit around any character body type, must include additional configurations to achieve the layering effect. See [Clothing Specifications](../../art/accessories/clothing-specifications.md) for specifications required to create layerable accessories.
+Accessories, such as clothing items, which stretch and fit around any character body type, must include additional configurations to achieve the layering effect. See [Clothing specifications](../../art/accessories/clothing-specifications.md) for specifications required to create layerable accessories.
 
-## Marketplace Requirements
+## Marketplace requirements
 
 Your items must meet the following requirements before you upload them to the Marketplace to sell:
 
-- Ensure that your items adhere to the [Marketplace Program Guidelines](../../art/marketplace/marketplace-policy.md).
+- Ensure that your items adhere to the [Marketplace program guidelines](../../marketplace/marketplace-policy.md).
 - Whenever applicable, ensure that your items adhere to Roblox's [custom mesh specifications](../../art/modeling/specifications.md).
 - Object `Class.MeshPart.Material|Material` is set to `Plastic`.
 - Object `Class.MeshPart.Transparency|Transparency` is set to 0.

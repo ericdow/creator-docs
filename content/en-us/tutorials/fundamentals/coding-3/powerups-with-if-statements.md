@@ -1,5 +1,5 @@
 ---
-title: Evaluating Multiple Statements
+title: Evaluate multiple statements
 description: How to use the and keyword to evaluate more than one statement at a time in Roblox Luau.
 next: /tutorials/fundamentals/coding-3/multiple-conditions
 prev: /tutorials/fundamentals/coding-3/traps-with-if-statements
@@ -10,20 +10,20 @@ If statements can have multiple requirements that need to be true before running
 ```lua
 -- will not run
 if 2 + 2 == 6 and 4 ~= 6 then
-   print("Both statements are true")
+	print("Both statements are true")
 end
 
 -- will run
 if 4 + 2 == 6 and 4 ~= 6 then
-   print("Both statements are true")
+	print("Both statements are true")
 end
 ```
 
-## Creating a Powerup
+## Create a powerup
 
 Powerups are in-experience items that give players special abilities like flying, invisibility, or speed. This powerup will boost the player's walking speed every time the powerup is touched. Continuously applying boosts can make the player go way too fast, so `and` will be used to control the upper walking speed limit.
 
-### Setting Up the Powerup
+### Set up the powerup
 
 Use this code with a simple part or a model, such as a crystal, coin, or glowing neon orb.
 
@@ -42,11 +42,10 @@ Use this code with a simple part or a model, such as a crystal, coin, or glowing
    local speedBoost = script.Parent
 
    local function onTouch(otherPart)
-      print("Something touched speedBoost")
+   	print("Something touched speedBoost")
    end
 
    speedBoost.Touched:Connect(onTouch)
-
    ```
 
 4. The WalkSpeed property is found on Humanoid objects. Use the same pattern used when creating a trap part and create a conditional that checks for Humanoid objects.
@@ -63,7 +62,7 @@ Use this code with a simple part or a model, such as a crystal, coin, or glowing
 
    ```
 
-## Speeding Players Up
+## Speed players up
 
 The speed boost will make avatars walk faster every time the speed boost is touched. That will quickly become very, very fast. The keyword `and` will ensure players can't go too fast by only enabling the speed boost if the player is under a certain speed.
 
@@ -91,14 +90,14 @@ The speed boost will make avatars walk faster every time the speed boost is touc
 
    ```
 
-### Fine Tuning the Speed Boost
+### Fine tune the speed boost
 
 OnTouch is called every time the speed boost is touched. Every step or slightest bounce triggers the Touched event and calls the connected function. The part's property, `CanTouch` can keep the Touched event from firing. Take advantage of CanTouch and turn off the speed boost for one second every time it's been activated.
 
 1. After applying the boost, set the part's CanTouch property to false. Playtest and make sure the boost only applies once.
 
    ```lua title="Disables the speed boost"
-   local speedBoost= script.Parent
+   local speedBoost = script.Parent
 
    local function onTouch(otherPart)
      local character = otherPart.Parent
@@ -117,7 +116,7 @@ OnTouch is called every time the speed boost is touched. Every step or slightest
 2. Use `task.wait(1)` to pause the script for one second, then set CanTouch to true. Playtest and make sure the speed boost can be reapplied after one second.
 
    ```lua title="Finished script"
-   local speedBoost= script.Parent
+   local speedBoost = script.Parent
 
    local function onTouch(otherPart)
      local character = otherPart.Parent

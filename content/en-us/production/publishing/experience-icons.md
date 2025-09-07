@@ -1,9 +1,9 @@
 ---
-title: Experience Icons
+title: Icons
 description: Icons are an important factor in helping users recognize your experience and grow its brand.
 ---
 
-A high-quality **icon**, in addition to a showcase [thumbnail](../promotion/promotional-thumbnails.md), is an important factor in helping users recognize your experience and grow its brand. With prominent placement in various sections of the [Home](https://www.roblox.com/home) page, it's recommended that the icon expresses the theme, tone, and/or genre of the experience.
+A high-quality **icon**, in addition to a showcase [thumbnail](thumbnails.md), is an important factor in helping users recognize your experience and grow its brand. With prominent placement in various sections of the [Home](https://www.roblox.com/home) page, it's recommended that the icon expresses the theme, tone, and/or genre of the experience.
 
 <GridContainer numColumns="3">
 	<figure>
@@ -20,39 +20,32 @@ A high-quality **icon**, in addition to a showcase [thumbnail](../promotion/prom
   </figure>
 </GridContainer>
 
-When you [publish an experience](../../production/publishing/publishing-experiences-and-places.md) for the first time, an icon is automatically generated from a collection of default images. While you can only display one icon per [locale](../../production/localization/index.md), you can also include supplementary [image and video thumbnails](../../production/promotion/promotional-thumbnails.md) that further promote the experience.
+When you [publish an experience](../../production/publishing/publish-experiences-and-places.md) for the first time, an icon is automatically generated from a collection of default images. While you can only display one icon per [locale](../../production/localization/index.md), you can also include supplementary [image and video thumbnails](thumbnails.md) that further promote the experience.
 
-For more information on maximizing the impact of your experience's icon, see [Best Practices](#best-practices).
+For more information on maximizing the impact of your experience's icon, see [best practices](#best-practices).
 
-## Uploading Icons
+## Upload icons
 
-To ensure your experience's icon always displays in high resolution and with an ideal aspect ratio, use a template of **512×512 pixels**. In some places on the Roblox site and app, icons scale down to smaller sizes like 150×150 pixels, so it's recommended that you preview an icon at smaller sizes to confirm its details remain clear. In addition, see [Best&nbsp;Practices](#best-practices) for tips on icon format and design.
+To ensure your experience's icon always displays in high resolution and with an ideal aspect ratio, use a template of **512×512 pixels**. In some places on the Roblox site and app, icons scale down to smaller sizes like 150×150 pixels, so it's recommended that you preview an icon at smaller sizes to confirm its details remain clear. In addition, see [best practices](#best-practices) for tips on icon format and design.
 
 To upload an experience icon:
 
 1. Navigate to the [Creator Dashboard](https://create.roblox.com/dashboard/creations).
 1. Click on the experience you want to upload an icon for. The experience's **Overview** page displays.
 1. In the left-hand navigation, under **Configure**, select **Places**.
-
-   <img src="../../assets/creator-dashboard/Experience-Nav-Places-No-Icon.png" width="330" alt="Places button indicated for an experience on the Creator Dashboard" />
-
 1. Click the **start place** marked with a star icon (if the experience contains only one place, it will be the only option). The place's **Basic Settings** page displays.
 
    <img src="../../assets/creator-dashboard/Places-Start-Place-No-Icon.png" width="200" alt="Start place tile indicated in Places display on the Creator Dashboard" />
 
 1. In the place's left-hand navigation menu, select **Icon**.
-
-   <img src="../../assets/creator-dashboard/Place-Nav-Icon.png" width="330" alt="Icon button indicated for a place on the Creator Dashboard" />
-
 1. Set the media type to **Image** and click the **Change** button. Then, from the file browser, select and confirm the image you want to use as the icon. Note that all icon images must pass [moderation](../../projects/assets/index.md#asset-moderation) before they appear to others on the Roblox platform.
-
 1. If the preview icon appears as you expect, click **Save Changes**.
 
-## Best Practices
+## Best practices
 
 To create the most positive impact for users looking to play your experience, consider the following best practices.
 
-### Quality and Aspect Ratio
+### Quality and aspect ratio
 
 When you upload an icon image, it should be **square** and at least **512×512 pixels** so that it always displays in high resolution and at an ideal aspect ratio across the Roblox site and app.
 
@@ -77,7 +70,7 @@ When you upload an icon image, it should be **square** and at least **512×512 p
   </figure>
 </GridContainer>
 
-### Relevant Content
+### Relevant content
 
 An icon will have a higher impact if it's unique and provides relevant imagery on what users should expect when they join the experience. Icons with ambiguous graphics may lead to unnecessary confusion.
 
@@ -102,7 +95,7 @@ An icon will have a higher impact if it's unique and provides relevant imagery o
   </figure>
 </GridContainer>
 
-### Color and Contrast
+### Color and contrast
 
 You can express your experience's theme through color and contrast to help users decide if it's suitable and appealing to them.
 

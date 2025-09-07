@@ -20,10 +20,10 @@ The AFT automatically handles the conversion of the custom `Class.Model` or `Cla
 </GridContainer>
 
 <Alert severity = 'warning'>
-If you are intending to sell your accessory on the Marketplace, make sure your accessory model design adheres to the [Marketplace Requirements](../../art/marketplace/marketplace-policy.md).
+If you are intending to sell your accessory on the Marketplace, make sure your accessory model design adheres to the [Marketplace Requirements](../../marketplace/marketplace-policy.md).
 </Alert>
 
-## Setting up Accessories
+## Set up accessories
 
 The first stage of the Accessory Fitting Tool allows you to configure the type of accessory to correctly populate the correct fitting tools and generate the appropriate accessory object. When selecting the type of accessory, the following options are available:
 
@@ -35,10 +35,7 @@ Before using the tool, ensure that you have the `Class.MeshPart` or `Class.Model
 To setup your accessories:
 
 1. Ensure that your custom asset is selectable in your project. See [3D Importer](../../art/modeling/3d-importer.md) for instructions on importing a custom model into your experience.
-2. In the Avatar tab, select the **Accessory Fitting Tool**. The Accessory Fitting Tool panel displays.
-
-   <img src="../../assets/studio/general/Avatar-Tab-Accessory-Fitting-Tool.png" width="786" />
-
+2. From the toolbar's **Avatar** tab, open the **Accessory Fitting Tool**.
 3. Select the **Part** field and click on the `Class.MeshPart` or `Class.Model` in the viewport that you intend to preview. The text field populates with the name of the object selected.
 
    <img src="../../assets/accessories/accessory-fitting-tool/MeshPart-Selected.png" />
@@ -62,7 +59,7 @@ To setup your accessories:
 
    <img src="../../assets/accessories/accessory-fitting-tool/Preview-Display.png" />
 
-## Testing Accessories
+## Test accessories
 
 After you provide the initial accessory details, the tool displays a preview panel. With the preview panel, you can test how your accessory looks on different combinations of character bodies, clothing items, animations, or even custom assets in your experience.
 
@@ -70,9 +67,9 @@ After you provide the initial accessory details, the tool displays a preview pan
 At any point of the testing process, you can start a [Play test](../../studio/testing-modes.md#playtest-options) to launch an instance of your experience where your avatar is replaced with the currently selected character body and accessories from the AFT.
 </Alert>
 
-If you notice any fitting issues with your accessory, you can use the [Editing](#editing-accessory-fit) tools to make minor adjustments to your accessory.
+If you notice any fitting issues with your accessory, you can use the [edit](#edit-accessory-fit) tools to make minor adjustments to your accessory.
 
-### With Different Bodies
+### With different bodies
 
 You can select different bodies to test the fit and wear of your accessories. The AFT supplies several default character models you can use to ensure your accessories fit as expected.
 
@@ -94,7 +91,7 @@ To test your accessory with a different body:
    1. If two character tiles are selected, click a selected tile to deselect it.
    2. In the character preview, **click** and **drag** to rotate and **right-click** to pan to inspect your character.
 
-### With Different Clothing
+### With different clothing
 
 You can select different clothing accessories to test the fit and layering of your caged accessories. The AFT supplies several default character models you can use to ensure your accessories fit as expected.
 
@@ -117,7 +114,7 @@ To test your accessory with a different accessory:
    2. In the character preview, **drag** and **drop** the accessory boxes to change the layer order.
    3. In the character preview, **click** and **drag** to rotate and **right-click** to pan to inspect your character.
 
-### With Animations
+### With animations
 
 You can select different animations to test the movement of your accessory asset. The AFT supplies several default animation assets you can use to ensure your accessories fit as expected when a model is performing various movements.
 
@@ -139,7 +136,7 @@ To test your accessory with different animations:
    1. In the catalog, press the play and pause icon to control the playback.
    2. In the character preview, **click** and **drag** to rotate and **right-click** to pan to inspect your character.
 
-### With Custom Assets
+### With custom assets
 
 You can add custom character models, clothing accessories, and animations that are part of your workspace to the AFT preview catalog. Use this functionality to verify that your accessory works with any other custom models or accessories they may interact with in your experience.
 
@@ -155,11 +152,11 @@ To add custom assets:
 
    <img src="../../assets/accessories/accessory-fitting-tool/Custom-Asset.png" />
 
-## Editing Accessory Fit
+## Edit accessory fit
 
 The Accessory Fitting Tool populates different fitting tools depending on the type of accessory being created.
 
-### Layered Clothing
+### Layered clothing
 
 When editing clothing items, the following tools populate in the viewport:
 
@@ -191,7 +188,7 @@ When editing clothing items, the following tools populate in the viewport:
 </tbody>
 </table>
 
-#### Cage Editing
+#### Cage editing
 
 When the Cage Editing interface is enabled, additional tools display in the viewport. The viewport also displays the vertices of the selected cage over the mannequin, allowing you to make positional edits to the cage and change how a clothing item can fit on a body.
 
@@ -235,15 +232,15 @@ Use the following cage editing tools to help visualize and edit any cage vertice
 
 To make changes to the vertices of the currently selected cage:
 
-1. In the **Avatar** tab's **Snap To Grid** section, disable **Move** snapping. This enables you to make detailed changes to a vertex's position.
+1. In the Studio toolbar, disable **Move** snapping. This enables you to make detailed changes to a vertex's position.
 2. Select a vertex and use the **Move** tool to reposition. Changes to the cage apply immediately and display in the preview panel.
    1. Use the opacity sliders to better visualize the changes to your cage.
    2. Set the **Falloff Distance** depending on the number of vertices being adjusted at once.
       <img src="../../assets/accessories/accessory-fitting-tool/Edit-Vertex-Example.png" />
 
-### Rigid Accessories
+### Rigid accessories
 
-When fitting rigid accessories, a bounding box appears around the mannequin indicating the possible placement of that specific type of accessory. You can position, rotate, and scale objects within this bounding box to ensure your accessory fits on different character models.
+When fitting rigid accessories, a bounding box appears around the mannequin indicating the possible placement of that specific type of accessory. You can **position**, **rotate**, and **scale** objects within this bounding box to ensure your accessory fits on different character models.
 
 <GridContainer numColumns="2">
   <figure>
@@ -256,14 +253,11 @@ When fitting rigid accessories, a bounding box appears around the mannequin indi
   </figure>
 </GridContainer>
 
-## Creating Accessory
+### Create accessory
 
 You can create the accessory at any time. The tool applies any fit changes and generates the appropriate Accessory instance in the workspace depending on the type of accessory selected and any configurations applied.
 
-When you are ready to generate your accessory:
-
-1. If you are creating a **rigid accessory**, use the dropdown and select **Generate Legacy Accessory**.
-2. If you are creating a **layered accessory**, select **Generate MeshPart Accessory**.
+When you are ready to generate your accessory, select **Generate MeshPart Accessory**.
 
 <GridContainer numColumns="2">
   <figure>
@@ -276,12 +270,8 @@ When you are ready to generate your accessory:
   </figure>
 </GridContainer>
 
-<Alert severity = 'warning'>
-Rigid accessories that you intend to sell on the Marketplace require a `Class.SpecialMesh` and don't support [SurfaceAppearance](../../art/modeling/surface-appearance.md). See [Marketplace requirements](../../art/marketplace/marketplace-policy.md) for additional information.
-</Alert>
-
 With an accessory successfully created, you can now try the following:
 
-- Equip the accessory on an avatar-ready character by drag and dropping the accessory on an existing model, or using [HumanoidDescription](../../characters/appearance.md#humanoiddescription).
+- Equip the accessory on an avatar-ready character by drag and dropping the accessory on an existing model, or using [HumanoidDescription](../../characters/appearance.md#manually-modify-appearance).
 - Save the accessory as an [avatar asset](../../projects/assets/index.md#for-avatars) for use in an experience later.
-- If you meet certain account requirements, you can [upload your asset](../marketplace/publishing-to-marketplace.md) for moderation and start selling it on the Marketplace.
+- If you meet certain account requirements, you can [upload your asset](../../marketplace/publish-to-marketplace.md) for moderation and start selling it on the Marketplace.

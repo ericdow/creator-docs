@@ -5,12 +5,10 @@ description: The Game Settings window contains all Studio-level settings and cus
 
 The **Game Settings** window contains all Studio-level settings and
 customization options for Roblox experiences, including settings for
-[permissions](#permissions), [monetization](#monetization), [security](#security), and [localization](#localization). You can access it from the [Home](../studio/home-tab.md) tab of the toolbar.
-
-<img src="../assets/studio/general/Home-Tab-Game-Settings.png" width="760" alt="Game Settings button indicated in Home tab" />
+[permissions](#permissions), [monetization](#monetization), [security](#security), and [localization](#localization). You can access it from the Studio application's **File** menu.
 
 <Alert severity="warning">
-The **Game Settings** window is only available for experiences saved or [published](../production/publishing/publishing-experiences-and-places.md) to Roblox.
+Many settings in this window modify underlying properties in your place file that aren’t visible in Studio or accessible with scripts. This can lead to unexpected or difficult-to-debug behavior, especially when working across teams or reverting changes. Make sure you fully understand the impact of each setting before applying changes.
 </Alert>
 
 ## Basic Info
@@ -34,8 +32,8 @@ The **Basic Info** tab contains general settings for an experience, such as its 
     <td>A description of the experience that describes what a potential player should expect.</td>
   </tr>
 	<tr>
-    <td>**Age Recommendation**</td>
-    <td>[Experience Guidelines](../production/promotion/experience-guidelines.md) provide information on the experience's main page about what kind of content the experience contains.</td>
+    <td>**Content Maturity Label**</td>
+    <td>[Content Maturity Labels](../production/promotion/content-maturity.md) provide information on the experience's main page about what kind of content the experience contains.</td>
   </tr>
   <tr>
     <td>**Game Icon**</td>
@@ -43,11 +41,7 @@ The **Basic Info** tab contains general settings for an experience, such as its 
   </tr>
   <tr>
     <td>**Screenshots & Videos**</td>
-    <td>Lets you upload [promotional thumbnails](../production/promotion/promotional-thumbnails.md). </td>
-  </tr>
-  <tr>
-    <td>**Genre**</td>
-    <td>The genre that best describes your experience.</td>
+    <td>Lets you upload [promotional thumbnails](../production/publishing/thumbnails.md). </td>
   </tr>
   <tr>
     <td>**Playable Devices**</td>
@@ -68,7 +62,7 @@ The **Basic Info** tab contains general settings for an experience, such as its 
 <tbody>
   <tr>
     <td>**Enable Microphone**</td>
-    <td>Enables voice-eligible users to use voice chat within your experience. See [Chat with Voice](../chat/voice-chat.md) for more information.</td>
+    <td>Enables voice-eligible users to use voice chat within your experience. See [Voice Chat](../chat/voice-chat.md) for more information.</td>
   </tr>
   <tr>
     <td>**Enable Camera**</td>
@@ -114,7 +108,7 @@ The **Monetization** tab contains settings that let you [monetize](../production
   </tr>
   <tr>
     <td>**Paid Access**</td>
-    <td>Lets you enable [paid access](../production/monetization/paid-access.md).</td>
+    <td>Lets you enable [paid access in Robux](../production/monetization/paid-access-robux.md) or [paid access in local currency](../production/monetization/paid-access-local-currency.md).</td>
   </tr>
   <tr>
     <td>**Private Servers**</td>
@@ -148,8 +142,12 @@ You should only enable the following settings if you trust all assets from other
     <td>Allows experiences' servers to issue requests to remote servers via `Class.HttpService`.</td>
   </tr>
   <tr>
+    <td>**Secrets**</td>
+    <td>Allows for the creation and configuration of `Datatype.Secret|Secrets` for local Studio sessions using `Class.HttpService`. For more information, see [Work with secrets](../cloud-services/secrets.md#local-secrets).</td>
+  </tr>
+  <tr>
     <td>**Enable&nbsp;Studio&nbsp;Access to API Services**</td>
-    <td>Lets Studio access API services. This setting is useful for testing the implementation of services like [data stores](../cloud-services/datastores.md).</td>
+    <td>Lets Studio access API services. This setting is useful for testing the implementation of services like [data stores](../cloud-services/data-stores).</td>
   </tr>
   <tr>
     <td>**Allow Third Party Sales**</td>
@@ -157,7 +155,11 @@ You should only enable the following settings if you trust all assets from other
   </tr>
   <tr>
     <td>**Allow Third Party Teleports**</td>
-    <td>Lets players [teleport](../projects/teleporting.md) to other experiences.</td>
+    <td>Lets players [teleport](../projects/teleport.md) to other experiences.</td>
+  </tr>
+  <tr>
+    <td>**Allow Mesh / Image APIs**</td>
+    <td>Lets you use `Class.EditableImage` and `Class.EditableMesh` in published experiences. To enable usage, you must be 13+ age verified and ID verified.</td>
   </tr>
 </tbody>
 </table>
@@ -212,50 +214,6 @@ The **Localization** tab contains language settings related to [localization](..
   <tr>
     <td>**Automatic Translation**</td>
     <td>The languages for which you'd like to enable [automatic translation](../production/localization/automatic-translations.md).</td>
-  </tr>
-</tbody>
-</table>
-
-## Avatar
-
-The **Avatar** tab includes global settings for all users'
-[avatars](../characters/index.md) while they are in the experience.
-
-<table>
-<thead>
-  <tr>
-    <th>Setting</th>
-    <th>Description</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>**Presets**</td>
-    <td>Sets the options lower in the tab to presets for **Default**, **Classic&nbsp;Scale**, **Full&nbsp;Classic**, **Rthro**, or **Player&nbsp;Choice**.</td>
-  </tr>
-  <tr>
-    <td>**Avatar&nbsp;Type**</td>
-    <td>Sets the default [avatar type](../characters/appearance.md#avatar-types) to either **R6**, **R15**, or **Player&nbsp;Choice**.</td>
-  </tr>
-  <tr>
-    <td>**Animation**</td>
-    <td>Sets the default animation to either **Standard** or **Player&nbsp;Choice**.</td>
-  </tr>
-  <tr>
-    <td>**Collision**</td>
-    <td>Sets the collision type to either the **Outer&nbsp;Box** or **Inner&nbsp;Box**.</td>
-  </tr>
-  <tr>
-    <td>**Scale**</td>
-    <td>For **R15** avatars, options to customize body type, height, width, head size, and proportions.</td>
-  </tr>
-  <tr>
-    <td>**Body&nbsp;Parts**</td>
-    <td>Lets you override a user's default body part type to a custom ID.</td>
-  </tr>
-  <tr>
-    <td>**Clothing**</td>
-    <td>Lets you override a user's default classic clothing ID to a custom ID.</td>
   </tr>
 </tbody>
 </table>
